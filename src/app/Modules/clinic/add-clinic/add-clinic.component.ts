@@ -10,7 +10,7 @@ import { ClinicService } from 'src/app/Services/clinic.service';
 })
 export class AddClinicComponent {
   
-  tempClinic :Clinic =new Clinic('','','',["640e0cbd8f1f134751b86a87"]);
+  tempClinic :Clinic =new Clinic('','','',["640f97cc4b291a07467f8042"]);
  
  constructor(public clinicService:ClinicService,public router:Router){}
 
@@ -18,7 +18,7 @@ export class AddClinicComponent {
 
     this.clinicService.addClinic(this.tempClinic).subscribe(data=>{
      console.log(data);
-     this.router.navigateByUrl("/clinci")
+     this.router.navigateByUrl("/clinic")
  
     })
   }

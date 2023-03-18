@@ -3,7 +3,7 @@
   type="button"
   class="btn btn-primary"
   data-bs-toggle="modal"
-  [attr.data-bs-target]="'#modal-' + index"
+  [attr.data-bs-target]="'#modal-' + index+1"
   (click)="edit()"
 >
   Edit
@@ -11,7 +11,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="{{ 'modal-' + index }}"
+  id="{{ 'modal-' + index+1 }}"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1"

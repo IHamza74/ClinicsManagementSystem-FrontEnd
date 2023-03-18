@@ -6,10 +6,24 @@ import { CoreModule } from './core/core.module';
 import {ClinicModule} from '../app/Modules/clinic/clinic.module'
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { MedicineModule } from './Modules/medicine/medicine.module';
+
+
+
+
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule,CoreModule,ClinicModule,HttpClientModule,CommonModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    CoreModule,
+    MedicineModule,
+    HttpClientModule,
+    ClinicModule,
+    CommonModule,
+    AppRoutingModule,
+   
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
