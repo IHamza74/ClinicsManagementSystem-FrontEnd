@@ -1,0 +1,67 @@
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Employee } from 'src/app/Models/employee';
+import { EmployeeService } from 'src/app/Services/employee.service';
+
+@Component({
+  selector: 'app-employee-add',
+  templateUrl: './employee-add.component.html',
+  styleUrls: ['./employee-add.component.css'],
+})
+export class EmployeeAddComponent {
+  currentEmployee: Employee;
+  addForm: FormGroup;
+  employeeService: EmployeeService;
+  constructor(employeeService: EmployeeService) {
+    this.employeeService = employeeService;
+  }
+  ngOnInit(): void {
+    this.addForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      age: new FormControl(null, [
+        Validators.required,
+        Validators.min(20),
+        Validators.max(60),
+      ]),
+      government: new FormControl(null, [Validators.required]),
+      city: new FormControl(null, [Validators.required]),
+      street: new FormControl(null, [Validators.required]),
+      building: new FormControl(null, [Validators.required]),
+    });
+  }
+
+  onSubmit() {
+    console.log(this.addForm);
+    this.currentEmployee = new Employee(
+      this.addForm.value.name,
+      this.addForm.value.email,
+      this.addForm.value.password,
+      this.addForm.value.age,
+      {
+        government: this.addForm.value.government,
+        city: this.addForm.value.city,
+        street: this.addForm.value.street,
+        building: this.addForm.value.building,
+      }
+    );
+    /*this.currentEmployee.name = this.addForm.value.name;
+    this.currentEmployee.email = this.addForm.value.email;
+    this.currentEmployee.password = this.addForm.value.password;
+    this.currentEmployee.age = this.addForm.value.age;
+    this.currentEmployee.address.government = this.addForm.value.government;
+    this.currentEmployee.address.city = this.addForm.value.city;
+    this.currentEmployee.address.street = this.addForm.value.street;
+    this.currentEmployee.address.building = this.addForm.value.building;*/
+    /*  console.log(this.addForm.value);
+    console.log(this.currentEmployee);*/
+
+    this.employeeService
+      .add(this.currentEmployee)
+      .subscribe((a) => console.log(a));
+  }
+}
