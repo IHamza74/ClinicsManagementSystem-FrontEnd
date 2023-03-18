@@ -9,7 +9,12 @@ import { EmployeeListComponent } from './Modules/employee/employee-list/employee
 import { EmployeeModule } from './Modules/employee/employee.module';
 import { PaginatorModule } from 'primeng/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
+import { CommonModule } from '@angular/common';
+import { ClinicModule } from '../app/Modules/clinic/clinic.module';
+import { AppRoutingModule } from './app-routing.module';
+import { MedicineModule } from './Modules/medicine/medicine.module';
+
+//const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,9 +23,13 @@ const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
     CoreModule,
     EmployeeModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
     PaginatorModule,
     BrowserAnimationsModule,
+    MedicineModule,
+    ClinicModule,
+    CommonModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

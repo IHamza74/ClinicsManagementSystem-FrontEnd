@@ -1,0 +1,34 @@
+<app-filter-medicine
+  (sendFilteredObject)="reciveFilteredObject($event)"
+></app-filter-medicine>
+<div class="medicine-grid">
+  <div
+    class="card"
+    *ngFor="let medicine of getVisibleMedicineList(); let i = index"
+  >
+    <div class="card-img">
+      <img src="../../../../assets/images/medicine.jpg" alt="Doctor Profile" />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ medicine.Name }}</h5>
+      <p class="card-specialty">{{ medicine.Price }}</p>
+      <p class="card-specialty">{{ medicine.Dose }}</p>
+      <p class="card-location">{{ medicine.Stock }}</p>
+      <div class="card-actions">
+        <app-edit-medicine
+          [medicineObj]="medicine"
+          [index]="i"
+        ></app-edit-medicine>
+        <button class="btn btn-danger" (click)="deleteMedicine(medicine)">
+          delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<p-paginator
+  [rows]="rowsPerPage"
+  [totalRecords]="medicineList.length"
+  [rowsPerPageOptions]="[6, 18, 30]"
+  (onPageChange)="onPageChange($event)"
+></p-paginator>
