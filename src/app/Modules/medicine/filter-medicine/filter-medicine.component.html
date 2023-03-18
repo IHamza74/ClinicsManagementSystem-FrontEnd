@@ -1,0 +1,49 @@
+<!-- <p-megaMenu [model]="items" #mark
+  ><button class="btn btn-primary" (click)="searchForItem(items, mark)">
+    Search
+  </button></p-megaMenu
+> -->
+<div class="d-flex">
+  <div class="row">
+    <h5>Name</h5>
+    <p-dropdown
+      [options]="names"
+      placeholder="Select a City"
+      optionLabel="Name"
+      #mark1
+    ></p-dropdown>
+  </div>
+  <div class="row">
+    <h5>Dose</h5>
+    <p-dropdown
+      [options]="dosage"
+      placeholder="Select a City"
+      optionLabel="Dose"
+      #mark2
+    ></p-dropdown>
+  </div>
+  <div class="row">
+    <h5>Price</h5>
+    <p-dropdown
+      [options]="price"
+      placeholder="Select a City"
+      optionLabel="Price"
+      #mark3
+    ></p-dropdown>
+  </div>
+  <div class="row">
+    <h5>Stock</h5>
+    <p-dropdown
+      [options]="stock"
+      placeholder="Select a City"
+      optionLabel="Stock"
+      #mark4
+    ></p-dropdown>
+  </div>
+  <button class="btn btn-success" (click)="search(mark1, mark2, mark3, mark4)">
+    Search
+  </button>
+  <button class="btn btn-danger" (click)="rest(mark1, mark2, mark3, mark4)">
+    Reset
+  </button>
+</div>
