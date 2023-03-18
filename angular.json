@@ -21,9 +21,14 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+                "node_modules/primeng/resources/primeng.min.css",
+                "node_modules/primeflex/primeflex.css",
+                "node_modules/primeicons/primeicons.css",
+                "node_modules/quill/dist/quill.snow.css"
             ],
-            "scripts": []
+            "scripts": [ "./node_modules/bootstrap/dist/js/bootstrap.js"]
           },
           "configurations": {
             "production": {
@@ -82,5 +87,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "6554ba02-c1a1-42c8-96e0-85ec9ffdcb5c"
   }
 }
