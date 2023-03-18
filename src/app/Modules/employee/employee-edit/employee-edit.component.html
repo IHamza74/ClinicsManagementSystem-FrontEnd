@@ -15,7 +15,7 @@
   type="button"
   class="btn btn-secondary"
   data-bs-toggle="modal"
-  [attr.data-bs-target]="'#modal-' + currentIndex"
+  [attr.data-bs-target]="'#modal-emp' + currentIndex"
 >
   Edit
 </button>
@@ -210,7 +210,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="{{ 'modal-' + currentIndex }}"
+  id="{{ 'modal-emp' + currentIndex }}"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1"
