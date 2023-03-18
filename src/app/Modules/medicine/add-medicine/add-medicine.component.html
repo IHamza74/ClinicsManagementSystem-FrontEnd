@@ -1,0 +1,127 @@
+<form
+  class="d-flex flex-column"
+  [formGroup]="medicineData"
+  (ngSubmit)="onSubmit()"
+>
+  <div>
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+        <input
+          type="text"
+          id="inputtext"
+          pInputText
+          formControlName="Name"
+          [(ngModel)]="medicineObj.Name"
+        />
+        <label for="inputtext">Name</label>
+      </span>
+
+      <span
+        class="help-block"
+        *ngIf="
+          !medicineData.get('Name').valid && medicineData.get('Name').touched
+        "
+        ><span *ngIf="medicineData.get('Name').errors['required']"
+          >Please Enter Medicine Name!</span
+        >
+        <span *ngIf="medicineData.get('Name').errors['numbersIsForbidden']"
+          >Invalid Input!</span
+        >
+      </span>
+    </div>
+    <div class="col-sm-2">
+      <div class="p-inputgroup">
+        <input
+          type="text"
+          pInputText
+          placeholder="Dosage"
+          formControlName="Price"
+          formControlName="Dose"
+          [(ngModel)]="medicineObj.Dose"
+        />
+        <span class="p-inputgroup-addon">/day</span>
+      </div>
+      <span
+        class="help-block"
+        *ngIf="
+          !medicineData.get('Dose').valid && medicineData.get('Dose').touched
+        "
+        ><span *ngIf="medicineData.get('Dose').errors['required']"
+          >Please Enter Dosage!</span
+        >
+        <span *ngIf="medicineData.get('Dose').errors['stringIsForbidden']"
+          >Invalid Input!</span
+        >
+      </span>
+    </div>
+  </div>
+  <div>
+    <div class="col-sm-3">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">EP</span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Price"
+          formControlName="Price"
+          [(ngModel)]="medicineObj.Price"
+        />
+        <span class="p-inputgroup-addon">.00</span>
+      </div>
+      <span
+        class="help-block"
+        *ngIf="
+          !medicineData.get('Price').valid && medicineData.get('Price').touched
+        "
+        ><span *ngIf="medicineData.get('Price').errors['required']"
+          >Please Enter Price!</span
+        >
+        <span *ngIf="medicineData.get('Price').errors['stringIsForbidden']"
+          >Invalid Input!</span
+        >
+      </span>
+    </div>
+    <div class="field col-sm-3">
+      <span class="p-float-label">
+        <input
+          type="text"
+          id="inputtext"
+          pInputText
+          formControlName="Stock"
+          [(ngModel)]="medicineObj.Stock"
+        />
+        <label for="inputtext">Stock</label>
+      </span>
+      <span
+        class="help-block"
+        *ngIf="
+          !medicineData.get('Stock').valid && medicineData.get('Stock').touched
+        "
+        ><span *ngIf="medicineData.get('Stock').errors['required']"
+          >Please Enter Stock!</span
+        >
+        <span *ngIf="medicineData.get('Stock').errors['stringIsForbidden']"
+          >Invalid Input!</span
+        >
+      </span>
+    </div>
+  </div>
+
+  <button
+    class="btn btn-success"
+    type="submit"
+    [disabled]="medicineData.invalid"
+  >
+    Add Medicine
+  </button>
+  <button class="btn btn-primary" type="button" (click)="print()">print</button>
+</form>
+
+<!--<h5>Basic: {{val1}}</h5>
+<p-slider [(ngModel)]="val1"></p-slider>-->
+<!--
+    <div class="p-field p-col-12 p-md-4">
+    <h5>Readonly</h5>
+    <p-knob [(ngModel)]="value2" [readonly]="true"></p-knob>
+  </div>
+-->
