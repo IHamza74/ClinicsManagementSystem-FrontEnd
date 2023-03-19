@@ -19,14 +19,27 @@ export class ProfileComponent implements OnInit {
     private doctorService: DoctorService
   ) {
     /* delete these lines after login */
-    this.role = 'employee';
-    this.id = '63e4017bd43ff93971c13140';
-    this.user = new Employee('ahmed', 'Ahmed@gmail.com', '12345678', 25, {
-      government: 'Egypt',
-      city: 'Tanta',
-      street: 'ElTer3a st',
-      building: '10',
-    });
+    // this.role = 'employee'; //emp
+    // this.id = '63e4017bd43ff93971c13140'; //emp
+    // this.user = new Employee('ahmed', 'Ahmed@gmail.com', '12345678', 25, {
+    //   government: 'Egypt',
+    //   city: 'Tanta',
+    //   street: 'ElTer3a st',
+    //   building: '10',
+    // });
+    this.role = 'doctor'; //doc
+    this.id = '63e4e87211226c1452238226'; //doc
+    this.user = new Doctor(
+      '63e4e87211226c1452238226',
+      'ahmed',
+      25,
+      'kaka',
+      'ahmed@gail.com',
+      '1234567989',
+      '',
+      '',
+      []
+    );
   }
   ngOnInit(): void {
     switch (this.role) {
@@ -38,7 +51,11 @@ export class ProfileComponent implements OnInit {
         });
         break;
       case 'doctor':
-        this.doctorService.getById(this.id).subscribe((a) => console.log(a));
+        this.doctorService.getById(this.id).subscribe((doctor) => {
+          this.doctorService.setCurrentDoctor(doctor);
+          this.user = doctor;
+          console.log(this.user);
+        });
         break;
     }
   }

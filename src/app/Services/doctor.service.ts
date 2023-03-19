@@ -7,6 +7,8 @@ import { FormControl } from '@angular/forms';
   providedIn: 'root',
 })
 export class DoctorService {
+  currentDoctor: Doctor;
+
   baseUrl = 'http://localhost:3000/doctor/';
   photoFile: File;
   doctors: Doctor[] = [];
@@ -66,5 +68,8 @@ export class DoctorService {
         console.error('Error:', error);
       }
     );
+  }
+  setCurrentDoctor(doctor: Doctor) {
+    this.currentDoctor = doctor;
   }
 }
