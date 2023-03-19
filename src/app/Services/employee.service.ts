@@ -62,7 +62,7 @@ export class EmployeeService {
     this.currentEmployee = employee;
   }
   getById(id: string) {
-    return this.employees.filter((a) => (a._id = id));
+    return this.http.get<Employee>(this.basrURL + id);
   }
   /* filters */
   filter(option: string) {

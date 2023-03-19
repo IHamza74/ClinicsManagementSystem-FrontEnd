@@ -1,4 +1,31 @@
-<div
+<div class="row justify-content-center">
+  <div
+    class="card-container mx-2 my-2 p-4"
+    *ngFor="let employee of employees; let i = index"
+  >
+    <span class="pro">PRO</span>
+    <img
+      class="round"
+      src="https://randomuser.me/api/portraits/women/79.jpg"
+      alt="user"
+    />
+    <h3>Mr. {{ employee.name }}</h3>
+    <h6>Age: {{ employee.age }}</h6>
+    <h6></h6>
+    <p>{{ employee.email }} <br /></p>
+    <div class="buttons">
+      <app-employee-edit
+        [currentEmployee]="employee"
+        [currentIndex]="i"
+      ></app-employee-edit>
+      <button class="primary ghost" (click)="remove(employee._id)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- <div
   class="card"
   *ngFor="let employee of employees; let i = index"
   [paginator]="true"
@@ -13,7 +40,6 @@
     <div class="card-actions">
       <button class="btn btn-primary">Book Appointment</button>
       <button class="btn btn-link">View Profile</button>
-      <!-- <button class="btn btn-secondary" (click)="edit(employee)">Edit</button> -->
       <app-employee-edit
         [currentEmployee]="employee"
         [currentIndex]="i"
@@ -24,7 +50,7 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
 <p-paginator
   (onPageChange)="paginate($event)"
   [rows]="10"

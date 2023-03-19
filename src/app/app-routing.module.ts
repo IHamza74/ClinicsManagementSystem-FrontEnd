@@ -8,6 +8,8 @@ import { AddMedicineComponent } from './Modules/medicine/add-medicine/add-medici
 import { EditMedicineComponent } from './Modules/medicine/edit-medicine/edit-medicine.component';
 import { ListMedicineComponent } from './Modules/medicine/list-medicine/list-medicine.component';
 import { DoctorListComponent } from './doctor/doctor-list/doctor-list.component';
+import { ProfileModule } from './profile/profile.module';
+import { ProfileComponent } from './profile/profile/profile.component';
 
 const routes: Routes = [
   { path: 'clinic', component: ClinicListComponent },
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'list-medicine', component: ListMedicineComponent },
   { path: 'Employee', component: EmployeeListComponent },
   { path: 'doctor', component: DoctorListComponent },
+  { path: 'profile', component: ProfileComponent },
   // {path:"clinci/update/:id",component:u
 ];
 @NgModule({
