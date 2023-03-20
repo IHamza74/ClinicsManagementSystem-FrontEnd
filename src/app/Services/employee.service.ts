@@ -42,6 +42,7 @@ export class EmployeeService {
     console.log(this.basrURL + id);
     return this.http.delete(this.basrURL + id);
   }
+  
   edit(employee: Employee) {
     console.log(employee);
     return this.http.patch<Employee>(this.basrURL, {

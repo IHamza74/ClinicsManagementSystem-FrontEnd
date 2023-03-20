@@ -29,6 +29,7 @@
               "node_modules/primeflex/primeflex.css",
               "node_modules/quill/dist/quill.snow.css",
               "src/styles.css"
+           
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
