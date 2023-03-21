@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { ClinicModule } from '../app/Modules/clinic/clinic.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MedicineModule } from './Modules/medicine/medicine.module';
+import { PatientModule } from './Modules/Patient/patient.module';
 
 //const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
@@ -43,6 +44,7 @@ import { MedicineModule } from './Modules/medicine/medicine.module';
     ClinicModule,
     CommonModule,
     AppRoutingModule,
+    PatientModule,
   ],
   providers: [DoctorService],
 

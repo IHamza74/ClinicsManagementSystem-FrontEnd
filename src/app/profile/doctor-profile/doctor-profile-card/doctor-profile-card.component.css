@@ -2030,3 +2030,20 @@ p {
 #navbar .navbar {
   margin-bottom: 20px;
 }
+
+label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+label:hover {
+  background-color: #e2e2e2;
+}
+
+input[type="file"] {
+  display: none;
+}

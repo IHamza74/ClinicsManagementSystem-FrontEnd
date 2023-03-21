@@ -118,6 +118,10 @@
         ></app-employee-profile-card>
         <app-doctor-profile-card *ngIf="role == 'doctor'" [doctor]="user">
         </app-doctor-profile-card>
+        <app-patient-profile-card
+          *ngIf="role == 'patient'"
+          [patient]="user"
+        ></app-patient-profile-card>
         <!-- <div class="card card-profile shadow">
           <div class="row justify-content-center">
             <div class="col-lg-3 order-lg-2">
