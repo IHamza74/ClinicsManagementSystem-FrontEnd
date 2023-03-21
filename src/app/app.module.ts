@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
 import { MenuItem } from 'primeng/api';
@@ -23,6 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MedicineModule } from './Modules/medicine/medicine.module';
 import { PatientModule } from './Modules/Patient/patient.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 //const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
 @NgModule({
@@ -35,7 +36,7 @@ import { PatientModule } from './Modules/Patient/patient.module';
     DoctorModule,
     ReactiveFormsModule,
     AccordionModule,
-
+    FontAwesomeModule,
     EmployeeModule,
     // RouterModule.forRoot(routes),
     PaginatorModule,

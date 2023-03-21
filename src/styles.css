@@ -2033,3 +2033,11 @@ p {
 #navbar .navbar {
   margin-bottom: 20px;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.help-block {
+  color: red;
+}

@@ -5,7 +5,7 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 @Component({
   selector: 'app-doctor-profile-card',
   templateUrl: './doctor-profile-card.component.html',
-  styleUrls: ['./doctor-profile-card.component.css'],
+  styleUrls: ['./doctor-profile-card.component.css','./../../profile/profile.component.css'],
 })
 export class DoctorProfileCardComponent {
   @Input() doctor: Doctor;

@@ -34,6 +34,7 @@ export class DoctorService {
   }
 
   editDoctor(doctor: DoctorPatch) {
+    console.log(doctor);
     return this.http.patch<DoctorPatch>(this.baseUrl, doctor);
   }
 

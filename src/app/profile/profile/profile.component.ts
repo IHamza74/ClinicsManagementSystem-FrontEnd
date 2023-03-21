@@ -31,39 +31,39 @@ export class ProfileComponent implements OnInit {
     //   building: '10',
     // });
 
-    // this.role = 'doctor'; //doc
-    // this.id = '63e4e87211226c1452238226'; //doc
-    // this.user = new Doctor(
-    //   '63e4e87211226c1452238226',
-    //   'ahmed',
-    //   25,
-    //   'kaka',
-    //   'ahmed@gail.com',
-    //   '1234567989',
-    //   '',
-    //   '',
-    //   []
-    // );
-
-    this.role = 'patient'; //patient
-    this.id = '63e4e9cf59930fe8aca061aa'; //patient
-    this.user = new Patient(
+    this.role = 'doctor'; //doc
+    this.id = '63e4e87211226c1452238226'; //doc
+    this.user = new Doctor(
+      '63e4e87211226c1452238226',
+      'ahmed',
+      25,
+      'kaka',
+      'ahmed@gail.com',
+      '1234567989',
       '',
       '',
-      0,
-      '',
-      {
-        government: 'Egypt',
-        city: 'Tanta',
-        street: 'ElTer3a st',
-        building: '10',
-      },
-      [],
-      '',
-      '',
-      '',
-      ''
+      []
     );
+
+    // this.role = 'patient'; //patient
+    // this.id = '63e4e9cf59930fe8aca061aa'; //patient
+    // this.user = new Patient(
+    //   '',
+    //   '',
+    //   0,
+    //   '',
+    //   {
+    //     government: 'Egypt',
+    //     city: 'Tanta',
+    //     street: 'ElTer3a st',
+    //     building: '10',
+    //   },
+    //   [],
+    //   '',
+    //   '',
+    //   '',
+    //   ''
+    // );
   }
   ngOnInit(): void {
     switch (this.role) {
