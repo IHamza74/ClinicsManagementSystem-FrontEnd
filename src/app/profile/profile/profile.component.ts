@@ -5,6 +5,7 @@ import { Patient } from 'src/app/Models/patient';
 import { DoctorService } from 'src/app/Services/doctor.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { PatientService } from 'src/app/Services/patient-service';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private doctorService: DoctorService,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private profileService: ProfileService
   ) {
     /* delete these lines after login */
     // this.role = 'employee'; //emp
@@ -30,21 +32,19 @@ export class ProfileComponent implements OnInit {
     //   street: 'ElTer3a st',
     //   building: '10',
     // });
-
-    this.role = 'doctor'; //doc
-    this.id = '63e4e87211226c1452238226'; //doc
-    this.user = new Doctor(
-      '63e4e87211226c1452238226',
-      'ahmed',
-      25,
-      'kaka',
-      'ahmed@gail.com',
-      '1234567989',
-      '',
-      '',
-      []
-    );
-
+    // this.role = 'doctor'; //doc
+    // this.id = '63e4e87211226c1452238226'; //doc
+    // this.user = new Doctor(
+    //   '63e4e87211226c1452238226',
+    //   'ahmed',
+    //   25,
+    //   'kaka',
+    //   'ahmed@gail.com',
+    //   '1234567989',
+    //   '',
+    //   '',
+    //   []
+    // );
     // this.role = 'patient'; //patient
     // this.id = '63e4e9cf59930fe8aca061aa'; //patient
     // this.user = new Patient(
@@ -66,30 +66,36 @@ export class ProfileComponent implements OnInit {
     // );
   }
   ngOnInit(): void {
-    switch (this.role) {
+    switch (this.profileService.role) {
       case 'employee':
-        this.employeeService.getById(this.id).subscribe((employee) => {
-          this.employeeService.setCurrentEmployee(employee);
-          this.user = employee;
-          console.log(this.user);
-        });
+        this.employeeService
+          .getById(this.profileService.id)
+          .subscribe((employee) => {
+            this.employeeService.setCurrentEmployee(employee);
+            this.profileService.user = employee;
+            console.log(this.profileService.user);
+          });
         break;
       case 'doctor':
-        this.doctorService.getById(this.id).subscribe((doctor) => {
-          this.doctorService.setCurrentDoctor(doctor);
-          this.user = doctor;
-          console.log(this.user);
-        });
+        this.doctorService
+          .getById(this.profileService.id)
+          .subscribe((doctor) => {
+            this.doctorService.setCurrentDoctor(doctor);
+            this.profileService.user = doctor;
+            console.log(this.profileService.user);
+          });
         break;
       case 'patient':
-        this.patientService.getPatientByID(this.id).subscribe((patient) => {
-          //   this.patientService.setCurrentPatient(patient);
-          this.user = patient;
-          this.user.name = patient.Name;
-          console.log(patient.name);
+        this.patientService
+          .getPatientByID(this.profileService.id)
+          .subscribe((patient) => {
+            //   this.patientService.setCurrentPatient(patient);
+            this.profileService.user = patient;
+            this.profileService.user.name = patient.Name;
+            console.log(patient.name);
 
-          console.log(this.user.name);
-        });
+            console.log(this.profileService.user.name);
+          });
         break;
     }
   }

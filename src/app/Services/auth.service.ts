@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
-  authTokenSubject = new Subject<any>();
+  // authTokenSubject = new Subject<any>();
 
   // private authToken: any;
   // setAuthToken(token: any) {

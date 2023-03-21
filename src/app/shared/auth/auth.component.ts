@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, NgControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { MedicineService } from 'src/app/Services/medicine.service';
+import jwt_decode from 'jwt-decode';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-auth',
@@ -11,6 +13,7 @@ import { MedicineService } from 'src/app/Services/medicine.service';
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
+  decodedToken = { role: '', id: '', iat: null, exp: null };
   signUpForm: FormGroup;
   signInForm: FormGroup;
 
@@ -26,7 +29,8 @@ export class AuthComponent implements OnInit {
   constructor(
     private medicineService: MedicineService,
     private authService: AuthService,
-    private route: Router
+    private route: Router,
+    private profileService: ProfileService
   ) {}
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
@@ -53,8 +57,14 @@ export class AuthComponent implements OnInit {
     this.signInObj.email = this.signInForm.get('email').value;
     this.signInObj.password = this.signInForm.get('password').value;
     this.authService.login(this.signInObj).subscribe((Response) => {
-      if (Response.data == 'Authorized')
-        this.authService.authTokenSubject.next(Response.token);
+      if (Response.data == 'Authorized') {
+        localStorage.setItem('token', Response.token);
+        this.decodedToken = jwt_decode(Response.token);
+        this.profileService.id = this.decodedToken.id;
+        this.profileService.role = this.decodedToken.role;
+      }
+
+      // this.authService.authTokenSubject.next(Response.token);
     });
   }
   onSubmitSignUp() {
