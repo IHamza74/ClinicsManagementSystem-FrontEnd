@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   @Input() role: string;
   @Input() id: string;
   user: Employee | Doctor;
+  editClick=false;
   //userService: EmployeeService | DoctorService;
   constructor(
     private employeeService: EmployeeService,
@@ -49,4 +50,5 @@ export class ProfileComponent implements OnInit {
         break;
     }
   }
+ 
 }

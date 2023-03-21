@@ -100,7 +100,7 @@
             This is your profile page. You can see the progress you've made with
             your work and manage your projects or assigned tasks
           </p>
-          <a href="#!" class="btn btn-info">Edit profile</a>
+          <button class="btn btn-info" (click)="editClick=true">Edit profile</button>
         </div>
       </div>
     </div>
@@ -131,13 +131,15 @@
           
             </div>
           </div>
-
-        <app-employee-profile-edit  *ngIf="role == 'employee'" [EditeEmployee]="user" ></app-employee-profile-edit>
-       <app-doctor-profile-edit *ngIf="role == 'doctor'" [EditDoctor]="user"></app-doctor-profile-edit> 
-      </div>
+          <app-employee-profile-edit  *ngIf="role == 'employee' && editClick==true;" [EditeEmployee]="user" ></app-employee-profile-edit>
+          <app-doctor-profile-edit *ngIf="role == 'doctor'&& editClick==true;" [EditDoctor]="user"></app-doctor-profile-edit> 
+          <app-doctor-data *ngIf="role == 'doctor' && editClick==false;"></app-doctor-data>
+        </div>
+        <button *ngIf="editClick"  class="btn btn-info" (click)="editClick=false">show profile</button>
+        
       </div>
     
-      <!--  add edit here  -->
+     
     </div>
   </div>
 </div>

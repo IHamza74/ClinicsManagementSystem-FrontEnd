@@ -20,10 +20,8 @@ import { CommonModule } from '@angular/common';
 import { ClinicModule } from '../app/Modules/clinic/clinic.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MedicineModule } from './Modules/medicine/medicine.module';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-//const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
 @NgModule({
   declarations: [AppComponent],
