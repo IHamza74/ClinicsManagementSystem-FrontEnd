@@ -10,6 +10,7 @@ import { ListMedicineComponent } from './Modules/medicine/list-medicine/list-med
 import { DoctorListComponent } from './doctor/doctor-list/doctor-list.component';
 import { ProfileModule } from './profile/profile.module';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { AuthComponent } from './shared/auth/auth.component';
 
 const routes: Routes = [
   { path: 'clinic', component: ClinicListComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'Employee', component: EmployeeListComponent },
   { path: 'doctor', component: DoctorListComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'auth', component: AuthComponent },
   // {path:"clinci/update/:id",component:u
 ];
 @NgModule({

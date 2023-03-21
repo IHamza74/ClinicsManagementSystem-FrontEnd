@@ -22,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MedicineModule } from './Modules/medicine/medicine.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthModule } from './shared/auth/auth.module';
 
 //const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
@@ -35,7 +36,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DoctorModule,
     ReactiveFormsModule,
     AccordionModule,
-    FontAwesomeModule,
+    // FontAwesomeModule,
     EmployeeModule,
     // RouterModule.forRoot(routes),
     PaginatorModule,
@@ -44,7 +45,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ClinicModule,
     CommonModule,
     AppRoutingModule,
-   
+    AuthModule,
   ],
   providers: [DoctorService],
 
