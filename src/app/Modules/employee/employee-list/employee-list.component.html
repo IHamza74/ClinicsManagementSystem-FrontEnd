@@ -1,7 +1,16 @@
+<input
+  type="text"
+  pInputText
+  class="form-control"
+  placeholder="Search By Name"
+  [(ngModel)]="search"
+  (keyup)="searchByName($event)"
+/>
+
 <div class="row justify-content-center">
   <div
     class="card-container mx-2 my-2 p-4"
-    *ngFor="let employee of employees; let i = index"
+    *ngFor="let employee of pageItems; let i = index"
   >
     <span class="pro">PRO</span>
     <img
@@ -52,10 +61,9 @@
   </div>
 </div> -->
 <p-paginator
-  (onPageChange)="paginate($event)"
-  [rows]="10"
-  [totalRecords]="employeeService.empArr.length"
-  [rowsPerPageOptions]="[10, 20, 30]"
+  [rows]="9"
+  [totalRecords]="pageNo"
+  (onPageChange)="page($event)"
 ></p-paginator>
 <div><app-employee-options></app-employee-options></div>
 
@@ -115,3 +123,6 @@
     </div>
   </div>
 </div>
+<a href="#" class="float">
+  <i class="fa fa-plus my-float"></i>
+</a>

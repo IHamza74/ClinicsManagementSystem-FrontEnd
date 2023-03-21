@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { ClinicModule } from '../app/Modules/clinic/clinic.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MedicineModule } from './Modules/medicine/medicine.module';
+import { PatientModule } from './Modules/Patient/patient.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './shared/auth/auth.module';
@@ -45,6 +46,7 @@ import { AuthModule } from './shared/auth/auth.module';
     ClinicModule,
     CommonModule,
     AppRoutingModule,
+    PatientModule,
     AuthModule,
   ],
   providers: [DoctorService],
