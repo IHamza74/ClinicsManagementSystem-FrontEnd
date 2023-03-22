@@ -46,14 +46,15 @@
     </div>
     <div class="text-center">
       <h3>
-        {{ employee.name
-        }}<span class="font-weight-light">, {{ employee.age }}</span>
+        {{ employee?.name | uppercase }}<span class="font-weight-light"></span>
       </h3>
       <div class="h5 font-weight-300">
-        <i class="ni location_pin mr-2"></i> {{ employee.address.government }} ,
-        {{ employee.address.city }} , {{ employee.address.street }} ,{{
-          employee.address.building
-        }}
+        <i class="fa-solid fa-calendar-days"></i>
+        {{ employee?.age }}
+        <br />
+        <i class="fa-sharp fa-solid fa-location-dot"></i>
+        {{ employee?.address.government }} , {{ employee?.address.city }} ,
+        {{ employee?.address.street }} ,{{ employee?.address.building }}
       </div>
       <!-- <div class="h5 mt-4">
         <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative

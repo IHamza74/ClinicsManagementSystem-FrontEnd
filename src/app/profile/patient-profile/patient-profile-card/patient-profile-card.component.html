@@ -46,13 +46,17 @@
     </div>
     <div class="text-center">
       <h3>
-        {{ patient.name
-        }}<span class="font-weight-light">, {{ patient.Age }}</span>
+        {{ patient?.name | uppercase }}<span class="font-weight-light"> </span>
       </h3>
       <div class="h5 font-weight-300">
-        <i class="ni location_pin mr-2"></i> {{ patient.Address.government }} ,
-        {{ patient.Address.city }} , {{ patient.Address.street }} ,{{
-          patient.Address.building
+        <i class="fa-solid fa-calendar-days"></i>
+        {{ patient?.Age }}
+        <br />
+        <i class="fa-sharp fa-solid fa-location-dot"></i>
+        {{ patient?.Address.government | titlecase }} ,
+        {{ patient?.Address.city | titlecase }} ,
+        {{ patient?.Address.street | titlecase }} ,{{
+          patient?.Address.building | titlecase
         }}
       </div>
       <!-- <div class="h5 mt-4">

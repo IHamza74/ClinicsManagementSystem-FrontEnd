@@ -47,13 +47,18 @@
     </div>
     <div class="text-center">
       <h3>
-        {{ doctor.name
-        }}<span class="font-weight-light">, {{ doctor.age }}</span>
+        {{ doctor?.name | uppercase
+        }}<span class="font-weight-light">, {{ doctor?.age }}</span>
       </h3>
       <div class="h5 font-weight-300">
-        <i class="ni location_pin mr-2"></i>speciality :
-        {{ doctor.speciality }} <br />
-        workingHours : {{ doctor.workingHours }}
+        <i class="fa-solid fa-calendar-days"></i>
+        {{ doctor?.age }}
+        <br />
+        <i class="fa-solid fa-user-doctor"></i>
+        speciality :
+        {{ doctor?.speciality }} <br />
+        <i class="fa-solid fa-clock"></i>
+        workingHours : {{ doctor?.workingHours }}
       </div>
       <!-- <div class="h5 mt-4">
         <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative

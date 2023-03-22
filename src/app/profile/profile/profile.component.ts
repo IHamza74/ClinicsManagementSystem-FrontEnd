@@ -33,17 +33,17 @@ export class ProfileComponent implements OnInit {
 
     this.role = 'doctor'; //doc
     this.id = '63e4e87211226c1452238226'; //doc
-    this.user = new Doctor(
-      '63e4e87211226c1452238226',
-      'ahmed',
-      25,
-      'kaka',
-      'ahmed@gail.com',
-      '1234567989',
-      '',
-      '',
-      []
-    );
+    // this.user = new Doctor(
+    //   '63e4e87211226c1452238226',
+    //   'ahmed',
+    //   25,
+    //   'kaka',
+    //   'ahmed@gail.com',
+    //   '1234567989',
+    //   '',
+    //   '',
+    //   []
+    // );
 
     // this.role = 'patient'; //patient
     // this.id = '63e4e9cf59930fe8aca061aa'; //patient
