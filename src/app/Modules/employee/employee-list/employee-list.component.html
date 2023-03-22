@@ -71,18 +71,7 @@
   <app-employee-edit [currentEmployee]="currentEmployee"></app-employee-edit>
 </div> -->
 
-<div *ngIf="addMode"><app-employee-add></app-employee-add></div>
-
-<div>
-  <button class="btn btn-primary" (click)="add()">Add New Employee</button>
-</div>
-
-<form action="">
-  <div>
-    <input type="file" (change)="onFileSelected($event)" />
-  </div>
-  <button type="button" (click)="uploadFile()"></button>
-</form>
+<app-employee-add></app-employee-add>
 
 <div class="container-fluid">
   <div class="row">
@@ -123,6 +112,6 @@
     </div>
   </div>
 </div>
-<a href="#" class="float">
+<!-- <a href="#" class="float">
   <i class="fa fa-plus my-float"></i>
-</a>
+</a> -->

@@ -60,8 +60,11 @@ export class AuthComponent implements OnInit {
       if (Response.data == 'Authorized') {
         localStorage.setItem('token', Response.token);
         this.decodedToken = jwt_decode(Response.token);
-        this.profileService.id = this.decodedToken.id;
-        this.profileService.role = this.decodedToken.role;
+        localStorage.setItem('id', this.decodedToken.id);
+        localStorage.setItem('role', this.decodedToken.role);
+        this.route.navigate(['profile']);
+        console.log(this.decodedToken.id);
+        console.log('done');
       }
 
       // this.authService.authTokenSubject.next(Response.token);
