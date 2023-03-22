@@ -1,0 +1,134 @@
+<p>patient-edit works!</p>
+<button
+  type="button"
+  class="primary"
+  data-bs-toggle="modal"
+  [attr.data-bs-target]="'#modal---' + index"
+  (click)="onEdit(id)"
+>
+  Edit
+</button>
+<div
+  [formGroup]="form"
+  class="modal fade form-check"
+  id="{{ 'modal---' + index }}"
+  tabindex="-1"
+  [attr.aria-labelledby]="'modal--' + index"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="{{ 'modal--' + index }}">
+          Update Patient
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-check">
+          <label for="name"> patient name</label>
+          <input formControlName="patientName" type="text" />
+          <div
+            *ngIf="patientName.touched && patientName.invalid"
+            class="alert alert-danger"
+          >
+            name is required
+          </div>
+          <br />
+          <label for="age"> patient age</label>
+          <span
+            *ngIf="patientAge.touched && patientAge.invalid"
+            class="help-block"
+            >age must be a number</span
+          >
+          <input formControlName="patientAge" type="number" max="70" min="0" />
+          <br />
+          <label for="photo"> photo</label>
+          <input type="text" />
+          <br />
+          <label for="government"> Address</label>
+          <select formControlName="government" name="address">
+            <option value="Gharbya">Gharbya</option>
+            <option value="zagazig">Zagazig</option>
+            <option value="cairo">Cairo</option>
+          </select>
+          <input formControlName="city" type="text" />
+          <span
+            *ngIf="patientCity.touched && patientCity.invalid"
+            class="help-block"
+            >city is required and must be a string</span
+          >
+          <input formControlName="street" type="text" />
+          <span
+            *ngIf="patientSt.touched && patientSt.invalid"
+            class="help-block"
+            >street is required and must be a string</span
+          >
+          <input formControlName="building" type="text" />
+          <span
+            *ngIf="patientBuilding.touched && patientBuilding.invalid"
+            class="help-block"
+            >Building is required and must be a string</span
+          >
+          <br />
+          <label for="Disease"> Disease</label>
+          <input formControlName="Disease" type="text" />
+          <span
+            *ngIf="patientDisease.touched && patientDisease.invalid"
+            class="help-block"
+            >Disease is required and must be a string</span
+          >
+          <br />
+          <label for="section"> section</label>
+          <select id="section" formControlName="section" name="section">
+            <option value="Dermatology">Dermatology</option>
+            <option value="Diagnostic radiology">Diagnostic radiology</option>
+            <option value="Emergency medicine">Emergency medicine</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Ophthalmology">Ophthalmology</option>
+            <option value="Pediatrics">Pediatrics</option>
+            <option value="Psychiatry">Psychiatry</option>
+          </select>
+          <label for="email"> email</label>
+          <input formControlName="PatientMail" type="text" />
+          <span
+            *ngIf="patientMail.touched && patientMail.invalid"
+            class="help-block"
+            >email is required and must be a unique</span
+          >
+          <br />
+          <label for="password"> password</label>
+          <input formControlName="password" type="password" />
+          <span
+            *ngIf="patientPassword.touched && patientPassword.invalid"
+            class="help-block"
+            >email is required and must be a unique</span
+          >
+          <br />
+        </div>
+
+        <div class="text-center">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="editPatient(id)"
+          >
+            Update
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
