@@ -10,5 +10,8 @@ export class ProfileService {
   role: string = '';
   id: string = '';
   user: Employee | Doctor | Patient;
-  constructor() {}
+  constructor() {
+    this.role = localStorage.getItem('role');
+    this.id = localStorage.getItem('id');
+  }
 }

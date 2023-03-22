@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
     private patientService: PatientService,
     private profileService: ProfileService
   ) {
+    this.role = this.profileService.role;
     /* delete these lines after login */
     // this.role = 'employee'; //emp
     // this.id = '63e410b48004ee37f326d924'; //emp
@@ -47,25 +48,27 @@ export class ProfileComponent implements OnInit {
     // );
     // this.role = 'patient'; //patient
     // this.id = '63e4e9cf59930fe8aca061aa'; //patient
-    // this.user = new Patient(
-    //   '',
-    //   '',
-    //   0,
-    //   '',
-    //   {
-    //     government: 'Egypt',
-    //     city: 'Tanta',
-    //     street: 'ElTer3a st',
-    //     building: '10',
-    //   },
-    //   [],
-    //   '',
-    //   '',
-    //   '',
-    //   ''
-    // );
+    this.user = new Patient(
+      '',
+      '',
+      0,
+      '',
+      {
+        government: 'Egypt',
+        city: 'Tanta',
+        street: 'ElTer3a st',
+        building: '10',
+      },
+      [],
+      '',
+      '',
+      '',
+      ''
+    );
   }
   ngOnInit(): void {
+    console.log(this.profileService.role);
+    console.log(this.profileService.id);
     switch (this.profileService.role) {
       case 'employee':
         this.employeeService
