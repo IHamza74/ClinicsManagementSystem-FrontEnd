@@ -24,7 +24,6 @@ const routes: Routes = [
   { path: 'doctor', component: DoctorListComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'auth', component: AuthComponent },
-  // {path:"clinci/update/:id",component:u
 ];
 @NgModule({
   declarations: [],

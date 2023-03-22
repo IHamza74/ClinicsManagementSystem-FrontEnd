@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   
   editClick=false;
   user: Employee | Doctor | Patient;
+
   //userService: EmployeeService | DoctorService;
   constructor(
     private employeeService: EmployeeService,
@@ -67,39 +68,62 @@ export class ProfileComponent implements OnInit {
     //   ''
     // );
   }
-  ngOnInit(): void {
-    switch (this.profileService.role) {
-      case 'employee':
-        this.employeeService
-          .getById(this.profileService.id)
-          .subscribe((employee) => {
-            this.employeeService.setCurrentEmployee(employee);
-            this.profileService.user = employee;
-            console.log(this.profileService.user);
-          });
-        break;
-      case 'doctor':
-        this.doctorService
-          .getById(this.profileService.id)
-          .subscribe((doctor) => {
-            this.doctorService.setCurrentDoctor(doctor);
-            this.profileService.user = doctor;
-            console.log(this.profileService.user);
-          });
-        break;
-      case 'patient':
-        this.patientService
-          .getPatientByID(this.profileService.id)
-          .subscribe((patient) => {
-            //   this.patientService.setCurrentPatient(patient);
-            this.profileService.user = patient;
-            this.profileService.user.name = patient.Name;
-            console.log(patient.name);
 
-            console.log(this.profileService.user.name);
-          });
-        break;
-    }
-  }
+
+
+  ngOnInit(): void {
+  this.role="doctor";
+  this.id="63e4e87211226c1452238226"
+  this.doctorService.getById(this.id).subscribe(data=>{
+    this.user=data;
+
+ 
+    // this.role="patient"
+  // this.id="63e3cdae63f9dd1a6b59f25a";
+  // this.patientService.getPatientByID(this.id).subscribe(data=>{
+  //   this.user=data;
+  //   console.log(data);
+  })
+
+  
+  
+
+
+  //   this.profileService.role="doctor";
+  //   this.profileService.id="640dd8d58f1f134751b86a2e";
+  //   switch (this.profileService.role) {
+  //     case 'employee':
+  //       this.employeeService
+  //         .getById(this.profileService.id)
+  //         .subscribe((employee) => {
+  //           this.employeeService.setCurrentEmployee(employee);
+  //           this.profileService.user = employee;
+  //           console.log(this.profileService.user);
+  //         });
+  //       break;
+  //     case 'doctor':
+  //       this.doctorService
+  //         .getById("640dd8d58f1f134751b86a2e")
+  //         .subscribe((doctor) => {
+  //           this.doctorService.setCurrentDoctor(doctor);
+  //           this.profileService.user = doctor;
+  //           console.log(this.profileService.user);
+  //         });
+  //       break;
+  //     case 'patient':
+  //       this.patientService
+  //         .getPatientByID(this.profileService.id)
+  //         .subscribe((patient) => {
+  //           //   this.patientService.setCurrentPatient(patient);
+  //           this.profileService.user = patient;
+  //           this.profileService.user.name = patient.Name;
+  //           console.log(patient.name);
+
+  //           console.log(this.profileService.user.name);
+  //         });
+  //       break;
+  //   }
+  // 
+}
  
 }

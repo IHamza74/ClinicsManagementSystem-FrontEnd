@@ -1,0 +1,39 @@
+
+   
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="Doctor">
+          <th mat-header-cell *matHeaderCellDef> Doctor. </th>
+          <td mat-cell *matCellDef="let element"> {{element.doctorID.name}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="Section">
+          <th mat-header-cell *matHeaderCellDef> Diagnosis </th>
+          <td mat-cell *matCellDef="let element"> {{element.patientID.Section}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Clinic">
+          <th mat-header-cell *matHeaderCellDef> Clinic </th>
+          <td mat-cell *matCellDef="let element"> {{element.clinicID.clinicName}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumnss"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnss;"></tr>
+      </table>
+      <!-- <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 10, 25]" [showFirstLastButtons]="true" (page)="onPageChange($event)" [length]="totalItems"></mat-paginator> -->
+   
+    
+  
+    

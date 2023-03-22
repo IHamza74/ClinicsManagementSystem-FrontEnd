@@ -11,7 +11,7 @@ import { DataSource } from '@angular/cdk/collections';
   templateUrl: './doctor-data.component.html',
   styleUrls: ['./doctor-data.component.css']
 })
-export class DoctorDataComponent implements AfterViewInit{
+export class DoctorDataComponent  {
     
   id ="640fb1644b291a07467f8087";
    appointments :AppointmentScheduler[];
@@ -29,13 +29,9 @@ export class DoctorDataComponent implements AfterViewInit{
   }
 
 
- // @ViewChild(MatPaginator) paginator: MatPaginator;
  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
-  ngAfterViewInit() {
-    //this.dataSource.paginator = this.paginator;
-  }
 
   onPageChange(event: any) {
     // Update the data source and total items when the paginator changes pages
@@ -61,12 +57,7 @@ export class DoctorDataComponent implements AfterViewInit{
   ngOnInit()
   {
     this.loadData();
-    // this.doctorService.getAppointments(this.id).subscribe(data=>{
     
-    // //  this.appointments=data;
-   
-    //   console.log(data);
-    // })
 
   }
 

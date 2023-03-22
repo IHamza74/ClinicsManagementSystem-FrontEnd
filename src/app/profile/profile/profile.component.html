@@ -197,24 +197,45 @@
               </div>
             </div>
           </div>
-          <app-employee-profile-edit  *ngIf="role == 'employee' && editClick==true;" [EditeEmployee]="user" ></app-employee-profile-edit>
-          <app-doctor-profile-edit *ngIf="role == 'doctor'&& editClick==true;" [EditDoctor]="user"></app-doctor-profile-edit> 
+          <app-employee-profile-edit
+            *ngIf="role == 'employee'
+            && editClick==true;"
+            
+            [EditeEmployee]="user"
+          ></app-employee-profile-edit>
+          <app-doctor-profile-edit
+            *ngIf="role == 'doctor' 
+            && editClick==true;"
+            [EditDoctor]="user"
+          ></app-doctor-profile-edit>
           <app-doctor-data *ngIf="role == 'doctor' && editClick==false;"></app-doctor-data>
+
+         <app-patient-profile-edit
+         *ngIf="role == 'patient'
+         && editClick==true;"
+         
+         [EditPatient]="user"
+          >
+         </app-patient-profile-edit>
+         <app-patient-data 
+         [patient]="user"
+         *ngIf="role == 'patient'
+         && editClick==false;"
+         ></app-patient-data>
+         <!-- <app-patient-data
+         *ngIf="role == 'patient' && editClick==false";
+         [patient]="user"
+         >
+
+         </app-patient-data> -->
+          
         </div>
         <button *ngIf="editClick"  class="btn btn-info" (click)="editClick=false">show profile</button>
         
       </div>
+      
     
      
-
-          <app-employee-profile-edit
-            *ngIf="role == 'employee'"
-            [EditeEmployee]="user"
-          ></app-employee-profile-edit>
-          <app-doctor-profile-edit
-            *ngIf="role == 'doctor'"
-            [EditDoctor]="user"
-          ></app-doctor-profile-edit>
         </div>
       </div>
 
