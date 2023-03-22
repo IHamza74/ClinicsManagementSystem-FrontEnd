@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   ) {
     this.role = this.profileService.role;
     this.id = this.profileService.id;
+
     /* delete these lines after login */
     // this.role = 'employee'; //emp
     // this.id = '63e410b48004ee37f326d924'; //emp
@@ -76,8 +77,8 @@ export class ProfileComponent implements OnInit {
           .getById(this.profileService.id)
           .subscribe((employee) => {
             this.employeeService.setCurrentEmployee(employee);
-            this.profileService.user = employee;
-            console.log(this.profileService.user);
+            this.user = employee;
+            this.profileService.userSubject.next(employee);
           });
         break;
       case 'doctor':
@@ -85,20 +86,17 @@ export class ProfileComponent implements OnInit {
           .getById(this.profileService.id)
           .subscribe((doctor) => {
             this.doctorService.setCurrentDoctor(doctor);
-            this.profileService.user = doctor;
-            console.log(this.profileService.user);
+            this.user = doctor;
+            this.profileService.userSubject.next(doctor);
           });
         break;
       case 'patient':
         this.patientService
           .getPatientByID(this.profileService.id)
           .subscribe((patient) => {
-            //   this.patientService.setCurrentPatient(patient);
-            this.profileService.user = patient;
-            this.profileService.user.name = patient.Name;
-            console.log(patient.name);
-
-            console.log(this.profileService.user.name);
+            this.user = patient;
+            this.user.name = patient.Name;
+            this.profileService.userSubject.next(patient);
           });
         break;
     }
