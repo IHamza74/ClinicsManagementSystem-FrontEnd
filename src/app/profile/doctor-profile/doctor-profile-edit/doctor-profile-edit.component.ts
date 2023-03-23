@@ -20,13 +20,13 @@ constructor(public doctorService: DoctorService){}
 
 ngOnInit(): void {
  this.editForm = new FormGroup({
-   name: new FormControl(this.EditDoctor.name, Validators.required),
-   email: new FormControl(this.EditDoctor.email, [Validators.required, Validators.email]),
-   password: new FormControl(this.EditDoctor.password, [
+   name: new FormControl(this.EditDoctor?.name, Validators.required),
+   email: new FormControl(this.EditDoctor?.email, [Validators.required, Validators.email]),
+   password: new FormControl(this.EditDoctor?.password, [
      Validators.required,
      Validators.minLength(8),
    ]),
-   age: new FormControl(this.EditDoctor.age, [
+   age: new FormControl(this.EditDoctor?.age, [
      Validators.required,
      Validators.min(20),
      Validators.max(60),

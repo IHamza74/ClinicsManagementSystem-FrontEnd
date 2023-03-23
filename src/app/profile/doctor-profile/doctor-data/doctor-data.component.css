@@ -16,4 +16,8 @@ table {
   th {
     background-color: #1a30ad; /* Set a background color for table headers */
   }
+  h2,#mysearch{
+    margin-left: 15px;
+    margin-top: 10px;
+  }
   

@@ -4,12 +4,26 @@ import { DoctorProfileCardComponent } from './doctor-profile-card/doctor-profile
 import { DoctorProfileEditComponent } from './doctor-profile-edit/doctor-profile-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DoctorDataComponent } from './doctor-data/doctor-data.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTabsModule} from '@angular/material/tabs';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { MatTabsModule } from '@angular/material/tabs';
+
 @NgModule({
   declarations: [DoctorProfileCardComponent, DoctorProfileEditComponent, DoctorDataComponent],
-  imports: [CommonModule,ReactiveFormsModule,MatTableModule,MatPaginatorModule,MatTabsModule],
-  exports: [DoctorProfileCardComponent,DoctorProfileEditComponent,DoctorDataComponent],
+  imports: [CommonModule,ReactiveFormsModule,MatTabsModule,
+        BrowserModule,BrowserAnimationsModule,
+    TableModule,PaginatorModule,InputTextModule
+  ],
+  exports: [DoctorProfileCardComponent,DoctorProfileEditComponent,DoctorDataComponent,
+    BrowserAnimationsModule,
+    TableModule,
+    PaginatorModule,
+    InputTextModule
+    
+
+  ],
 })
 export class DoctorProfileModule {}

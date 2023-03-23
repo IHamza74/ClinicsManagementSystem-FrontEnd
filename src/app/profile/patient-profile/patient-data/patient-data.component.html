@@ -1,39 +1,57 @@
+<div>
+  <h2>My Appointment</h2>
+ 
+  
+  
+  <mat-tab-group>
+    <mat-tab label="Up comming" class="mat-elevation-z8"> 
+      <input type="text" pInputText placeholder="Search" (input)="filterData($event)" id="mysearch">
+      <i class="pi pi-search"></i>
+    <p-table [value]="appointments" [paginator]="true" [rows]="5">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Doctor</th>
+          <th>Section </th>
+          <th>Clinic</th>
+          <th>Date</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-element>
+        <tr>
+          <td>{{element.doctorID.name}}</td>
+          <td>{{element.patientID.Section}}</td>
+          <td>{{element?.clinicID.clinicName}}</td>
+          <td>{{element?.date}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
 
-   
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    </mat-tab> 
   
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="Doctor">
-          <th mat-header-cell *matHeaderCellDef> Doctor. </th>
-          <td mat-cell *matCellDef="let element"> {{element.doctorID.name}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="Section">
-          <th mat-header-cell *matHeaderCellDef> Diagnosis </th>
-          <td mat-cell *matCellDef="let element"> {{element.patientID.Section}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="Clinic">
-          <th mat-header-cell *matHeaderCellDef> Clinic </th>
-          <td mat-cell *matCellDef="let element"> {{element.clinicID.clinicName}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="Date">
-          <th mat-header-cell *matHeaderCellDef> Date </th>
-          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumnss"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumnss;"></tr>
-      </table>
-      <!-- <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 10, 25]" [showFirstLastButtons]="true" (page)="onPageChange($event)" [length]="totalItems"></mat-paginator> -->
+    <mat-tab label=" finished" class="mat-elevation-z8"> 
+      <input type="text" pInputText placeholder="Search" (input)="filterData($event)" id="mysearch">
+      <i class="pi pi-search"></i>
+    <p-table [value]="appointments" [paginator]="true" [rows]="5">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Patient</th>
+          <th>Complaint </th>
+          <th>Clinic</th>
+          <th>Date</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-element>
+        <tr>
+          <td>{{element?.patientID.Name}}</td>
+          <td>{{element?.patientID.Disease}}</td>
+          <td>{{element?.clinicID.clinicName}}</td>
+          <td>{{element?.date}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    </mat-tab> 
+    
    
-    
-  
-    
+</mat-tab-group>
+</div>

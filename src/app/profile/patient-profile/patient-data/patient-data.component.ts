@@ -15,12 +15,9 @@ export class PatientDataComponent {
   @Input() patient: Patient;
   id ="63e52ef90bcc43f0d19f8f8d";
   appointments :AppointmentScheduler[];
-  
-  dataSource = new MatTableDataSource<AppointmentScheduler>();
+  myFilter :AppointmentScheduler[];
 
-  totalItems: number = 0;
-
-     displayedColumnss: string[] = ['Doctor', 'Section', 'Clinic', 'Date'];
+ 
 
  constructor(public patientService:PatientService)
  {
@@ -29,42 +26,35 @@ export class PatientDataComponent {
  }
 
 
-@ViewChild(MatPaginator) paginator!: MatPaginator;
-
- onPageChange(event: any) {
-   // Update the data source and total items when the paginator changes pages
-   this.dataSource.paginator = this.paginator;
-   this.totalItems = this.dataSource.data.length;
- }
-
- loadData() {
-   // Simulate loading data asynchronously from a server
-   setTimeout(() => {
-  
-      
-  
-  this.patientService.getAppointments(this.id).subscribe(data=>{
-  console.log(data);
-  this.dataSource.data=data;
-  this.totalItems-data.length;
-
-  })
-  
-  
  
-   }, 1000);
- }
-
  
 
  ngOnInit()
  {
-   this.loadData();
+   this.getData();
    
 
  }
 
+ filterData(event: any) {
+  if(event.target.value !="")
+  {
 
+    this.myFilter = this.appointments.filter(item =>
+      item.doctorID["name"].toLowerCase().includes(event.target.value.toLowerCase())
+      );
+      this.appointments=this.myFilter;
+  }
+  else
+  this.getData();
+
+}
+
+ getData(){
+  this.patientService.getAppointments(this.id).subscribe(data=>{
+    this.appointments=data;
+  })
+ }
 
 
 }
