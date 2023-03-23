@@ -70,8 +70,8 @@ export class EmployeeListComponent {
           .startsWith(`${this.search.toLocaleLowerCase()}`);
       });
     }
-    this.pageItems = [];
-    this.pageNo = 0;
+    // this.pageItems = [];
+    // this.pageNo = 0;
     //console.log(this.pageItems.length);
     // this.pageItems = this.employees.slice(0, 9);
     let pageCount = this.employees.length;

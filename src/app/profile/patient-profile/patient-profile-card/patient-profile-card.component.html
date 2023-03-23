@@ -4,7 +4,8 @@
       <div class="card-profile-image">
         <a href="#">
           <img
-            src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
+            *ngIf="patient"
+            [attr.src]="'./../../../../assets/images/users/' + patient?.photo"
             class="rounded-circle"
           />
         </a>

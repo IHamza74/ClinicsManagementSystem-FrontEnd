@@ -97,6 +97,7 @@ export class ProfileComponent implements OnInit {
             this.user = patient;
             this.user.name = patient.Name;
             this.profileService.userSubject.next(patient);
+            console.log(this.user);
           });
         break;
     }

@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PatientService {
   currentPatient: Patient;
+  patients: Patient[] = [];
   constructor(public http: HttpClient, public router: Router) {}
 
   baseURL = 'http://localhost:3000/patient/';

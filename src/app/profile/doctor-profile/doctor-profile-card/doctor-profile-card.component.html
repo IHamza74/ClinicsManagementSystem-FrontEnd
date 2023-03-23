@@ -4,7 +4,8 @@
       <div class="card-profile-image">
         <a href="#">
           <img
-            src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
+            *ngIf="doctor"
+            [attr.src]="'./../../../../assets/images/users/' + doctor?.photo"
             class="rounded-circle"
           />
         </a>
@@ -47,18 +48,17 @@
     </div>
     <div class="text-center">
       <h3>
-        {{ doctor?.name | uppercase
-        }}<span class="font-weight-light">, {{ doctor?.age }}</span>
+        {{ doctor?.name | uppercase }}<span class="font-weight-light"></span>
       </h3>
       <div class="h5 font-weight-300">
         <i class="fa-solid fa-calendar-days"></i>
         {{ doctor?.age }}
         <br />
         <i class="fa-solid fa-user-doctor"></i>
-        speciality :
+        Speciality :
         {{ doctor?.speciality }} <br />
         <i class="fa-solid fa-clock"></i>
-        workingHours : {{ doctor?.workingHours }}
+        Working Hours : {{ doctor?.workingHours }}
       </div>
       <!-- <div class="h5 mt-4">
         <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative

@@ -22,8 +22,10 @@ const routes: Routes = [
   { path: 'list-medicine', component: ListMedicineComponent },
   { path: 'Employee', component: EmployeeListComponent },
   { path: 'doctor', component: DoctorListComponent },
+  { path: 'patient', component: PatientListComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'auth', component: AuthComponent },
+
   // {path:"clinci/update/:id",component:u
 ];
 @NgModule({

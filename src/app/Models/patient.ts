@@ -15,7 +15,8 @@ export class Patient {
     public Section: string,
     public Password: string,
     public Email: string,
-    public Name?: string
+    public Name?: string,
+    public photo?: string
   ) {}
 }
 

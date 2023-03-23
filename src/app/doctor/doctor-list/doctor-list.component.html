@@ -18,8 +18,9 @@
     <span class="pro">PRO</span>
     <img
       class="round"
-      src="https://randomuser.me/api/portraits/women/79.jpg"
-      alt="user"
+      [attr.src]="'./../../../../assets/images/users/' + doctor.photo"
+      alt="Doctor Photo"
+      style="width: 150px"
     />
     <h3>Dr. {{ doctor.name }}</h3>
     <h6>speciality: {{ doctor.speciality }}</h6>
