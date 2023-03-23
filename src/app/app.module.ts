@@ -22,11 +22,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { MedicineModule } from './Modules/medicine/medicine.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InvoiceModule } from './Modules/invoice/invoice.module';
+import { StripePaymentComponent } from './Modules/payment/stripe-payment/stripe-payment.component';
 
 //const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, StripePaymentComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -44,9 +46,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ClinicModule,
     CommonModule,
     AppRoutingModule,
-   
+    InvoiceModule,
   ],
-  providers: [DoctorService],
+  providers: [DoctorService, InvoiceModule],
 
   bootstrap: [AppComponent],
 })

@@ -10,6 +10,9 @@ import { ListMedicineComponent } from './Modules/medicine/list-medicine/list-med
 import { DoctorListComponent } from './doctor/doctor-list/doctor-list.component';
 import { ProfileModule } from './profile/profile.module';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { InoviceListComponent } from './Modules/invoice/inovice-list/inovice-list.component';
+import { InvoicePaidComponent } from './Modules/invoice/invoice-paid/invoice-paid.component';
+import { InvoiceUnpaidComponent } from './Modules/invoice/invoice-unpaid/invoice-unpaid.component';
 
 const routes: Routes = [
   { path: 'clinic', component: ClinicListComponent },
@@ -21,6 +24,9 @@ const routes: Routes = [
   { path: 'doctor', component: DoctorListComponent },
   { path: 'profile', component: ProfileComponent },
   // {path:"clinci/update/:id",component:u
+  { path: 'invoice', component: InoviceListComponent },
+  { path: 'invoice/:id', component: InvoicePaidComponent },
+  { path: 'invoice/faild/:id', component: InvoiceUnpaidComponent },
 ];
 @NgModule({
   declarations: [],
