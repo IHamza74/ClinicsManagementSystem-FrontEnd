@@ -13,7 +13,6 @@ export class DoctorProfileEditComponent {
   @Input() EditDoctor: DoctorPatch;
 
   editForm: FormGroup;
-  // id = '63e4e87211226c1452238226';
   constructor(public doctorService: DoctorService) {}
 
   ngOnInit(): void {

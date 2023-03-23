@@ -1,10 +1,8 @@
-import { AfterViewInit, Component,ViewChild} from '@angular/core';
+import {  Component,Input} from '@angular/core';
 import { DoctorService } from 'src/app/Services/doctor.service';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+
 import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
-
-
+import { Doctor } from 'src/app/Models/doctor';
 
 @Component({
   selector: 'app-doctor-data',
@@ -13,11 +11,18 @@ import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 })
 export class DoctorDataComponent  {
     
-  id ="640fb1644b291a07467f8087";
+  @Input() doctor:Doctor;
    appointments :AppointmentScheduler[]=[];
    myFilter :AppointmentScheduler[]=[];
-      
-  constructor(public doctorService:DoctorService){}
+   id:string;
+  constructor(public doctorService:DoctorService)
+  {
+    
+    this.id = localStorage.getItem('id');
+  
+    this.getData();
+
+  }
   
 
   filterData(event: any) {
