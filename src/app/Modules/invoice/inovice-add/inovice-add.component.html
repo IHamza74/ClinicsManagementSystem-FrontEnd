@@ -55,6 +55,14 @@
                   formControlName="medicineID"
                   class="form-control col-8-sm col-7"
                 />
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !med.get('medicineID').valid &&
+                    med.get('medicineID').touched
+                  "
+                  >Invalid ID</span
+                >
               </div>
               <div class="row mb-1">
                 <span>No.</span>
@@ -63,12 +71,18 @@
                   formControlName="quantity"
                   class="form-control col-8-sm col-7"
                 />
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !med.get('quantity').valid && med.get('quantity').touched
+                  "
+                  >Invalid Number</span
+                >
               </div>
-              <hr />
             </div>
 
             <span
-              class="block-help"
+              class="help-block"
               *ngIf="
                 !signupForm.get('medicine').valid &&
                 signupForm.get('medicine').touched
@@ -86,7 +100,7 @@
               formControlName="appointmentID"
             />
             <span
-              class="block-help"
+              class="help-block"
               *ngIf="
                 !signupForm.get('appointmentID').valid &&
                 signupForm.get('appointmentID').touched
@@ -105,7 +119,7 @@
               formControlName="patientID"
             />
             <span
-              class="block-help"
+              class="help-block"
               *ngIf="
                 !signupForm.get('patientID').valid &&
                 signupForm.get('patientID').touched
@@ -128,7 +142,7 @@
             </select>
           </div>
           <span
-            class="block-help"
+            class="help-block"
             *ngIf="
               !signupForm.get('paymentMethod').valid &&
               signupForm.get('paymentMethod').touched
@@ -153,7 +167,7 @@
             </select>
           </div>
           <span
-            class="block-help"
+            class="help-block"
             *ngIf="
               !signupForm.get('discount_percentage').valid &&
               signupForm.get('discount_percentage').touched
