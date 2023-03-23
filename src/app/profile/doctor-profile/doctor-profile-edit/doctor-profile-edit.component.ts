@@ -15,7 +15,7 @@ export class DoctorProfileEditComponent {
   @Input() EditDoctor: DoctorPatch;
 
   editForm: FormGroup;
-  id = '63e4e87211226c1452238226';
+  // id = '63e4e87211226c1452238226';
   constructor(public doctorService: DoctorService) {}
 
   ngOnInit(): void {
@@ -36,13 +36,12 @@ export class DoctorProfileEditComponent {
       ]),
     });
   }
-
   onSubmit() {
     console.log(this.editForm.value.age);
     console.log(this.editForm.value.name);
 
     let doctor = new DoctorPatch(
-      this.id,
+      this.EditDoctor.id,
       this.editForm.value.name,
       this.editForm.value.age,
       this.EditDoctor.speciality,

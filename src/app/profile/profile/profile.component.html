@@ -102,7 +102,7 @@
             This is your profile page. You can see the progress you've made with
             your work and manage your projects or assigned tasks
           </p>
-          <a href="#!" class="btn btn-info">Edit profile</a>
+          <button class="btn btn-info" (click)="editClick=true">Edit profile</button>
         </div>
       </div>
     </div>
@@ -195,26 +195,56 @@
           <div class="card-header bg-white border-0">
             <div class="row align-items-center">
               <div class="col-8">
-                <h3 class="mb-0">My account</h3>
+              
               </div>
             </div>
           </div>
-
           <app-employee-profile-edit
-            *ngIf="role == 'employee'"
+            *ngIf="role == 'employee'
+            && editClick==true;"
+            
             [EditeEmployee]="user"
           ></app-employee-profile-edit>
+
           <app-doctor-profile-edit
-            *ngIf="role == 'doctor'"
+            *ngIf="role == 'doctor' 
+            && editClick==true;"
             [EditDoctor]="user"
           ></app-doctor-profile-edit>
+          <app-doctor-data *ngIf="role == 'doctor' && editClick==false;"></app-doctor-data>
+
+         <app-patient-profile-edit
+         *ngIf="role == 'patient'
+         && editClick==true;"
+         
+         [EditPatient]="user"
+          >
+         </app-patient-profile-edit>
+         <app-patient-data 
+         [patient]="user"
+         *ngIf="role == 'patient'
+         && editClick==false;"
+         ></app-patient-data>
+         <!-- <app-patient-data
+         *ngIf="role == 'patient' && editClick==false";
+         [patient]="user"
+         >
+
+         </app-patient-data> -->
+          
+        </div>
+        <button *ngIf="editClick"  class="btn btn-info" (click)="editClick=false">show profile</button>
+        
+      </div>
+      
+    
+     
         </div>
       </div>
 
       <!--  add edit here  -->
     </div>
-  </div>
-</div>
+ 
 <footer class="footer">
   <div class="row align-items-center justify-content-xl-between">
     <div class="col-xl-6 m-auto text-center">
