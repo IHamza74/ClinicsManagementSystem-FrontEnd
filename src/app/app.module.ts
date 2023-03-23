@@ -24,11 +24,13 @@ import { PatientModule } from './Modules/Patient/patient.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './shared/auth/auth.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
 
 //const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent, HomeComponent],
   imports: [
     HttpClientModule,
     BrowserModule,

@@ -13,8 +13,11 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { PatientListComponent } from './Modules/Patient/patient-list/patient-list.component';
 import { PatientAddComponent } from './Modules/Patient/patient-add/patient-add.component';
 import { AuthComponent } from './shared/auth/auth.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'clinic', component: ClinicListComponent },
   { path: 'clinic/add', component: AddClinicComponent },
   { path: 'add-medicine', component: AddMedicineComponent },
@@ -24,6 +27,7 @@ const routes: Routes = [
   { path: 'doctor', component: DoctorListComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'auth', component: AuthComponent },
+  { path: '**', component: NotFoundComponent },
   // {path:"clinci/update/:id",component:u
 ];
 @NgModule({
@@ -31,4 +35,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
