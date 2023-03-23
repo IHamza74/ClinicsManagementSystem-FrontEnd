@@ -4,7 +4,8 @@
       <div class="card-profile-image">
         <a href="#">
           <img
-            src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
+            *ngIf="employee"
+            [attr.src]="'./../../../../assets/images/users/' + employee?.photo"
             class="rounded-circle"
           />
         </a>
@@ -14,7 +15,15 @@
   <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
     <div class="d-flex justify-content-between">
       <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-      <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+      <label for="file-input" class="btn btn-sm btn-default float-right">
+        <i class="fa-solid fa-camera" style="color: #ffffff"></i>
+      </label>
+      <input
+        id="file-input"
+        type="file"
+        name="file"
+        (change)="onFileSelected($event)"
+      />
     </div>
   </div>
   <div class="card-body pt-0 pt-md-4">
@@ -38,14 +47,15 @@
     </div>
     <div class="text-center">
       <h3>
-        {{ employee.name
-        }}<span class="font-weight-light">, {{ employee.age }}</span>
+        {{ employee?.name | uppercase }}<span class="font-weight-light"></span>
       </h3>
       <div class="h5 font-weight-300">
-        <i class="ni location_pin mr-2"></i> {{ employee.address.government }} ,
-        {{ employee.address.city }} , {{ employee.address.street }} ,{{
-          employee.address.building
-        }}
+        <i class="fa-solid fa-calendar-days"></i>
+        {{ employee?.age }}
+        <br />
+        <i class="fa-sharp fa-solid fa-location-dot"></i>
+        {{ employee?.address.government }} , {{ employee?.address.city }} ,
+        {{ employee?.address.street }} ,{{ employee?.address.building }}
       </div>
       <!-- <div class="h5 mt-4">
         <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative

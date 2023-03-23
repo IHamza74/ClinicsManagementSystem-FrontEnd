@@ -9,18 +9,25 @@ import { EmployeeService } from 'src/app/Services/employee.service';
 })
 export class EmployeeListComponent {
   editMode = false;
-  addMode = false;
-
   currentEmployee: Employee;
   employees: Employee[] = [];
+  pageItems: Employee[] = [];
   employeeService: EmployeeService;
+  search: string = '';
+  pageNo: number;
+
+  first: number;
+  row: number;
   constructor(employeeService: EmployeeService) {
     this.employeeService = employeeService;
   }
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((employees) => {
-      this.employees = employees.slice(0, 10);
-      console.log(employees.slice(0, 10));
+      this.employeeService.empArr = employees;
+      this.employees = employees;
+
+      this.pageNo = this.employees.length;
+      this.page({ first: 0, rows: 9 });
     });
     this.employeeService.optionsSubject.subscribe((employees) => {
       this.employees = employees;
@@ -34,19 +41,42 @@ export class EmployeeListComponent {
     this.editMode = true;
     this.employeeService.setCurrentEmployee(employee);
   }
-  add() {
-    this.addMode = true;
+
+  // paginate(event) {
+  //   //event.first = Index of the first record
+  //   //event.rows = Number of rows to display in new page
+  //   //event.page = Index of the new page
+  //   //event.pageCount = Total number of pages
+  //   console.log(event.first);
+  //   this.employeeService.optionsSubject.next(
+  //     this.employeeService.empArr.slice(event.first, event.first + event.rows)
+  //   );
+  // }
+
+  page(event) {
+    this.first = event.first;
+    this.row = event.rows;
+
+    this.pageItems = this.employees.slice(this.first, this.first + this.row);
   }
 
-  paginate(event) {
-    //event.first = Index of the first record
-    //event.rows = Number of rows to display in new page
-    //event.page = Index of the new page
-    //event.pageCount = Total number of pages
-    console.log(event.first);
-    this.employeeService.optionsSubject.next(
-      this.employeeService.empArr.slice(event.first, event.first + event.rows)
-    );
+  searchByName(event) {
+    if (this.search === '') {
+      this.employees = this.employeeService.empArr.slice();
+    } else {
+      this.employees = this.employees.filter((emp) => {
+        return emp.name
+          .toLocaleLowerCase()
+          .startsWith(`${this.search.toLocaleLowerCase()}`);
+      });
+    }
+    // this.pageItems = [];
+    // this.pageNo = 0;
+    //console.log(this.pageItems.length);
+    // this.pageItems = this.employees.slice(0, 9);
+    let pageCount = this.employees.length;
+    this.pageNo = pageCount;
+    this.page({ first: this.first, rows: this.row });
   }
 
   selectedFile: File;

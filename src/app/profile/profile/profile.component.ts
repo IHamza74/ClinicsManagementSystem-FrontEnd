@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/Models/doctor';
 import { Employee } from 'src/app/Models/employee';
+import { Patient } from 'src/app/Models/patient';
 import { DoctorService } from 'src/app/Services/doctor.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
+import { PatientService } from 'src/app/Services/patient-service';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,42 +13,65 @@ import { EmployeeService } from 'src/app/Services/employee.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  @Input() role: string;
-  @Input() id: string;
-  user: Employee | Doctor;
-  //userService: EmployeeService | DoctorService;
+  role: string;
+  id: string;
+  user: Employee | Doctor | Patient;
+  editClick = false;
   constructor(
     private employeeService: EmployeeService,
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private patientService: PatientService,
+    private profileService: ProfileService
   ) {
-    /* delete these lines after login */
-    // this.role = 'employee'; //emp
-    // this.id = '63e4017bd43ff93971c13140'; //emp
-    // this.user = new Employee('ahmed', 'Ahmed@gmail.com', '12345678', 25, {
-    //   government: 'Egypt',
-    //   city: 'Tanta',
-    //   street: 'ElTer3a st',
-    //   building: '10',
-    // });
-    this.role = 'doctor'; //doc
-    this.id = '63e4e87211226c1452238226'; //doc
-    
+    this.role = this.profileService.role;
+    this.id = this.profileService.id;
   }
   ngOnInit(): void {
-    switch (this.role) {
+    // this.role="doctor";
+    // this.id="63e4e87211226c1452238226"
+    // this.doctorService.getById(this.id).subscribe(data=>{
+    //   this.user=data;
+    //   console.log(this.user)
+    // })
+
+    //     this.role="patient"
+    //   this.id="63e3cdae63f9dd1a6b59f25a";
+    //   this.patientService.getPatientByID(this.id).subscribe(data=>{
+    //     this.user=data;
+    //     console.log(data);
+
+    //  }
+
+    console.log(this.profileService.role);
+    console.log(this.profileService.id);
+    switch (this.profileService.role) {
       case 'employee':
-        this.employeeService.getById(this.id).subscribe((employee) => {
-          this.employeeService.setCurrentEmployee(employee);
-          this.user = employee;
-          console.log(this.user);
-        });
+        this.employeeService
+          .getById(this.profileService.id)
+          .subscribe((employee) => {
+            this.employeeService.setCurrentEmployee(employee);
+            this.user = employee;
+            this.profileService.userSubject.next(employee);
+          });
         break;
       case 'doctor':
-        this.doctorService.getById(this.id).subscribe((doctor) => {
-          this.doctorService.setCurrentDoctor(doctor);
-          this.user = doctor;
-          console.log(this.user);
-        });
+        this.doctorService
+          .getById(this.profileService.id)
+          .subscribe((doctor) => {
+            this.doctorService.setCurrentDoctor(doctor);
+            this.user = doctor;
+            this.profileService.userSubject.next(doctor);
+          });
+        break;
+      case 'patient':
+        this.patientService
+          .getPatientByID(this.profileService.id)
+          .subscribe((patient) => {
+            this.user = patient;
+            this.user.name = patient.Name;
+            this.profileService.userSubject.next(patient);
+            console.log(this.user);
+          });
         break;
     }
   }

@@ -1,0 +1,113 @@
+import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Patient } from 'src/app/Models/patient';
+import { PatientService } from 'src/app/Services/patient-service';
+
+@Component({
+  selector: 'app-patient-add',
+  templateUrl: './patient-add.component.html',
+  styleUrls: ['./patient-add.component.css'],
+})
+export class PatientAddComponent {
+  constructor(public patientService: PatientService, public router: Router) {}
+  ngOnInit() {}
+  government = '';
+  city = '';
+  street = '';
+  building = '';
+
+  @Input() index: number;
+  @Input() id: string;
+
+  patientAddress = {
+    government: this.government,
+    city: this.city,
+    street: this.street,
+    building: this.building,
+  };
+  newPatient: Patient;
+
+  form = new FormGroup({
+    patientName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(20),
+    ]),
+    patientAge: new FormControl('', [Validators.required]),
+    city: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z ]*'),
+    ]),
+    street: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z1-9 ]*'),
+    ]),
+    building: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z1-9 ]*'),
+    ]),
+    Disease: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z ]*'),
+    ]),
+    PatientMail: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z1-9 ]*'),
+      Validators.minLength(8),
+    ]),
+    section: new FormControl(),
+    government: new FormControl(),
+  });
+  get patientName() {
+    return this.form.get('patientName');
+  }
+
+  get patientAge() {
+    return this.form.get('patientAge');
+  }
+  get patientCity() {
+    return this.form.get('city');
+  }
+  get patientSt() {
+    return this.form.get('street');
+  }
+  get patientMail() {
+    return this.form.get('PatientMail');
+  }
+  get patientBuilding() {
+    return this.form.get('building');
+  }
+  get patientDisease() {
+    return this.form.get('Disease');
+  }
+  get patientPassword() {
+    return this.form.get('password');
+  }
+
+  onSubmit() {
+    this.newPatient = new Patient(
+      '',
+      Number(this.form.value.patientAge),
+      {
+        government: this.form.value.government,
+        city: this.form.value.city,
+        street: this.form.value.street,
+        building: this.form.value.building,
+      },
+      [],
+      this.form.value.Disease,
+      this.form.value.section,
+      this.form.value.password,
+      this.form.value.PatientMail,
+      this.form.value.patientName,
+      ''
+    );
+    console.log(this.newPatient);
+    this.patientService.addNewPatient(this.newPatient).subscribe((Response) => {
+      console.log(Response);
+      this.router.navigateByUrl('/patient');
+    });
+  }
+}

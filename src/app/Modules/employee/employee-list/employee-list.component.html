@@ -1,13 +1,28 @@
+<input
+  type="text"
+  pInputText
+  class="form-control"
+  placeholder="Search By Name"
+  [(ngModel)]="search"
+  (keyup)="searchByName($event)"
+/>
+
 <div class="row justify-content-center">
   <div
     class="card-container mx-2 my-2 p-4"
-    *ngFor="let employee of employees; let i = index"
+    *ngFor="let employee of pageItems; let i = index"
   >
     <span class="pro">PRO</span>
-    <img
+    <!-- <img
       class="round"
       src="https://randomuser.me/api/portraits/women/79.jpg"
       alt="user"
+    /> -->
+    <img
+      class="round"
+      [attr.src]="'./../../../../assets/images/users/' + employee.photo"
+      alt="Employee Photo"
+      style="width: 150px"
     />
     <h3>Mr. {{ employee.name }}</h3>
     <h6>Age: {{ employee.age }}</h6>
@@ -52,10 +67,9 @@
   </div>
 </div> -->
 <p-paginator
-  (onPageChange)="paginate($event)"
-  [rows]="10"
-  [totalRecords]="employeeService.empArr.length"
-  [rowsPerPageOptions]="[10, 20, 30]"
+  [rows]="9"
+  [totalRecords]="pageNo"
+  (onPageChange)="page($event)"
 ></p-paginator>
 <div><app-employee-options></app-employee-options></div>
 
@@ -63,18 +77,7 @@
   <app-employee-edit [currentEmployee]="currentEmployee"></app-employee-edit>
 </div> -->
 
-<div *ngIf="addMode"><app-employee-add></app-employee-add></div>
-
-<div>
-  <button class="btn btn-primary" (click)="add()">Add New Employee</button>
-</div>
-
-<form action="">
-  <div>
-    <input type="file" (change)="onFileSelected($event)" />
-  </div>
-  <button type="button" (click)="uploadFile()"></button>
-</form>
+<app-employee-add></app-employee-add>
 
 <div class="container-fluid">
   <div class="row">
@@ -115,3 +118,6 @@
     </div>
   </div>
 </div>
+<!-- <a href="#" class="float">
+  <i class="fa fa-plus my-float"></i>
+</a> -->

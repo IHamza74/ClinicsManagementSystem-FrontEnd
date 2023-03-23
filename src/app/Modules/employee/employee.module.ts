@@ -7,6 +7,7 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { EmployeeOptionsComponent } from './employee-list/employee-options/employee-options.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { PaginatorModule } from 'primeng/paginator';
     EmployeeAddComponent,
     EmployeeOptionsComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, PaginatorModule],
+  imports: [CommonModule, ReactiveFormsModule, PaginatorModule, MegaMenuModule],
   exports: [EmployeeListComponent],
 })
 export class EmployeeModule {}

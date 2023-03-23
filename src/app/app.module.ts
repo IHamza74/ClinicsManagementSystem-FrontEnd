@@ -20,15 +20,22 @@ import { CommonModule } from '@angular/common';
 import { ClinicModule } from '../app/Modules/clinic/clinic.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MedicineModule } from './Modules/medicine/medicine.module';
+import { PatientModule } from './Modules/Patient/patient.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InvoiceModule } from './Modules/invoice/invoice.module';
 import { StripePaymentComponent } from './Modules/payment/stripe-payment/stripe-payment.component';
-
-//const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
+import { AuthModule } from './shared/auth/auth.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, StripePaymentComponent],
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    HomeComponent,
+    StripePaymentComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -37,7 +44,7 @@ import { StripePaymentComponent } from './Modules/payment/stripe-payment/stripe-
     DoctorModule,
     ReactiveFormsModule,
     AccordionModule,
-    FontAwesomeModule,
+    // FontAwesomeModule,
     EmployeeModule,
     // RouterModule.forRoot(routes),
     PaginatorModule,
@@ -47,6 +54,8 @@ import { StripePaymentComponent } from './Modules/payment/stripe-payment/stripe-
     CommonModule,
     AppRoutingModule,
     InvoiceModule,
+    PatientModule,
+    AuthModule,
   ],
   providers: [DoctorService, InvoiceModule],
 

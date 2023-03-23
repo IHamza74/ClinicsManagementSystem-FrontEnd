@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
     '../../../assets/css/responsive.css',
   ],
 })
-export class FooterComponent {}
+export class FooterComponent {
+  ngOnDestroy() {
+    console.log('destroy-footer');
+  }
+}
