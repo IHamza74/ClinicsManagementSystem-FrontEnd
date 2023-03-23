@@ -79,16 +79,15 @@
                   >Invalid Number</span
                 >
               </div>
+              <span
+                class="help-block"
+                *ngIf="
+                  !signupForm.get('medicine').valid &&
+                  signupForm.get('medicine').touched
+                "
+                >Invalid Medicine</span
+              >
             </div>
-
-            <span
-              class="help-block"
-              *ngIf="
-                !signupForm.get('medicine').valid &&
-                signupForm.get('medicine').touched
-              "
-              >Invalid Medicine</span
-            >
           </div>
           <div class="row mb-3">
             <label for="appointmentID" class="col-form-label col-4-sm col-5"
