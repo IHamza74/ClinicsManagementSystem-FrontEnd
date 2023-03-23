@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Doctor } from 'src/app/Models/doctor';
 import { Employee } from 'src/app/Models/employee';
 import { Patient } from 'src/app/Models/patient';
@@ -15,8 +16,20 @@ import { ProfileService } from 'src/app/Services/profile.service';
 })
 export class NavBarComponent {
   user: Employee | Doctor | Patient;
+  userLogged = false;
+  currentLoggedRole: string;
+  constructor(public profileService: ProfileService, private route: Router) {
+    profileService.userSubject.subscribe((user) => {
+      this.user = user;
+      this.userLogged = this.profileService.isUserLogged;
+      this.currentLoggedRole = localStorage.getItem('role');
+    });
+  }
 
-  constructor(public profileService: ProfileService) {
-    profileService.userSubject.subscribe((user) => (this.user = user));
+  logOut() {
+    localStorage.clear();
+    this.userLogged = !this.userLogged;
+    this.currentLoggedRole = null;
+    this.user = null;
   }
 }
