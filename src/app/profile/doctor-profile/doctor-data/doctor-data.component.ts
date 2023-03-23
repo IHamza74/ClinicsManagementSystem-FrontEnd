@@ -13,7 +13,7 @@ import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 })
 export class DoctorDataComponent  {
     
- // id ="640fb1644b291a07467f8087";
+  id ="640fb1644b291a07467f8087";
    appointments :AppointmentScheduler[]=[];
    myFilter :AppointmentScheduler[]=[];
       
