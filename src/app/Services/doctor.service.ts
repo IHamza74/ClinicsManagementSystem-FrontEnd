@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Doctor, DoctorPatch } from '../Models/doctor';
 import { FormControl } from '@angular/forms';
+import { AppointmentScheduler } from '../Models/appointment-scheduler';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,8 @@ export class DoctorService {
   currentDoctor: Doctor;
 
   baseUrl = 'http://localhost:3000/doctor/';
+  profileUrl= 'http://localhost:3000/appointmentScheduler/doctorreports/';
+
   photoFile: File;
   doctors: Doctor[] = [];
   doctor;
@@ -73,4 +76,11 @@ export class DoctorService {
   setCurrentDoctor(doctor: Doctor) {
     this.currentDoctor = doctor;
   }
+
+  getAppointments(id:string)
+  {
+  console.log(id);
+  return this.http.get<AppointmentScheduler[]>(this.profileUrl+id) 
+
+}
 }

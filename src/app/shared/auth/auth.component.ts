@@ -65,8 +65,7 @@ export class AuthComponent implements OnInit {
         this.profileService.id = this.decodedToken.id;
         this.profileService.role = this.decodedToken.role;
         this.route.navigate(['profile']);
-        console.log(this.decodedToken.id);
-        console.log('done');
+        this.profileService.isUserLogged = true;
       }
 
       // this.authService.authTokenSubject.next(Response.token);

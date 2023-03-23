@@ -44,10 +44,10 @@ export class PatientEditComponent {
     this.patientService.getPatientByIDForEdit(id).subscribe((data) => {
       console.log(data);
       this.newPatient.id = data._id;
-      this.newPatient.name = data.name;
+      this.newPatient.name = data.Name;
       this.newPatient.age = data.Age;
-      this.newPatient.address = data.Address;
-      this.newPatient.photo = data.Photo;
+      this.newPatient.Address = data.Address;
+      this.newPatient.photo = data.photo;
       this.newPatient.Apointments = data.Apointments;
       this.newPatient.email = data.Email;
       this.newPatient.section = data.Section;

@@ -11,7 +11,7 @@ import { SelectItem, FilterService, FilterMatchMode } from "primeng/api";
 export class ClinicListComponent {
 
   clinicList:Clinic[] =[];
-  tempClinic :Clinic =new Clinic('','','',["63e4e87211226c1452238226"]);
+  tempClinic :Clinic =new Clinic('','','');
   matchModeOptions: SelectItem[];    
   cols: any[];
    constructor(public clinicService:ClinicService, public filterService: FilterService)
