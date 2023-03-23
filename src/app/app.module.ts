@@ -25,7 +25,6 @@ import { PatientModule } from './Modules/Patient/patient.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './shared/auth/auth.module';
 
-//const routes: Routes = [{ path: 'Employee', component: EmployeeListComponent }];
 
 @NgModule({
   declarations: [AppComponent],

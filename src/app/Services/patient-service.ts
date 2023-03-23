@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Patient, PatientEdit } from '../Models/patient';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AppointmentScheduler } from '../Models/appointment-scheduler';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ export class PatientService {
   constructor(public http: HttpClient, public router: Router) {}
 
   baseURL = 'http://localhost:3000/patient/';
+  profileURL ='http://localhost:3000/appointmentScheduler/patientreports/'
 
   patientsList: PatientEdit[] = [];
 
@@ -40,6 +42,7 @@ export class PatientService {
   }
 
   updatePatientByID(patient: PatientEdit) {
+    console.log(patient);
     return this.http.patch(this.baseURL, patient);
   }
   deletePatient(id: string) {
@@ -48,4 +51,11 @@ export class PatientService {
   setCurrentPatient(patient: Patient) {
     this.currentPatient = patient;
   }
+
+  getAppointments(id:string)
+  {
+  console.log(id);
+  return this.http.get<AppointmentScheduler[]>(this.profileURL+id) 
+
+}
 }
