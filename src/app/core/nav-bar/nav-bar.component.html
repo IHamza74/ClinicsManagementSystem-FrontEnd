@@ -60,6 +60,28 @@
         target="_blank"
         >User profile</a
       >
+      <a class="text-light ms-3" *ngIf="currentLoggedRole != null">Home</a>
+      <a class="text-light ms-3" *ngIf="currentLoggedRole != null"
+        >Appointments</a
+      >
+      <a
+        class="text-light ms-3"
+        *ngIf="
+          currentLoggedRole == 'patient' || currentLoggedRole == 'employee'
+        "
+        >Doctors</a
+      >
+      <a
+        class="text-light ms-3"
+        *ngIf="currentLoggedRole == 'doctor' || currentLoggedRole == 'employee'"
+        >Medicines</a
+      >
+      <a
+        class="text-light ms-3"
+        *ngIf="currentLoggedRole == 'doctor' || currentLoggedRole == 'employee'"
+        >Patients</a
+      >
+
       <!-- Form -->
       <form
         class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
@@ -77,6 +99,9 @@
       </form>
       <!-- User -->
       <ul class="navbar-nav align-items-center d-none d-md-flex">
+        <li class="nav-item" *ngIf="!userLogged">
+          <a class="text-light" [routerLink]="['/auth']">Login</a>
+        </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link pr-0"
@@ -100,7 +125,9 @@
               </div>
             </div>
           </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+        </li>
+
+        <!-- <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
             <div class="dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
@@ -125,7 +152,20 @@
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
-          </div>
+          </div> -->
+        <li class="nav-item" *ngIf="userLogged">
+          <a
+            class="nav-link text-light"
+            [routerLink]="['/auth']"
+            role="button"
+            (click)="logOut()"
+          >
+            <i
+              class="pi pi-sign-out"
+              style="font-size: 1rem; margin-right: 0.5rem"
+            ></i
+            >Log out
+          </a>
         </li>
       </ul>
     </div>

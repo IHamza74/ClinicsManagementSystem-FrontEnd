@@ -12,6 +12,7 @@ export class ProfileService {
   id: string = '';
   user: Employee | Doctor | Patient;
   userSubject = new Subject<Employee | Doctor | Patient>();
+  isUserLogged = false;
 
   constructor() {
     this.role = localStorage.getItem('role');
