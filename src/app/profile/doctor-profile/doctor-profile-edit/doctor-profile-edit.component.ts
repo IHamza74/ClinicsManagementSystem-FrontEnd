@@ -15,29 +15,33 @@ export class DoctorProfileEditComponent {
   @Input() EditDoctor: DoctorPatch;
 
   editForm: FormGroup;
-  id = '63e4e87211226c1452238226';
+  // id = '63e4e87211226c1452238226';
   constructor(public doctorService: DoctorService) {}
 
-  
-
-ngOnInit(): void {
- this.editForm = new FormGroup({
-   name: new FormControl(this.EditDoctor?.name, Validators.required),
-   email: new FormControl(this.EditDoctor?.email, [Validators.required, Validators.email]),
-   password: new FormControl(this.EditDoctor?.password, [
-     Validators.required,
-     Validators.minLength(8),
-   ]),
-   age: new FormControl(this.EditDoctor?.age, [
-     Validators.required,
-     Validators.min(20),
-     Validators.max(60),
-   ]),
-  
- });
+  ngOnInit(): void {
+    this.editForm = new FormGroup({
+      name: new FormControl(this.EditDoctor?.name, Validators.required),
+      email: new FormControl(this.EditDoctor?.email, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl(this.EditDoctor?.password, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      age: new FormControl(this.EditDoctor?.age, [
+        Validators.required,
+        Validators.min(20),
+        Validators.max(60),
+      ]),
+    });
+  }
+  onSubmit() {
+    console.log(this.editForm.value.age);
+    console.log(this.editForm.value.name);
 
     let doctor = new DoctorPatch(
-      this.id,
+      this.EditDoctor.id,
       this.editForm.value.name,
       this.editForm.value.age,
       this.EditDoctor.speciality,
