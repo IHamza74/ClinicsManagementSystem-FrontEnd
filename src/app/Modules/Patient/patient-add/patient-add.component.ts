@@ -89,9 +89,7 @@ export class PatientAddComponent {
   onSubmit() {
     this.newPatient = new Patient(
       '',
-      this.form.value.patientName,
       Number(this.form.value.patientAge),
-      '',
       {
         government: this.form.value.government,
         city: this.form.value.city,
@@ -102,7 +100,9 @@ export class PatientAddComponent {
       this.form.value.Disease,
       this.form.value.section,
       this.form.value.password,
-      this.form.value.PatientMail
+      this.form.value.PatientMail,
+      this.form.value.patientName,
+      ''
     );
     console.log(this.newPatient);
     this.patientService.addNewPatient(this.newPatient).subscribe((Response) => {

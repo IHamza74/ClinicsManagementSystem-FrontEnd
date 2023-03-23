@@ -13,10 +13,16 @@
     *ngFor="let employee of pageItems; let i = index"
   >
     <span class="pro">PRO</span>
-    <img
+    <!-- <img
       class="round"
       src="https://randomuser.me/api/portraits/women/79.jpg"
       alt="user"
+    /> -->
+    <img
+      class="round"
+      [attr.src]="'./../../../../assets/images/users/' + employee.photo"
+      alt="Employee Photo"
+      style="width: 150px"
     />
     <h3>Mr. {{ employee.name }}</h3>
     <h6>Age: {{ employee.age }}</h6>

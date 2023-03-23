@@ -9,6 +9,7 @@ import { AppointmentScheduler } from '../Models/appointment-scheduler';
 })
 export class PatientService {
   currentPatient: Patient;
+  patients: Patient[] = [];
   constructor(public http: HttpClient, public router: Router) {}
 
   baseURL = 'http://localhost:3000/patient/';
