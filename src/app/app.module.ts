@@ -59,12 +59,9 @@ import { CarouselModule } from 'primeng/carousel';
     InvoiceModule,
     PatientModule,
     AuthModule,
-<<<<<<< HEAD
     CarouselModule,
 
-=======
     AppointmentModule
->>>>>>> 937a99001fa62d3615e7e500abfca86cbbd9a210
   ],
   providers: [DoctorService, InvoiceModule],
 
