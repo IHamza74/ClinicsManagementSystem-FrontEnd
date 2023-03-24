@@ -125,7 +125,7 @@
       </div>
     </div>
     
-    <div class="col-sm-4">
+    <div class="col-sm-4" id="mylast">
       <div class="form-group label-floating">
           <label class="control-label">Date</label>
            <br>
@@ -135,7 +135,7 @@
         </div>
         
         <!-- <p-button onclick="this.save()">save Reservation</p-button> -->
-        <p-button (click)="saveReservation()" >Reserve</p-button>
+        <p-button (click)="saveReservation()" >Reserve</p-button >
         
    
 
@@ -146,22 +146,6 @@
  
  
   
-  <pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </pre>
 
 
 
@@ -169,6 +153,10 @@
   
   
      </mat-tab>
+
+     <mat-tab label="Pending Reservation" class="mat-elevation-z8 text-center">
+     </mat-tab>
+
 
 </mat-tab-group>
 
