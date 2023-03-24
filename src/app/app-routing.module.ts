@@ -10,12 +10,18 @@ import { ListMedicineComponent } from './Modules/medicine/list-medicine/list-med
 import { DoctorListComponent } from './doctor/doctor-list/doctor-list.component';
 import { ProfileModule } from './profile/profile.module';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { InoviceListComponent } from './Modules/invoice/inovice-list/inovice-list.component';
+import { InvoicePaidComponent } from './Modules/invoice/invoice-paid/invoice-paid.component';
+import { InvoiceUnpaidComponent } from './Modules/invoice/invoice-unpaid/invoice-unpaid.component';
 import { PatientListComponent } from './Modules/Patient/patient-list/patient-list.component';
 import { PatientAddComponent } from './Modules/Patient/patient-add/patient-add.component';
 import { AuthComponent } from './shared/auth/auth.component';
 import { AddAppointmentComponent } from './Modules/appointment/add-appointment/add-appointment.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'clinic', component: ClinicListComponent },
   { path: 'clinic/add', component: AddClinicComponent },
   { path: 'add-medicine', component: AddMedicineComponent },
@@ -27,6 +33,11 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'auth', component: AuthComponent },
   {path:'appointment/add',component: AddAppointmentComponent}
+  { path: 'invoice', component: InoviceListComponent },
+  { path: 'invoice/:id', component: InvoicePaidComponent },
+  { path: 'invoice/faild/:id', component: InvoiceUnpaidComponent },
+  { path: '**', component: NotFoundComponent },
+  // {path:"clinci/update/:id",component:u
 ];
 @NgModule({
   declarations: [],
