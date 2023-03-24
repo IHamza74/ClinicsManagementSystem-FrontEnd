@@ -78,6 +78,8 @@ export class DoctorListComponent implements OnInit {
       this.pageItems = this.doctors.filter((doc) => {
         return doc.speciality === this.sep;
       });
+      let pageCount = this.pageItems.length;
+      this.pageNo = pageCount;
     } else if (
       this.sep !== 'Speciality' &&
       (this.tag === 'SPAN' || this.tag === 'A') &&
@@ -86,10 +88,9 @@ export class DoctorListComponent implements OnInit {
       this.pageItems = this.doctors.filter((doc) => {
         return doc.speciality === this.sep;
       });
+      let pageCount = this.pageItems.length;
+      this.pageNo = pageCount;
     }
-
-    let pageCount = this.pageItems.length;
-    this.pageNo = pageCount;
   }
   deleteDoctor(id: string, index: number) {
     console.log(id, index);

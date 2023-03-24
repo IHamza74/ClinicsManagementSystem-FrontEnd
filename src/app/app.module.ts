@@ -23,14 +23,22 @@ import { MedicineModule } from './Modules/medicine/medicine.module';
 import { PatientModule } from './Modules/Patient/patient.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InvoiceModule } from './Modules/invoice/invoice.module';
+import { StripePaymentComponent } from './Modules/payment/stripe-payment/stripe-payment.component';
 import { AuthModule } from './shared/auth/auth.module';
+import { AppointmentModule } from './Modules/appointment/appointment.module';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { CarouselModule } from 'primeng/carousel';
 
-
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    HomeComponent,
+    StripePaymentComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -48,12 +56,17 @@ import { CarouselModule } from 'primeng/carousel';
     ClinicModule,
     CommonModule,
     AppRoutingModule,
+    InvoiceModule,
     PatientModule,
     AuthModule,
+<<<<<<< HEAD
     CarouselModule,
 
+=======
+    AppointmentModule
+>>>>>>> 937a99001fa62d3615e7e500abfca86cbbd9a210
   ],
-  providers: [DoctorService],
+  providers: [DoctorService, InvoiceModule],
 
   bootstrap: [AppComponent],
 })
