@@ -19,34 +19,33 @@ export class DoctorListComponent implements OnInit {
   sep: string = 'Speciality';
   tag: string;
 
-  constructor(private doctorServices: DoctorService) { }
-
+  constructor(private doctorServices: DoctorService) {}
   ngOnInit() {
     this.function3adia();
-    this.items = [
-      {
-        label: 'Speciality',
-        icon: 'pi pi-fw pi-cog',
-        items: [
-          [
-            {
-              label: 'Speciality',
-              items: [
-                { label: 'Internist' },
-                { label: 'Optometrist' },
-                { label: 'orthopedist' },
-                { label: 'Dentist' },
-                { label: 'Urologist' },
-                { label: 'Surgeon' },
-              ],
-            },
+
+    if (this.doctorServices.specialityParameter === '') {
+      this.items = [
+        {
+          label: 'Speciality',
+          icon: 'pi pi-fw pi-cog',
+          items: [
+            [
+              {
+                label: 'Speciality',
+                items: [
+                  { label: 'Internist' },
+                  { label: 'Optometrist' },
+                  { label: 'orthopedist' },
+                  { label: 'Dentist' },
+                  { label: 'Urologist' },
+                  { label: 'Surgeon' },
+                ],
+              },
+            ],
           ],
-        ],
-      },
-    ];
-
-
-
+        },
+      ];
+    }
   }
   searchByName(event) {
     if (this.search === '') this.pageItems = this.doctors;
@@ -102,22 +101,18 @@ export class DoctorListComponent implements OnInit {
     }
   }
   function3adia(): any {
-    this.pageItems = this.doctorServices.getAll().subscribe(data => {
+    this.pageItems = this.doctorServices.getAll().subscribe((data) => {
       this.doctorServices.doctors = data;
       if (this.doctorServices.specialityParameter == '') {
         this.pageItems = this.doctorServices.doctors;
       } else {
-        this.pageItems = this.doctorServices.doctors.filter(doc => {
+        this.pageItems = this.doctorServices.doctors.filter((doc) => {
           return doc.speciality == this.doctorServices.specialityParameter;
-
-        })
+        });
       }
       this.doctors = this.pageItems;
       this.pageNo = this.doctors.length;
-
-    })
+    });
     this.page({ first: 0, rows: 9 });
-
-
   }
 }
