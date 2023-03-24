@@ -35,6 +35,7 @@ export class InvoicePaidComponent implements OnInit {
     this.paymentService.getChecking().subscribe((data) => {
       console.log(data.lastPaid);
       this.details = data.lastPaid;
+      this.details.receipt_number = data.lastPaid.receipt_number;
 
       //window.location.assign(data.lastPaid.receipt_url);
     });
