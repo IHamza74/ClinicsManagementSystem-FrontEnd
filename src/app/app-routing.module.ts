@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { PatientListComponent } from './Modules/Patient/patient-list/patient-list.component';
 import { PatientAddComponent } from './Modules/Patient/patient-add/patient-add.component';
 import { AuthComponent } from './shared/auth/auth.component';
+import { AddAppointmentComponent } from './Modules/appointment/add-appointment/add-appointment.component';
 
 const routes: Routes = [
   { path: 'clinic', component: ClinicListComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'patient', component: PatientListComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'auth', component: AuthComponent },
+  {path:'appointment/add',component: AddAppointmentComponent}
 ];
 @NgModule({
   declarations: [],

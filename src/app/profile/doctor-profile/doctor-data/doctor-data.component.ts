@@ -1,6 +1,5 @@
 import {  Component,Input} from '@angular/core';
 import { DoctorService } from 'src/app/Services/doctor.service';
-
 import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 import { Doctor } from 'src/app/Models/doctor';
 

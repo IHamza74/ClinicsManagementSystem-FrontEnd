@@ -1,5 +1,4 @@
-import { Doctor } from "./doctor";
-import { Employee } from "./employee";
+
 
 export class AppointmentScheduler {
 
@@ -7,6 +6,7 @@ export class AppointmentScheduler {
    public patientID:string,
    public doctorID:String,
    public employeeID:String,
+   public clinicID:string,
    public date:Date,
    public _id?:string
     ){}

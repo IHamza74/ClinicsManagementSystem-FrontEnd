@@ -7,7 +7,7 @@
     <mat-tab label="Up comming" class="mat-elevation-z8"> 
       <input type="text" pInputText placeholder="Search" (input)="filterData($event)" id="mysearch">
       <i class="pi pi-search"></i>
-    <p-table [value]="appointments" [paginator]="true" [rows]="5">
+    <p-table [value]="appointments" [paginator]="true" [rows]="1">
       <ng-template pTemplate="header">
         <tr>
           <th>Patient</th>

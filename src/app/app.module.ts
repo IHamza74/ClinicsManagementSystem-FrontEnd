@@ -24,6 +24,7 @@ import { PatientModule } from './Modules/Patient/patient.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './shared/auth/auth.module';
+import { AppointmentModule } from './Modules/appointment/appointment.module';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { AuthModule } from './shared/auth/auth.module';
     AppRoutingModule,
     PatientModule,
     AuthModule,
+    AppointmentModule
   ],
   providers: [DoctorService],
 

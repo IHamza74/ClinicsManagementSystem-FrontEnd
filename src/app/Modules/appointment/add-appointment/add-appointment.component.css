@@ -1,0 +1,28 @@
+mat-tab-group
+{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    height: 100%;
+}
+
+label
+{
+    font-size: large;
+    margin-top: 3px;
+}
+
+#calender
+{
+    font-size: xx-small;
+}
+tr th
+{
+ 
+    /* fallback for old browsers */
+  
+font-size: large;
+
+
+
+}
+
