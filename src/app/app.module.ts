@@ -26,6 +26,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './shared/auth/auth.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { CarouselModule } from 'primeng/carousel';
 
 
 @NgModule({
@@ -49,9 +50,11 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     PatientModule,
     AuthModule,
+    CarouselModule,
+
   ],
   providers: [DoctorService],
 
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

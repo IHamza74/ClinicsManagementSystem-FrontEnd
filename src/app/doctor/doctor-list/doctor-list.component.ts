@@ -19,9 +19,10 @@ export class DoctorListComponent implements OnInit {
   sep: string = 'Speciality';
   tag: string;
 
-  constructor(private doctorServices: DoctorService) {}
+  constructor(private doctorServices: DoctorService) { }
 
   ngOnInit() {
+    this.function3adia();
     this.items = [
       {
         label: 'Speciality',
@@ -43,12 +44,9 @@ export class DoctorListComponent implements OnInit {
         ],
       },
     ];
-    this.doctorServices.getAll().subscribe((data) => {
-      this.doctorServices.doctors = data;
-      this.doctors = this.doctorServices.doctors;
-      this.pageNo = this.doctors.length;
-      this.page({ first: 0, rows: 9 });
-    });
+
+
+
   }
   searchByName(event) {
     if (this.search === '') this.pageItems = this.doctors;
@@ -101,5 +99,24 @@ export class DoctorListComponent implements OnInit {
       //this.doctorServices.doctors.splice(index, 1);
       this.pageItems.splice(index, 1);
     }
+  }
+  function3adia(): any {
+    this.pageItems = this.doctorServices.getAll().subscribe(data => {
+      this.doctorServices.doctors = data;
+      if (this.doctorServices.specialityParameter == '') {
+        this.pageItems = this.doctorServices.doctors;
+      } else {
+        this.pageItems = this.doctorServices.doctors.filter(doc => {
+          return doc.speciality == this.doctorServices.specialityParameter;
+
+        })
+      }
+      this.doctors = this.pageItems;
+      this.pageNo = this.doctors.length;
+
+    })
+    this.page({ first: 0, rows: 9 });
+
+
   }
 }
