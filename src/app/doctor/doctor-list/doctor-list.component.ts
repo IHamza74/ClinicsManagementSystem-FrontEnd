@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
 
 import { Doctor } from 'src/app/Models/doctor';
+import { AuthService } from 'src/app/Services/auth.service';
 import { DoctorService } from 'src/app/Services/doctor.service';
 
 @Component({
@@ -18,11 +19,14 @@ export class DoctorListComponent implements OnInit {
   search: string = '';
   sep: string = 'Speciality';
   tag: string;
-
-  constructor(private doctorServices: DoctorService) {}
+  role;
+  constructor(
+    private doctorServices: DoctorService,
+    private authService: AuthService
+  ) {}
   ngOnInit() {
     this.function3adia();
-
+    this.role = this.authService.role;
     if (this.doctorServices.specialityParameter === '') {
       this.items = [
         {
@@ -68,27 +72,29 @@ export class DoctorListComponent implements OnInit {
   filterBySpec(event) {
     this.sep = event.target.innerText;
     this.tag = event.target.tagName;
-
-    if (
-      this.sep !== 'Speciality' &&
-      (this.tag === 'SPAN' || this.tag === 'A') &&
-      this.search === undefined
-    ) {
-      this.pageItems = this.doctors.filter((doc) => {
-        return doc.speciality === this.sep;
-      });
-      let pageCount = this.pageItems.length;
-      this.pageNo = pageCount;
-    } else if (
-      this.sep !== 'Speciality' &&
-      (this.tag === 'SPAN' || this.tag === 'A') &&
-      this.search !== undefined
-    ) {
-      this.pageItems = this.doctors.filter((doc) => {
-        return doc.speciality === this.sep;
-      });
-      let pageCount = this.pageItems.length;
-      this.pageNo = pageCount;
+    if (this.sep !== '') {
+      if (
+        this.sep !== 'Speciality' &&
+        this.sep != '' &&
+        (this.tag === 'SPAN' || this.tag === 'A') &&
+        this.search === undefined
+      ) {
+        this.pageItems = this.doctors.filter((doc) => {
+          return doc.speciality === this.sep;
+        });
+        let pageCount = this.pageItems.length;
+        this.pageNo = pageCount;
+      } else if (
+        this.sep !== 'Speciality' &&
+        (this.tag === 'SPAN' || this.tag === 'A') &&
+        this.search !== undefined
+      ) {
+        this.pageItems = this.doctors.filter((doc) => {
+          return doc.speciality === this.sep;
+        });
+        let pageCount = this.pageItems.length;
+        this.pageNo = pageCount;
+      }
     }
   }
   deleteDoctor(id: string, index: number) {
@@ -112,6 +118,7 @@ export class DoctorListComponent implements OnInit {
       }
       this.doctors = this.pageItems;
       this.pageNo = this.doctors.length;
+      this.page({ first: 0, rows: 9 });
     });
     this.page({ first: 0, rows: 9 });
   }
