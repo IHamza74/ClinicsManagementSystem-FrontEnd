@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/Models/doctor';
 import { DoctorService } from 'src/app/Services/doctor.service';
 
@@ -10,11 +10,22 @@ import { DoctorService } from 'src/app/Services/doctor.service';
     './../../profile/profile.component.css',
   ],
 })
-export class DoctorProfileCardComponent {
+export class DoctorProfileCardComponent implements OnInit {
   @Input() doctor: Doctor;
-  selectedFile: File;
+  @Input() count;
 
+  selectedFile: File;
+  finishedAppointments: number = 0;
+  upcomingAppointments: number = 0;
   constructor(private doctorService: DoctorService) {}
+  ngOnInit(): void {
+    this.finishedAppointments = this.count.finished;
+    this.upcomingAppointments = this.count.upcoming;
+    this.doctorService.finishedAppointmentsSubject.subscribe((obj) => {
+      this.finishedAppointments = obj.finishedAppointments;
+      this.upcomingAppointments = obj.upcomingAppointments;
+    });
+  }
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];

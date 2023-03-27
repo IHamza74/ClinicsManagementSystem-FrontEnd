@@ -8,6 +8,7 @@ import { DoctorListComponent } from 'src/app/doctor/doctor-list/doctor-list.comp
 import { DoctorAddComponent } from 'src/app/doctor/doctor-add/doctor-add.component';
 import { DoctorEditComponent } from 'src/app/doctor/doctor-edit/doctor-edit.component';
 import { DoctorDetailsComponent } from 'src/app/doctor/doctor-details/doctor-details.component';
+import { DoctorProfileModule } from 'src/app/profile/doctor-profile/doctor-profile.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DoctorDetailsComponent } from 'src/app/doctor/doctor-details/doctor-det
     ReactiveFormsModule,
     PaginatorModule,
     MegaMenuModule,
+    DoctorProfileModule,
   ],
   exports: [
     DoctorListComponent,

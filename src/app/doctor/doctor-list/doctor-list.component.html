@@ -1,14 +1,27 @@
 <app-doctor-add> </app-doctor-add>
 
 <p-megaMenu [model]="items" (click)="filterBySpec($event)">
-  <input type="text" pInputText class="form-control" placeholder="Search By Name" [(ngModel)]="search"
-    (keyup)="searchByName($event)" />
+  <input
+    type="text"
+    pInputText
+    class="form-control"
+    placeholder="Search By Name"
+    [(ngModel)]="search"
+    (keyup)="searchByName($event)"
+  />
 </p-megaMenu>
-<div class="row justify-content-center">
-  <div class="card-container mx-2 my-2 p-4" *ngFor="let doctor of pageItems; let i = index">
+
+<!-- <div
+    class="card-container mx-2 my-2 p-4"
+    *ngFor="let doctor of pageItems; let i = index"
+  >
     <span class="pro">PRO</span>
-    <img class="round" [attr.src]="'./../../../../assets/images/users/' + doctor.photo" alt="Doctor Photo"
-      style="width: 150px" />
+    <img
+      class="round"
+      [attr.src]="'./../../../../assets/images/users/' + doctor.photo"
+      alt="Doctor Photo"
+      style="width: 150px"
+    />
     <h3>Dr. {{ doctor.name }}</h3>
     <h6>speciality: {{ doctor.speciality }}</h6>
     <h6></h6>
@@ -17,12 +30,36 @@
       Working Hours: {{ doctor.workingHours }}
     </p>
     <div class="buttons">
-      <app-doctor-edit [doctorId]="doctor._id" [index]="i" [doctors]="pageItems"></app-doctor-edit>
-      <app-doctor-details [doctorId]="doctor._id" [index]="i" [doctors]="pageItems"></app-doctor-details>
+      <app-doctor-edit
+        [doctorId]="doctor._id"
+        [index]="i"
+        [doctors]="pageItems"
+      ></app-doctor-edit>
+      <app-doctor-details
+        [doctorId]="doctor._id"
+        [index]="i"
+        [doctors]="pageItems"
+      ></app-doctor-details>
       <button class="primary ghost" (click)="deleteDoctor(doctor._id, i)">
         Delete
       </button>
     </div>
+  </div> -->
+
+<div class="map-responsive mx-2 my-2 col-lg-12 row justify-content-evenly">
+  <div
+    class="mx-1 my-6 col-sm-10 col-lg-5 col-xl-3"
+    *ngFor="let doctor of pageItems; let i = index"
+  >
+    <app-doctor-profile-card
+      [doctor]="doctor"
+      [count]="getFinishedCount(doctor._id)"
+    ></app-doctor-profile-card>
   </div>
 </div>
-<p-paginator #paginator [rows]="9" [totalRecords]="pageNo" (onPageChange)="page($event)"></p-paginator>
+<p-paginator
+  #paginator
+  [rows]="9"
+  [totalRecords]="pageNo"
+  (onPageChange)="page($event)"
+></p-paginator>

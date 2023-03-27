@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
+import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 
 import { Doctor } from 'src/app/Models/doctor';
+import { AppointmentService } from 'src/app/Services/appointment.service';
 import { DoctorService } from 'src/app/Services/doctor.service';
 
 @Component({
@@ -12,6 +14,7 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 })
 export class DoctorListComponent implements OnInit {
   doctors: Doctor[] = [];
+  appointments: AppointmentScheduler[] = [];
   pageNo: number;
   pageItems;
   items: MegaMenuItem[];
@@ -19,10 +22,11 @@ export class DoctorListComponent implements OnInit {
   sep: string = 'Speciality';
   tag: string;
 
-  constructor(private doctorServices: DoctorService) {}
+  constructor(
+    private doctorServices: DoctorService,
+    public appointmentService: AppointmentService
+  ) {}
   ngOnInit() {
-    this.function3adia();
-
     if (this.doctorServices.specialityParameter === '') {
       this.items = [
         {
@@ -46,6 +50,12 @@ export class DoctorListComponent implements OnInit {
         },
       ];
     }
+
+    this.appointmentService.getAllAppointments().subscribe((appointments) => {
+      this.appointments = appointments;
+      console.log(appointments);
+      this.function3adia();
+    });
   }
   searchByName(event) {
     if (this.search === '') this.pageItems = this.doctors;
@@ -114,5 +124,22 @@ export class DoctorListComponent implements OnInit {
       this.pageNo = this.doctors.length;
     });
     this.page({ first: 0, rows: 9 });
+  }
+
+  getFinishedCount(id: string) {
+    let total = this.appointments.filter(
+      (appointment) => appointment.doctorID == id
+    );
+    console.log(total);
+
+    let finishedAppointments = total.filter(
+      (appointment) =>
+        new Date(appointment.date).getTime() < new Date().getTime()
+    );
+
+    return {
+      finished: finishedAppointments.length,
+      upcoming: total.length - finishedAppointments.length,
+    };
   }
 }
