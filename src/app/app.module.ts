@@ -59,12 +59,13 @@ import { ProfileModule } from './profile/profile.module';
     AppRoutingModule,
     InvoiceModule,
     PatientModule,
+    ProfileModule,
     AuthModule,
     CarouselModule,
     ProfileModule,
     AppointmentModule,
   ],
-  providers: [DoctorService, InvoiceModule],
+  providers: [DoctorService],
 
   bootstrap: [AppComponent],
 })
