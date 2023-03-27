@@ -86,12 +86,12 @@
          *ngIf="role == 'patient'
          && editClick==false;"
          ></app-patient-data>
-         <!-- <app-patient-data
+        <app-patient-data
          *ngIf="role == 'patient' && editClick==false";
          [patient]="user"
          >
 
-         </app-patient-data> -->
+         </app-patient-data>
           
         </div>
         <button *ngIf="editClick"  class="btn btn-info" (click)="editClick=false">show profile</button>

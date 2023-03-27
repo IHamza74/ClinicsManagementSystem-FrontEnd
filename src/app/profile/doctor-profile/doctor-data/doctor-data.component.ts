@@ -14,6 +14,8 @@ export class DoctorDataComponent  {
     
   @Input() doctor:Doctor;
    appointments :AppointmentScheduler[]=[];
+   finished:AppointmentScheduler[]=[];
+   upcomming:AppointmentScheduler[]=[];
    myFilter :AppointmentScheduler[]=[];
    id:string;
   constructor(public doctorService:DoctorService)
@@ -21,7 +23,7 @@ export class DoctorDataComponent  {
     
     this.id = localStorage.getItem('id');
   
-    this.getData();
+  
 
   }
   
@@ -39,6 +41,7 @@ export class DoctorDataComponent  {
 
   ngOnInit() {
     this.getData();
+    console.log(this.finished);
   }
 
   getData() {
@@ -47,5 +50,11 @@ export class DoctorDataComponent  {
       this.appointments = data;
       this.myFilter = this.appointments;
     });
+   this.finished=this.appointments.filter(item=>{
+   return  new Date(item.date).getTime() > new Date().getTime();
+
+   })
+ 
+
   }
 }

@@ -19,5 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     
   ],
+  exports:[CommonModule]
 })
 export class ProfileModule {}

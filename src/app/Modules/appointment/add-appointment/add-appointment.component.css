@@ -11,10 +11,7 @@ label
     margin-top: 3px;
 }
 
-#calender
-{
-    font-size: xx-small;
-}
+
 tr th
 {
  
@@ -29,5 +26,23 @@ font-size: large;
 #mylast
 {
     margin-bottom: 70px;
+}
+
+.photo
+{
+background-image: url("../../../../assets/images/book.jpg");
+ background-position-x: right;
+ background-repeat: no-repeat;
+ background-size: auto;
+ background-color: white;
+ margin-left: 5px;
+ padding-left: 20px;
+ padding-bottom: 8px;
+}
+
+tr td 
+{
+  padding: 2px;
+  font-size: large;
 }
 

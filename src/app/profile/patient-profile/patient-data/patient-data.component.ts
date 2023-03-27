@@ -13,15 +13,15 @@ import { PatientService } from 'src/app/Services/patient-service';
 export class PatientDataComponent {
 
   @Input() patient: Patient;
-  id ="63e52ef90bcc43f0d19f8f8d";
   appointments :AppointmentScheduler[];
   myFilter :AppointmentScheduler[];
-
+  id:string;
  
 
  constructor(public patientService:PatientService)
  {
-       console.log(this.patient);
+    this.id= localStorage.getItem("id");    
+  console.log(this.patient);
   
  }
 
