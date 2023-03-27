@@ -31,6 +31,7 @@ import { AppointmentModule } from './Modules/appointment/appointment.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { CarouselModule } from 'primeng/carousel';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -60,11 +61,11 @@ import { CarouselModule } from 'primeng/carousel';
     PatientModule,
     AuthModule,
     CarouselModule,
-
-    AppointmentModule
+    ProfileModule,
+    AppointmentModule,
   ],
   providers: [DoctorService, InvoiceModule],
 
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

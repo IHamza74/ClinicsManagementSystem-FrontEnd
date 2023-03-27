@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
     //     console.log(data);
 
     //  }
-
     console.log(this.profileService.role);
     console.log(this.profileService.id);
     switch (this.profileService.role) {
