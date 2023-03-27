@@ -117,4 +117,8 @@ export class InoviceListComponent implements OnInit {
     this.pageNo = this.invoices.length;
     this.page({ first: 0, rows: 9 });
   }
+
+  onShow(id) {
+    window.open('http://localhost:4200/invoice/' + id);
+  }
 }

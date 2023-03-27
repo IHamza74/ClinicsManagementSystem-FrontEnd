@@ -4,6 +4,7 @@ import { MegaMenuItem, MenuItem } from 'primeng/api';
 import { Doctor } from 'src/app/Models/doctor';
 import { AuthService } from 'src/app/Services/auth.service';
 import { DoctorService } from 'src/app/Services/doctor.service';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-doctor-list',
@@ -22,11 +23,11 @@ export class DoctorListComponent implements OnInit {
   role;
   constructor(
     private doctorServices: DoctorService,
-    private authService: AuthService
+    private profileService: ProfileService
   ) {}
   ngOnInit() {
     this.function3adia();
-    this.role = this.authService.role;
+    console.log((this.role = this.profileService.user));
     if (this.doctorServices.specialityParameter === '') {
       this.items = [
         {

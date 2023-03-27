@@ -30,5 +30,6 @@ export class InvoiceDetailsComponent {
     this.invoice = this.invoices[this.index];
     this.date = new Date(this.invoice.date).toDateString();
     this.time = new Date(this.invoice.date).toLocaleTimeString();
+    window.open('http://localhost:4200/invoice/' + this.invoice._id);
   }
 }

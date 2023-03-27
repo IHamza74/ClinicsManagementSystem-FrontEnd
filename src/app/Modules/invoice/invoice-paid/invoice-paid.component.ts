@@ -31,20 +31,41 @@ export class InvoicePaidComponent implements OnInit {
   };
   date = '';
   time = '';
+  currentStatus;
   ngOnInit() {
     this.activeRoute.params.subscribe((a) => {
       this.invoiceService.getById(a['id']).subscribe((data) => {
+        this.currentStatus = data.payment_status;
         data.payment_status = true;
         this.invoice = data;
         console.log('hhh');
         this.date = new Date(data.date).toDateString();
         this.time = new Date(data.date).toLocaleTimeString();
 
-        if (this.invoice.paymentMethod === 'Credit Card') {
+        if (
+          this.invoice.paymentMethod === 'Credit Card' &&
+          this.currentStatus === false
+        ) {
           this.invoiceService.editInvoice(a['id'], this.invoice).subscribe();
         }
       });
     });
+  }
+
+  printPageArea(id) {
+    const prtContent = document.getElementById(id);
+    const WinPrint = window.open(
+      '',
+      '',
+      'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0'
+    );
+    WinPrint.document.write(prtContent.innerHTML);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    setTimeout(() => {
+      WinPrint.close();
+    }, 1000);
   }
 
   constructor(
