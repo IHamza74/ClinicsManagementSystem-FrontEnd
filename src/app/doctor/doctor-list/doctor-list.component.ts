@@ -20,35 +20,32 @@ export class DoctorListComponent implements OnInit {
   tag: string;
 
   constructor(private doctorServices: DoctorService) {}
-
   ngOnInit() {
-    this.items = [
-      {
-        label: 'Speciality',
-        icon: 'pi pi-fw pi-cog',
-        items: [
-          [
-            {
-              label: 'Speciality',
-              items: [
-                { label: 'Internist' },
-                { label: 'Optometrist' },
-                { label: 'orthopedist' },
-                { label: 'Dentist' },
-                { label: 'Urologist' },
-                { label: 'Surgeon' },
-              ],
-            },
+    this.function3adia();
+
+    if (this.doctorServices.specialityParameter === '') {
+      this.items = [
+        {
+          label: 'Speciality',
+          icon: 'pi pi-fw pi-cog',
+          items: [
+            [
+              {
+                label: 'Speciality',
+                items: [
+                  { label: 'Internist' },
+                  { label: 'Optometrist' },
+                  { label: 'orthopedist' },
+                  { label: 'Dentist' },
+                  { label: 'Urologist' },
+                  { label: 'Surgeon' },
+                ],
+              },
+            ],
           ],
-        ],
-      },
-    ];
-    this.doctorServices.getAll().subscribe((data) => {
-      this.doctorServices.doctors = data;
-      this.doctors = this.doctorServices.doctors;
-      this.pageNo = this.doctors.length;
-      this.page({ first: 0, rows: 9 });
-    });
+        },
+      ];
+    }
   }
   searchByName(event) {
     if (this.search === '') this.pageItems = this.doctors;
@@ -80,6 +77,8 @@ export class DoctorListComponent implements OnInit {
       this.pageItems = this.doctors.filter((doc) => {
         return doc.speciality === this.sep;
       });
+      let pageCount = this.pageItems.length;
+      this.pageNo = pageCount;
     } else if (
       this.sep !== 'Speciality' &&
       (this.tag === 'SPAN' || this.tag === 'A') &&
@@ -88,10 +87,9 @@ export class DoctorListComponent implements OnInit {
       this.pageItems = this.doctors.filter((doc) => {
         return doc.speciality === this.sep;
       });
+      let pageCount = this.pageItems.length;
+      this.pageNo = pageCount;
     }
-
-    let pageCount = this.pageItems.length;
-    this.pageNo = pageCount;
   }
   deleteDoctor(id: string, index: number) {
     console.log(id, index);
@@ -101,5 +99,20 @@ export class DoctorListComponent implements OnInit {
       //this.doctorServices.doctors.splice(index, 1);
       this.pageItems.splice(index, 1);
     }
+  }
+  function3adia(): any {
+    this.pageItems = this.doctorServices.getAll().subscribe((data) => {
+      this.doctorServices.doctors = data;
+      if (this.doctorServices.specialityParameter == '') {
+        this.pageItems = this.doctorServices.doctors;
+      } else {
+        this.pageItems = this.doctorServices.doctors.filter((doc) => {
+          return doc.speciality == this.doctorServices.specialityParameter;
+        });
+      }
+      this.doctors = this.pageItems;
+      this.pageNo = this.doctors.length;
+    });
+    this.page({ first: 0, rows: 9 });
   }
 }

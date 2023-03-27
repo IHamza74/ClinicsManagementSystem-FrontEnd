@@ -23,11 +23,23 @@ import { MedicineModule } from './Modules/medicine/medicine.module';
 import { PatientModule } from './Modules/Patient/patient.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InvoiceModule } from './Modules/invoice/invoice.module';
+import { StripePaymentComponent } from './Modules/payment/stripe-payment/stripe-payment.component';
 import { AuthModule } from './shared/auth/auth.module';
-import { AuthGuard } from './Services/auth.guard.service';
+import { AppointmentModule } from './Modules/appointment/appointment.module';
+
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { CarouselModule } from 'primeng/carousel';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    HomeComponent,
+    StripePaymentComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -45,10 +57,15 @@ import { AuthGuard } from './Services/auth.guard.service';
     ClinicModule,
     CommonModule,
     AppRoutingModule,
+    InvoiceModule,
     PatientModule,
+    ProfileModule,
     AuthModule,
+    CarouselModule,
+    AuthModule,
+    AppointmentModule,
   ],
-  providers: [DoctorService, AuthGuard],
+  providers: [DoctorService],
 
   bootstrap: [AppComponent],
 })

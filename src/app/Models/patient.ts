@@ -1,9 +1,7 @@
 export class Patient {
   constructor(
     public _id: string,
-    public Name: string,
     public Age: number,
-    public photo: string,
     public Address: {
       government: string;
       city: string;
@@ -15,8 +13,9 @@ export class Patient {
     public Section: string,
     public Password: string,
     public Email: string,
-    public name?:string
-  
+    public name: string,
+    public Name?: string,
+    public photo?: string
   ) {}
 }
 
@@ -37,7 +36,7 @@ export class PatientEdit {
     public section: string,
     public password: string,
     public email: string,
-    public Name?:string
+    public Name?: string
   ) {}
 }
 export class patientAddress {

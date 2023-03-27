@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DoctorPatch } from 'src/app/Models/doctor';
 import { DoctorService } from 'src/app/Services/doctor.service';
@@ -6,16 +6,13 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 @Component({
   selector: 'app-doctor-profile-edit',
   templateUrl: './doctor-profile-edit.component.html',
-  styleUrls: [
-    './doctor-profile-edit.component.css',
-    '../../profile/profile.component.css',
-  ],
+  styleUrls: ['./doctor-profile-edit.component.css',"../../profile/profile.component.css"]
 })
 export class DoctorProfileEditComponent {
+
   @Input() EditDoctor: DoctorPatch;
 
   editForm: FormGroup;
-  // id = '63e4e87211226c1452238226';
   constructor(public doctorService: DoctorService) {}
 
   ngOnInit(): void {
@@ -57,3 +54,15 @@ export class DoctorProfileEditComponent {
     });
   }
 }
+
+
+ 
+ 
+
+
+
+
+
+
+
+

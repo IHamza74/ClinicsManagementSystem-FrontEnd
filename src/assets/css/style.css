@@ -289,13 +289,11 @@ a:focus {
 
 .service_section .img-container {
   padding: 20px 0 20px 20px;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    color-stop(60%, #ffffff),
-    color-stop(60%, transparent)
-  );
+  background: -webkit-gradient(linear,
+      left top,
+      right top,
+      color-stop(60%, #ffffff),
+      color-stop(60%, transparent));
   background: linear-gradient(to right, #ffffff 60%, transparent 60%);
 }
 
@@ -525,10 +523,12 @@ a:focus {
     -webkit-transform: translateY(90px);
     transform: translateY(90px);
   }
+
   50% {
     -webkit-transform: translateY(-90px);
     transform: translateY(-90px);
   }
+
   100% {
     -webkit-transform: translateY(90px);
     transform: translateY(90px);
@@ -540,10 +540,12 @@ a:focus {
     -webkit-transform: translateY(90px);
     transform: translateY(90px);
   }
+
   50% {
     -webkit-transform: translateY(-90px);
     transform: translateY(-90px);
   }
+
   100% {
     -webkit-transform: translateY(90px);
     transform: translateY(90px);
@@ -555,10 +557,12 @@ a:focus {
     -webkit-transform: translateY(-90px);
     transform: translateY(-90px);
   }
+
   50% {
     -webkit-transform: translateY(90px);
     transform: translateY(90px);
   }
+
   100% {
     -webkit-transform: translateY(-90px);
     transform: translateY(-90px);
@@ -570,10 +574,12 @@ a:focus {
     -webkit-transform: translateY(-90px);
     transform: translateY(-90px);
   }
+
   50% {
     -webkit-transform: translateY(90px);
     transform: translateY(90px);
   }
+
   100% {
     -webkit-transform: translateY(-90px);
     transform: translateY(-90px);
@@ -861,7 +867,7 @@ a:focus {
   position: relative;
   background-color: #2d2d2d;
   color: #ffffff;
-  margin: 0 45px 45px;
+  margin: 0;
 }
 
 .info_section .social_container {
@@ -888,7 +894,7 @@ a:focus {
   margin: 0 10px;
 }
 
-.info_section .row > div {
+.info_section .row>div {
   margin-top: 25px;
 }
 

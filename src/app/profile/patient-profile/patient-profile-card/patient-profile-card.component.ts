@@ -11,7 +11,7 @@ export class PatientProfileCardComponent {
   @Input() patient: Patient;
   selectedFile: File;
   constructor(private patientService: PatientService) {
-    console.log(this.patient);
+    console.log(this.patient?.photo);
   }
 
   onFileSelected(event) {

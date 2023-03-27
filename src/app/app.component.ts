@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { MedicineService } from './Services/medicine.service';
 import { Medicine } from './Models/medicine';
 import { fas } from '@fortawesome/free-solid-svg-icons';

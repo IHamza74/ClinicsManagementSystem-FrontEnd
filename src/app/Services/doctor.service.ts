@@ -11,11 +11,12 @@ export class DoctorService {
   currentDoctor: Doctor;
 
   baseUrl = 'http://localhost:3000/doctor/';
-  profileUrl= 'http://localhost:3000/appointmentScheduler/doctorreports/';
+  profileUrl = 'http://localhost:3000/appointmentScheduler/doctorreports/';
 
   photoFile: File;
   doctors: Doctor[] = [];
   doctor;
+  specialityParameter = '';
 
   getAll() {
     return this.http.get<Doctor[]>(this.baseUrl);
@@ -44,7 +45,7 @@ export class DoctorService {
   delete(id: string) {
     return this.http.delete<Doctor>(this.baseUrl + id);
   }
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   forbiddenUserNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -77,10 +78,9 @@ export class DoctorService {
     this.currentDoctor = doctor;
   }
 
-  getAppointments(id:string)
-  {
-  console.log(id);
-  return this.http.get<AppointmentScheduler[]>(this.profileUrl+id) 
+  getAppointments(id: string) {
+    console.log(id);
+    return this.http.get<AppointmentScheduler[]>(this.profileUrl + id)
 
-}
+  }
 }
