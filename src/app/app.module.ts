@@ -24,7 +24,7 @@ import { PatientModule } from './Modules/Patient/patient.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './shared/auth/auth.module';
-
+import { AuthGuard } from './Services/auth.guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,7 +48,7 @@ import { AuthModule } from './shared/auth/auth.module';
     PatientModule,
     AuthModule,
   ],
-  providers: [DoctorService],
+  providers: [DoctorService, AuthGuard],
 
   bootstrap: [AppComponent],
 })

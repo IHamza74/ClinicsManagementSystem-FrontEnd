@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { PatientListComponent } from './Modules/Patient/patient-list/patient-list.component';
 import { PatientAddComponent } from './Modules/Patient/patient-add/patient-add.component';
 import { AuthComponent } from './shared/auth/auth.component';
+import { AuthGuard } from './Services/auth.guard.service';
 
 const routes: Routes = [
   { path: 'clinic', component: ClinicListComponent },
@@ -22,7 +23,11 @@ const routes: Routes = [
   { path: 'list-medicine', component: ListMedicineComponent },
   { path: 'Employee', component: EmployeeListComponent },
   { path: 'doctor', component: DoctorListComponent },
-  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    component: ProfileComponent,
+  },
   { path: 'auth', component: AuthComponent },
 ];
 @NgModule({

@@ -16,6 +16,8 @@ export class AuthComponent implements OnInit {
   decodedToken = { role: '', id: '', iat: null, exp: null };
   signUpForm: FormGroup;
   signInForm: FormGroup;
+  isInvalidEmailCorrect;
+  isEmailDuplicated;
 
   signInObj = { email: '', password: '' };
   signUpObj = {
@@ -39,11 +41,23 @@ export class AuthComponent implements OnInit {
         this.medicineService.stringInput.bind(this),
       ]),
       Email: new FormControl(null, [Validators.required, Validators.email]),
-      Password: new FormControl(null, [Validators.required]),
-      Age: new FormControl(null, [Validators.required]),
+      Password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      Age: new FormControl(null, [
+        Validators.required,
+        this.medicineService.numberInput.bind(this),
+      ]),
 
-      government: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
+      government: new FormControl(null, [
+        Validators.required,
+        this.medicineService.stringInput.bind(this),
+      ]),
+      city: new FormControl(null, [
+        Validators.required,
+        this.medicineService.stringInput.bind(this),
+      ]),
       street: new FormControl(null, [Validators.required]),
       building: new FormControl(null, [Validators.required]),
     });
@@ -57,18 +71,22 @@ export class AuthComponent implements OnInit {
     this.signInObj.email = this.signInForm.get('email').value;
     this.signInObj.password = this.signInForm.get('password').value;
     this.authService.login(this.signInObj).subscribe((Response) => {
+      console.log(Response);
       if (Response.data == 'Authorized') {
         localStorage.setItem('token', Response.token);
         this.decodedToken = jwt_decode(Response.token);
         localStorage.setItem('id', this.decodedToken.id);
         localStorage.setItem('role', this.decodedToken.role);
+        localStorage.setItem('logged', 'true');
         this.profileService.id = this.decodedToken.id;
         this.profileService.role = this.decodedToken.role;
         this.route.navigate(['profile']);
         this.profileService.isUserLogged = true;
+      } else if (Response.data == 'please provide correct password') {
+        this.isInvalidEmailCorrect = true;
+      } else if (Response.data == 'not authorized') {
+        this.isInvalidEmailCorrect = false;
       }
-
-      // this.authService.authTokenSubject.next(Response.token);
     });
   }
   onSubmitSignUp() {
@@ -80,17 +98,14 @@ export class AuthComponent implements OnInit {
     this.signUpObj.Address.city = this.signUpForm.get('city').value;
     this.signUpObj.Address.street = this.signUpForm.get('street').value;
     this.signUpObj.Address.building = this.signUpForm.get('building').value;
-    this.authService.signUp(this.signUpObj).subscribe(
-      (Response) => {
-        console.log(Response);
-      },
-      (errorRes) => {
-        if (errorRes.error.message.indexOf('Email_1 dup key') != -1)
-          console.log('duplicated Email');
+    this.authService.signUp(this.signUpObj).subscribe((Response) => {
+      if (Response.data == 'this email exists') {
+        this.isEmailDuplicated = true;
       }
-    );
+    });
   }
   onModeChanges() {
     this.isLoginMode = !this.isLoginMode;
+    console.log(this.signUpForm);
   }
 }

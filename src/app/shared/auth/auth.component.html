@@ -2,6 +2,17 @@
   <div
     class="container d-flex flex-column align-items-center justify-content-center"
   >
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="isInvalidEmailCorrect != undefind"
+    >
+      {{
+        isInvalidEmailCorrect
+          ? "Please provide correct password!"
+          : "This Email is not Exist Try to Sign up!"
+      }}
+    </div>
     <div class="col-md-3 d-flex flex-column mb-1">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
       <input
@@ -15,25 +26,39 @@
         *ngIf="
           !signInForm.get('email').valid && signInForm.get('email').touched
         "
-        ><span *ngIf="signInForm.get('email').errors['email']"
-          >Please Enter Medicine Name!</span
+        ><small
+          *ngIf="
+            signInForm.get('email').errors['email'] ||
+            signInForm.get('email').errors['required']
+          "
+          >Please Enter a valid Email</small
         >
       </span>
+      <!-- <small *ngIf="isInvalidEmail"
+        >This Email is not Exist Try to Sign up!</small
+      > -->
     </div>
     <div class="col-md-3 d-flex flex-column mb-1">
       <label for="username1">Password</label>
-      <input
-        type="username"
-        aria-describedby="username1-help"
-        pInputText
-        formControlName="password"
-      />
-      <small id="username1-help"
-        >Enter your username to reset your password.</small
+      <input type="password" class="form-control" formControlName="password" />
+      <span
+        class="help-block"
+        *ngIf="
+          !signInForm.get('password').valid &&
+          signInForm.get('password').touched
+        "
       >
+        <small *ngIf="signInForm.get('password').errors['required']"
+          >Password is required</small
+        >
+      </span>
     </div>
     <div>
-      <button class="btn btn-success me-1 text-light" type="submit">
+      <button
+        class="btn btn-success me-1 text-light"
+        type="submit"
+        [disabled]="signInForm.invalid"
+      >
         Login
       </button>
       <button
@@ -56,6 +81,13 @@
   <div
     class="container d-flex flex-column align-items-center justify-content-center"
   >
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="isEmailDuplicated != undefind"
+    >
+      is Email is Already Used!
+    </div>
     <div class="col-md-3 d-flex flex-column mb-1">
       <label for="exampleInputEmail1" class="form-label">Name</label>
       <input
@@ -67,8 +99,11 @@
       <span
         class="help-block"
         *ngIf="!signUpForm.get('Name').valid && signUpForm.get('Name').touched"
-        ><span *ngIf="signUpForm.get('Name').errors['required']"
-          >Please Enter Medicine Name!</span
+        ><small *ngIf="signUpForm.get('Name').errors['required']"
+          >Please Enter Your Name!</small
+        >
+        <small *ngIf="signUpForm.get('Name').errors['numbersIsForbidden']"
+          >Invalid Input!</small
         >
       </span>
     </div>
@@ -80,62 +115,119 @@
         aria-describedby="emailHelp"
         formControlName="Email"
       />
-      <div id="emailHelp" class="form-text">
-        We'll never share your email with anyone else.
-      </div>
+      <span
+        class="help-block"
+        *ngIf="
+          !signUpForm.get('Email').valid && signUpForm.get('Email').touched
+        "
+        ><small
+          *ngIf="
+            signUpForm.get('Email').errors['Email'] ||
+            signUpForm.get('Email').errors['required']
+          "
+          >Please Enter a valid Email</small
+        >
+      </span>
     </div>
     <div class="col-md-3 d-flex flex-column mb-1">
       <label for="exampleInputEmail1" class="form-label">Password</label>
       <p-password [toggleMask]="true" formControlName="Password"></p-password>
+      <span
+        class="help-block"
+        *ngIf="
+          !signUpForm.get('Password').valid &&
+          signUpForm.get('Password').touched
+        "
+      >
+        <small *ngIf="signUpForm.get('Password').errors['required']"
+          >Password is required</small
+        >
+        <small *ngIf="signUpForm.get('Password').errors['minlength']"
+          >min length is 8 ch.</small
+        >
+      </span>
     </div>
     <div class="col-md-3 d-flex flex-column mb-1">
       <label for="exampleInputEmail1" class="form-label">Age</label>
       <input
-        type="email"
+        type="text"
         class="form-control"
         aria-describedby="emailHelp"
         formControlName="Age"
       />
-      <div id="emailHelp" class="form-text">
-        We'll never share your email with anyone else.
-      </div>
+      <span
+        class="help-block"
+        *ngIf="!signUpForm.get('Age').valid && signUpForm.get('Age').touched"
+        ><small *ngIf="signUpForm.get('Age').errors['required']"
+          >Please Enter your age!</small
+        >
+        <small *ngIf="signUpForm.get('Age').errors['stringIsForbidden']"
+          >Invalid Input!</small
+        >
+      </span>
     </div>
     <div class="d-flex">
       <div class="col-md-3 d-flex flex-column mb-1">
         <label for="exampleInputEmail1" class="form-label">Government</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           aria-describedby="emailHelp"
           formControlName="government"
         />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
+        <span
+          class="help-block"
+          *ngIf="
+            !signUpForm.get('government').valid &&
+            signUpForm.get('government').touched
+          "
+          ><small *ngIf="signUpForm.get('government').errors['required']"
+            >Please Enter Your Government!</small
+          >
+          <small
+            *ngIf="signUpForm.get('government').errors['numbersIsForbidden']"
+            >Invalid Input!</small
+          >
+        </span>
       </div>
       <div class="col-md-3 d-flex flex-column mb-1">
         <label for="exampleInputEmail1" class="form-label">City</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           aria-describedby="emailHelp"
           formControlName="city"
         />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
+        <span
+          class="help-block"
+          *ngIf="
+            !signUpForm.get('city').valid && signUpForm.get('city').touched
+          "
+          ><small *ngIf="signUpForm.get('city').errors['required']"
+            >Please Enter Your City!</small
+          >
+          <small *ngIf="signUpForm.get('city').errors['numbersIsForbidden']"
+            >Invalid Input!</small
+          >
+        </span>
       </div>
       <div class="col-md-3 d-flex flex-column mb-1">
         <label for="exampleInputEmail1" class="form-label">Street</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           aria-describedby="emailHelp"
           formControlName="street"
         />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
+        <span
+          class="help-block"
+          *ngIf="
+            !signUpForm.get('street').valid && signUpForm.get('street').touched
+          "
+          ><small *ngIf="signUpForm.get('street').errors['required']"
+            >Please Enter your Street!</small
+          >
+        </span>
       </div>
       <div class="col-md-3 d-flex flex-column mb-1">
         <label for="exampleInputEmail1" class="form-label">Building</label>
@@ -145,13 +237,24 @@
           aria-describedby="emailHelp"
           formControlName="building"
         />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
+        <span
+          class="help-block"
+          *ngIf="
+            !signUpForm.get('building').valid &&
+            signUpForm.get('building').touched
+          "
+          ><small *ngIf="signUpForm.get('building').errors['required']"
+            >Please Enter your Building!</small
+          >
+        </span>
       </div>
     </div>
     <div>
-      <button class="btn btn-success me-1 text-light" type="submit">
+      <button
+        class="btn btn-success me-1 text-light"
+        type="submit"
+        [disabled]="signUpForm.invalid"
+      >
         SignUp
       </button>
       <button
