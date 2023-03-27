@@ -905,7 +905,7 @@
                                       white-space: nowrap;
                                     "
                                   >
-                                    E£{{ details.amount_captured / 100 }}.00
+                                    E£{{ invoice.money }}.00
                                   </td>
                                 </tr>
                               </tbody>
@@ -1089,6 +1089,9 @@
                                   >
                                     <span>
                                       <img
+                                        *ngIf="
+                                          invoice.paymentMethod == 'Credit Card'
+                                        "
                                         alt="Visa"
                                         height="16"
                                         src="https://stripe-images.s3.amazonaws.com/emails/receipt_assets/card/visa-dark@2x.png"
@@ -1101,12 +1104,19 @@
                                         width="36"
                                       />
                                     </span>
-                                    <span>
-                                      -
-                                      {{
-                                        details.payment_method_details.card
-                                          .last4
-                                      }}
+                                    <span
+                                      *ngIf="
+                                        invoice.paymentMethod == 'Credit Card'
+                                      "
+                                    >
+                                      - Card
+                                    </span>
+                                    <span
+                                      *ngIf="
+                                        invoice.paymentMethod != 'Credit Card'
+                                      "
+                                    >
+                                      {{ invoice.paymentMethod }}
                                     </span>
                                   </td>
                                 </tr>
@@ -1471,9 +1481,7 @@
                                                       line-height: 24px;
                                                     "
                                                   >
-                                                    E£{{
-                                                      details.amount / 100
-                                                    }}.00
+                                                    E£{{ invoice.money }}.00
                                                   </td>
                                                 </tr>
                                                 <tr>
@@ -1634,8 +1642,7 @@
                                                   >
                                                     <strong
                                                       >E£{{
-                                                        details.amount_captured /
-                                                          100
+                                                        invoice.money
                                                       }}.00</strong
                                                     >
                                                   </td>

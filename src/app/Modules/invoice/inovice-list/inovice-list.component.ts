@@ -75,27 +75,29 @@ export class InoviceListComponent implements OnInit {
   filterByPaymentMethod(event) {
     this.pay = event.target.innerText;
     this.tag = event.target.tagName;
-    if (
-      this.pay !== 'Payment Method' &&
-      (this.tag === 'SPAN' || this.tag === 'A')
-    ) {
-      console.log(this.pay, this.tag);
-      if (this.date === '') {
-        this.pageItems = this.invoices.filter((doc) => {
-          return doc.paymentMethod === this.pay;
-        });
-      } else {
-        this.pageItems = this.invoices
-          .filter((doc) => {
+    if (this.pay !== '') {
+      if (
+        this.pay !== 'Payment Method' &&
+        (this.tag === 'SPAN' || this.tag === 'A')
+      ) {
+        console.log(this.pay, this.tag);
+        if (this.date === '') {
+          this.pageItems = this.invoices.filter((doc) => {
             return doc.paymentMethod === this.pay;
-          })
-          .filter((doc) => {
-            return doc.date.toLocaleString().startsWith(this.date);
           });
-      }
+        } else {
+          this.pageItems = this.invoices
+            .filter((doc) => {
+              return doc.paymentMethod === this.pay;
+            })
+            .filter((doc) => {
+              return doc.date.toLocaleString().startsWith(this.date);
+            });
+        }
 
-      let pageCount = this.pageItems.length;
-      this.pageNo = pageCount;
+        let pageCount = this.pageItems.length;
+        this.pageNo = pageCount;
+      }
     }
   }
   filterByDate(event) {

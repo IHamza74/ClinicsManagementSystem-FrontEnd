@@ -32,21 +32,17 @@ export class InvoicePaidComponent implements OnInit {
   date = '';
   time = '';
   ngOnInit() {
-    this.paymentService.getChecking().subscribe((data) => {
-      console.log(data.lastPaid);
-      this.details = data.lastPaid;
-      this.details.receipt_number = data.lastPaid.receipt_number;
-
-      //window.location.assign(data.lastPaid.receipt_url);
-    });
     this.activeRoute.params.subscribe((a) => {
       this.invoiceService.getById(a['id']).subscribe((data) => {
         data.payment_status = true;
         this.invoice = data;
+        console.log('hhh');
+        this.date = new Date(data.date).toDateString();
+        this.time = new Date(data.date).toLocaleTimeString();
 
-        this.date = new Date(this.invoice.date).toDateString();
-        this.time = new Date(this.invoice.date).toLocaleTimeString();
-        this.invoiceService.editInvoice(a['id'], this.invoice).subscribe();
+        if (this.invoice.paymentMethod === 'Credit Card') {
+          this.invoiceService.editInvoice(a['id'], this.invoice).subscribe();
+        }
       });
     });
   }

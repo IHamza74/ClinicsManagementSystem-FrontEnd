@@ -85,6 +85,12 @@ export class InoviceAddComponent implements OnInit {
         console.log(this.paymentService.payment_status);
         window.open(data.session.url);
       });
+    } else {
+      this.invoiceService.getAll().subscribe((data) => {
+        window.open(
+          'http://localhost:4200/invoice/' + data[data.length - 1]._id
+        );
+      });
     }
   }
 
