@@ -7,16 +7,11 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { DoctorListComponent } from 'src/app/doctor/doctor-list/doctor-list.component';
 import { DoctorAddComponent } from 'src/app/doctor/doctor-add/doctor-add.component';
 import { DoctorEditComponent } from 'src/app/doctor/doctor-edit/doctor-edit.component';
-import { DoctorDetailsComponent } from 'src/app/doctor/doctor-details/doctor-details.component';
+
 import { DoctorProfileModule } from 'src/app/profile/doctor-profile/doctor-profile.module';
 
 @NgModule({
-  declarations: [
-    DoctorListComponent,
-    DoctorAddComponent,
-    DoctorEditComponent,
-    DoctorDetailsComponent,
-  ],
+  declarations: [DoctorListComponent, DoctorAddComponent, DoctorEditComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,11 +20,6 @@ import { DoctorProfileModule } from 'src/app/profile/doctor-profile/doctor-profi
     MegaMenuModule,
     DoctorProfileModule,
   ],
-  exports: [
-    DoctorListComponent,
-    DoctorAddComponent,
-    DoctorEditComponent,
-    DoctorDetailsComponent,
-  ],
+  exports: [DoctorListComponent, DoctorAddComponent, DoctorEditComponent],
 })
 export class DoctorModule {}

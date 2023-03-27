@@ -25,15 +25,17 @@ export class PatientListComponent {
   ) {}
 
   ngOnInit() {
+    this.appointmentService.getAllAppointments().subscribe((appointments) => {
+      this.appointments = appointments;
+      this.getAll();
+    });
+  }
+  getAll() {
     this.patientService.getAllPatients().subscribe((data) => {
       this.patientService.patients = data;
       this.patients = data;
       this.pageNo = this.patients.length;
       this.page({ first: 0, rows: 9 });
-    });
-    this.appointmentService.getAllAppointments().subscribe((appointments) => {
-      this.appointments = appointments;
-      console.log(appointments);
     });
   }
 
@@ -75,7 +77,6 @@ export class PatientListComponent {
     let total = this.appointments.filter(
       (appointment) => appointment.patientID == id
     );
-
     let finishedAppointments = total.filter(
       (appointment) =>
         new Date(appointment.date).getTime() < new Date().getTime()

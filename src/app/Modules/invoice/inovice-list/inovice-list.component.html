@@ -28,11 +28,9 @@
       Payment Status: {{ invoice.payment_status }}
     </p>
     <div class="buttons">
-      <app-invoice-details
-        [invoiceId]="invoice._id"
-        [index]="i"
-        [invoices]="pageItems"
-      ></app-invoice-details>
+      <button type="button" class="success" (click)="onShow(invoice._id)">
+        Details
+      </button>
     </div>
   </div>
 </div>
