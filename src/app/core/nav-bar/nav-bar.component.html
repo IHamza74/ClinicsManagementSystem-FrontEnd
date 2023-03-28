@@ -119,7 +119,8 @@
                 <img
                   alt="Image placeholder"
                   [attr.src]="
-                    './../../../../assets/images/users/' + user?.photo
+                    './../../../../assets/images/users/' +
+                    (user?.photo || 'default.jpg')
                   "
                 />
               </a>

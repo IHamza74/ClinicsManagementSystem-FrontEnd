@@ -35,6 +35,7 @@ export class NavBarComponent {
         this.userLogged = true;
       }
       this.user = user;
+
       this.currentLoggedRole = localStorage.getItem('role');
       this.profileService.userIsStillLoged.next(this.userLogged);
     });
@@ -50,5 +51,4 @@ export class NavBarComponent {
   //   if (localStorage.getItem('role') == 'patient') {
   //   }
   // }
-
 }
