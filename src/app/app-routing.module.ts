@@ -18,6 +18,8 @@ import { AddAppointmentComponent } from './Modules/appointment/add-appointment/a
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './Services/auth.guard.service';
+import { PatientReserveComponent } from './Modules/appointment/patient-reserve/patient-reserve.component';
+import { AppointmentPageComponent } from './Modules/appointment/appointment-page/appointment-page.component';
 import { LoggedGuard } from './Services/logged.guard.service';
 
 const routes: Routes = [
@@ -27,7 +29,7 @@ const routes: Routes = [
   { path: 'add-medicine', component: AddMedicineComponent },
   { path: 'edit-medicine', component: EditMedicineComponent },
   { path: 'list-medicine', component: ListMedicineComponent },
-  { path: 'Employee', component: EmployeeListComponent },
+  { path: 'employee', component: EmployeeListComponent },
   { path: 'doctor', component: DoctorListComponent },
   { path: 'patient', component: PatientListComponent },
   {
@@ -36,7 +38,8 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   { path: 'auth', canActivate: [LoggedGuard], component: AuthComponent },
-  { path: 'appointment/add', component: AddAppointmentComponent },
+  { path: 'appointment', component: AppointmentPageComponent },
+  { path: 'appointment/reserve', component: PatientReserveComponent },
   { path: 'invoice', component: InoviceListComponent },
   { path: 'invoice/:id', component: InvoicePaidComponent },
   { path: 'invoice/faild/:id', component: InvoiceUnpaidComponent },

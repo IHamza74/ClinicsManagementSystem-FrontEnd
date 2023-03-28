@@ -5,6 +5,7 @@ import { Invoice } from 'src/app/Models/invoice';
 import { Medicine } from 'src/app/Models/medicine';
 import { InvoiceService } from 'src/app/Services/invoice.service';
 import { PaymentService } from 'src/app/Services/payment.service';
+import { catchError, from, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-inovice-add',
@@ -25,7 +26,11 @@ export class InoviceAddComponent implements OnInit {
     false,
     0.1
   );
-
+  appoinmentError: boolean = false;
+  appoinmentErrorValue: string = '';
+  patientError: boolean = false;
+  patientErrorValue: string = '';
+  medicineError: boolean = false;
   constructor(
     private invoiceService: InvoiceService,
     private paymentService: PaymentService,
@@ -71,10 +76,31 @@ export class InoviceAddComponent implements OnInit {
     this.invoice.discount_percentage =
       this.signupForm.value.discount_percentage;
 
-    this.invoiceService.addInvoice(this.invoice).subscribe((data) => {
-      this.invoiceService.invoices.push(this.invoice);
-      this.payment();
-    });
+    this.invoiceService
+      .addInvoice(this.invoice)
+      .pipe(
+        catchError((error) => {
+          if (error.error.message.includes('patient')) {
+            this.patientError = true;
+            this.patientErrorValue = this.signupForm.value.patientID;
+          } else if (
+            error.error.message.includes('appointmen') ||
+            error.error.message.includes('Appointmen')
+          ) {
+            this.appoinmentError = true;
+            this.appoinmentErrorValue = this.signupForm.value.appointmentID;
+          } else if (error.error.message.includes('medicine')) {
+            this.medicineError = true;
+          }
+
+          console.log(this.appoinmentError, this.appoinmentErrorValue, error);
+          return from([]); // You can return an empty array or another observable to continue the stream
+        })
+      )
+      .subscribe((data) => {
+        this.invoiceService.invoices.push(this.invoice);
+        this.payment();
+      });
   }
 
   payment() {
@@ -84,6 +110,12 @@ export class InoviceAddComponent implements OnInit {
         this.paymentService.payment_status = data.session.payment_status;
         console.log(this.paymentService.payment_status);
         window.open(data.session.url);
+      });
+    } else {
+      this.invoiceService.getAll().subscribe((data) => {
+        window.open(
+          'http://localhost:4200/invoice/' + data[data.length - 1]._id
+        );
       });
     }
   }

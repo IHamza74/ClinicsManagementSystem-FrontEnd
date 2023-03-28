@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { catchError, from } from 'rxjs';
 import { Employee } from 'src/app/Models/employee';
 import { EmployeeService } from 'src/app/Services/employee.service';
-
 @Component({
   selector: 'app-employee-add',
   templateUrl: './employee-add.component.html',
@@ -12,6 +12,7 @@ export class EmployeeAddComponent {
   currentEmployee: Employee;
   addForm: FormGroup;
   employeeService: EmployeeService;
+  emailExists: boolean = false;
   constructor(employeeService: EmployeeService) {
     this.employeeService = employeeService;
   }
@@ -37,6 +38,7 @@ export class EmployeeAddComponent {
 
   onSubmit() {
     console.log(this.addForm);
+    this.emailExists = false;
     this.currentEmployee = new Employee(
       this.addForm.value.name,
       this.addForm.value.email,
@@ -62,6 +64,15 @@ export class EmployeeAddComponent {
 
     this.employeeService
       .add(this.currentEmployee)
-      .subscribe((a) => console.log(a));
+      .pipe(
+        catchError((error) => {
+          this.emailExists = true;
+          return from([]); // You can return an empty array or another observable to continue the stream
+        })
+      )
+      .subscribe((a) => {
+        console.log(a);
+        console.log('True');
+      });
   }
 }

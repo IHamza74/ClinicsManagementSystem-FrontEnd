@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
+import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 
 import { Doctor } from 'src/app/Models/doctor';
+import { AuthService } from 'src/app/Services/auth.service';
+import { AppointmentService } from 'src/app/Services/appointment.service';
 import { DoctorService } from 'src/app/Services/doctor.service';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-doctor-list',
@@ -12,17 +16,22 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 })
 export class DoctorListComponent implements OnInit {
   doctors: Doctor[] = [];
+  appointments: AppointmentScheduler[] = [];
   pageNo: number;
   pageItems;
   items: MegaMenuItem[];
   search: string = '';
   sep: string = 'Speciality';
   tag: string;
-
-  constructor(private doctorServices: DoctorService) {}
+  role;
+  constructor(
+    private doctorServices: DoctorService,
+    private profileService: ProfileService,
+    public appointmentService: AppointmentService
+  ) {}
   ngOnInit() {
     this.function3adia();
-
+    this.role = localStorage.getItem('role');
     if (this.doctorServices.specialityParameter === '') {
       this.items = [
         {
@@ -46,6 +55,11 @@ export class DoctorListComponent implements OnInit {
         },
       ];
     }
+
+    this.appointmentService.getAllAppointments().subscribe((appointments) => {
+      this.appointments = appointments;
+      this.function3adia();
+    });
   }
   searchByName(event) {
     if (this.search === '') this.pageItems = this.doctors;
@@ -68,27 +82,29 @@ export class DoctorListComponent implements OnInit {
   filterBySpec(event) {
     this.sep = event.target.innerText;
     this.tag = event.target.tagName;
-
-    if (
-      this.sep !== 'Speciality' &&
-      (this.tag === 'SPAN' || this.tag === 'A') &&
-      this.search === undefined
-    ) {
-      this.pageItems = this.doctors.filter((doc) => {
-        return doc.speciality === this.sep;
-      });
-      let pageCount = this.pageItems.length;
-      this.pageNo = pageCount;
-    } else if (
-      this.sep !== 'Speciality' &&
-      (this.tag === 'SPAN' || this.tag === 'A') &&
-      this.search !== undefined
-    ) {
-      this.pageItems = this.doctors.filter((doc) => {
-        return doc.speciality === this.sep;
-      });
-      let pageCount = this.pageItems.length;
-      this.pageNo = pageCount;
+    if (this.sep !== '') {
+      if (
+        this.sep !== 'Speciality' &&
+        this.sep != '' &&
+        (this.tag === 'SPAN' || this.tag === 'A') &&
+        this.search === undefined
+      ) {
+        this.pageItems = this.doctors.filter((doc) => {
+          return doc.speciality === this.sep;
+        });
+        let pageCount = this.pageItems.length;
+        this.pageNo = pageCount;
+      } else if (
+        this.sep !== 'Speciality' &&
+        (this.tag === 'SPAN' || this.tag === 'A') &&
+        this.search !== undefined
+      ) {
+        this.pageItems = this.doctors.filter((doc) => {
+          return doc.speciality === this.sep;
+        });
+        let pageCount = this.pageItems.length;
+        this.pageNo = pageCount;
+      }
     }
   }
   deleteDoctor(id: string, index: number) {
@@ -112,7 +128,25 @@ export class DoctorListComponent implements OnInit {
       }
       this.doctors = this.pageItems;
       this.pageNo = this.doctors.length;
+      this.page({ first: 0, rows: 9 });
     });
     this.page({ first: 0, rows: 9 });
+  }
+
+ 
+     
+  getFinishedCount(id: string) {
+    let total = this.appointments.filter(
+      (appointment) => appointment.doctorID == id
+    );
+    let finishedAppointments = total.filter(
+      (appointment) =>
+        new Date(appointment.date).getTime() < new Date().getTime()
+    );
+
+    return {
+      finished: finishedAppointments.length,
+      upcoming: total.length - finishedAppointments.length,
+    };
   }
 }

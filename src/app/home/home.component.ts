@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomeService } from '../Services/home.service';
 import { DoctorService } from '../Services/doctor.service';
 import { ProfileService } from '../Services/profile.service';
 
@@ -9,12 +10,10 @@ import { ProfileService } from '../Services/profile.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(
-    private doctorService: DoctorService,
-    private router: Router,
-    private profileService: ProfileService
-  ) {}
-
+  doctorsCount: object;
+  clinicsCount: object;
+  patientsCount: object;
+  appointmentsCount: object;
   ngOnInit() {
     if (localStorage.getItem('logged')) {
       this.profileService.isUserLogged = true;
@@ -23,8 +22,27 @@ export class HomeComponent {
         res = true;
       });
     }
+    this.homeService.getDoctorsCount().subscribe((value) => {
+      this.doctorsCount = value;
+    });
+    this.homeService.getClinicsCount().subscribe((value) => {
+      this.clinicsCount = value;
+    });
+    this.homeService.getPatientsCount().subscribe((value) => {
+      this.patientsCount = value;
+    });
+    this.homeService.getAppointmentsCount().subscribe((value) => {
+      this.appointmentsCount = value;
+    });
   }
-  sendParameterToEssam(speciality: string) {
+  constructor(
+    private doctorService: DoctorService,
+    private router: Router,
+    private homeService: HomeService,
+    private profileService: ProfileService
+  ) {}
+
+  sendingParameterToDoctorsService(speciality: string) {
     console.log(speciality);
     this.router.navigate(['/doctor']);
     this.doctorService.specialityParameter = speciality;

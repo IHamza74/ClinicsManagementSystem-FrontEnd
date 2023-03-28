@@ -10,20 +10,33 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatTabsModule } from '@angular/material/tabs';
+import {AppRoutingModule} from '../../app-routing.module'
 
 @NgModule({
-  declarations: [DoctorProfileCardComponent, DoctorProfileEditComponent, DoctorDataComponent],
-  imports: [CommonModule,ReactiveFormsModule,MatTabsModule,
-        BrowserModule,BrowserAnimationsModule,
-    TableModule,PaginatorModule,InputTextModule
+  declarations: [
+    DoctorProfileCardComponent,
+    DoctorProfileEditComponent,
+    DoctorDataComponent,
   ],
-  exports: [DoctorProfileCardComponent,DoctorProfileEditComponent,DoctorDataComponent,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    BrowserModule,
     BrowserAnimationsModule,
     TableModule,
     PaginatorModule,
-    InputTextModule
-    
-
+    InputTextModule,
+    AppRoutingModule
+  ],
+  exports: [
+    DoctorProfileCardComponent,
+    DoctorProfileEditComponent,
+    DoctorDataComponent,
+    BrowserAnimationsModule,
+    TableModule,
+    PaginatorModule,
+    InputTextModule,
   ],
 })
 export class DoctorProfileModule {}

@@ -1,3 +1,5 @@
+import { AppointmentScheduler } from './appointment-scheduler';
+
 export class Patient {
   constructor(
     public _id: string,

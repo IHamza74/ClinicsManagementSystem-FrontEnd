@@ -20,19 +20,17 @@
     class="card-container mx-2 my-2 p-4"
     *ngFor="let invoice of pageItems; let i = index"
   >
-    <h5>{{ invoice._id }}</h5>
-    <h6>Money: {{ invoice.money }}</h6>
-    <h6></h6>
+    <h3>{{ invoice._id }}</h3>
+    <h4>Money: {{ invoice.money }}</h4>
+
     <p>
       Payment Method: {{ invoice.paymentMethod }} <br />
       Payment Status: {{ invoice.payment_status }}
     </p>
     <div class="buttons">
-      <app-invoice-details
-        [invoiceId]="invoice._id"
-        [index]="i"
-        [invoices]="pageItems"
-      ></app-invoice-details>
+      <button type="button" class="success" (click)="onShow(invoice._id)">
+        Details
+      </button>
     </div>
   </div>
 </div>

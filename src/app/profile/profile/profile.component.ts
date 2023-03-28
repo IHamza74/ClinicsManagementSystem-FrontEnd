@@ -27,20 +27,7 @@ export class ProfileComponent implements OnInit {
     this.id = this.profileService.id;
   }
   ngOnInit(): void {
-    // this.role="doctor";
-    // this.id="63e4e87211226c1452238226"
-    // this.doctorService.getById(this.id).subscribe(data=>{
-    //   this.user=data;
-    //   console.log(this.user)
-    // })
-
-    //     this.role="patient"
-    //   this.id="63e3cdae63f9dd1a6b59f25a";
-    //   this.patientService.getPatientByID(this.id).subscribe(data=>{
-    //     this.user=data;
-    //     console.log(data);
-
-    //  }
+  
 
     console.log(this.profileService.role);
     console.log(this.profileService.id);

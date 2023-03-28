@@ -289,11 +289,13 @@ a:focus {
 
 .service_section .img-container {
   padding: 20px 0 20px 20px;
-  background: -webkit-gradient(linear,
-      left top,
-      right top,
-      color-stop(60%, #ffffff),
-      color-stop(60%, transparent));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(60%, #ffffff),
+    color-stop(60%, transparent)
+  );
   background: linear-gradient(to right, #ffffff 60%, transparent 60%);
 }
 
@@ -894,7 +896,7 @@ a:focus {
   margin: 0 10px;
 }
 
-.info_section .row>div {
+.info_section .row > div {
   margin-top: 25px;
 }
 

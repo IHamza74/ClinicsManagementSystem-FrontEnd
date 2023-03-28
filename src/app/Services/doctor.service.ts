@@ -3,13 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Doctor, DoctorPatch } from '../Models/doctor';
 import { FormControl } from '@angular/forms';
 import { AppointmentScheduler } from '../Models/appointment-scheduler';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DoctorService {
   currentDoctor: Doctor;
-
+  finishedAppointmentsSubject = new Subject<{
+    finishedAppointments: number;
+    upcomingAppointments: number;
+  }>();
   baseUrl = 'http://localhost:3000/doctor/';
   profileUrl = 'http://localhost:3000/appointmentScheduler/doctorreports/';
 
@@ -45,7 +49,7 @@ export class DoctorService {
   delete(id: string) {
     return this.http.delete<Doctor>(this.baseUrl + id);
   }
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {}
 
   forbiddenUserNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -80,7 +84,6 @@ export class DoctorService {
 
   getAppointments(id: string) {
     console.log(id);
-    return this.http.get<AppointmentScheduler[]>(this.profileUrl + id)
-
+    return this.http.get<AppointmentScheduler[]>(this.profileUrl + id);
   }
 }

@@ -6,6 +6,7 @@
           <img
             *ngIf="doctor"
             [attr.src]="'./../../../../assets/images/users/' + doctor?.photo"
+            style="width: 150px"
             class="rounded-circle"
           />
         </a>
@@ -14,7 +15,12 @@
   </div>
   <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
     <div class="d-flex justify-content-between">
-      <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+      <button type="button" class="btn btn-warning pro" *ngIf="role=='patient'" >
+
+        <a [routerLink]="['/appointment/reserve']" [queryParams]="{id:doctor._id}" routerLinkActive="active1" 
+        
+        >Book</a>
+      </button>
 
       <label for="file-input" class="btn btn-sm btn-default float-right">
         <i class="fa-solid fa-camera" style="color: #ffffff"></i>
@@ -32,33 +38,35 @@
       <div class="col">
         <div class="card-profile-stats d-flex justify-content-center mt-md-5">
           <div>
-            <span class="heading">22</span>
-            <span class="description">Friends</span>
+            <span class="heading">{{ finishedAppointments }}</span>
+            <span class="description">Finished</span>
           </div>
           <div>
-            <span class="heading">10</span>
-            <span class="description">Photos</span>
-          </div>
-          <div>
-            <span class="heading">89</span>
-            <span class="description">Comments</span>
+            <span class="heading">{{ upcomingAppointments }}</span>
+            <span class="description">Upcoming</span>
           </div>
         </div>
       </div>
     </div>
     <div class="text-center">
-      <h3>
+      <h1>
         {{ doctor?.name | uppercase }}<span class="font-weight-light"></span>
-      </h3>
+      </h1>
       <div class="h5 font-weight-300">
-        <i class="fa-solid fa-calendar-days"></i>
-        {{ doctor?.age }}
-        <br />
-        <i class="fa-solid fa-user-doctor"></i>
-        Speciality :
-        {{ doctor?.speciality }} <br />
-        <i class="fa-solid fa-clock"></i>
-        Working Hours : {{ doctor?.workingHours }}
+        <h4>
+          <i class="fa-solid fa-calendar-days"></i>
+          {{ doctor?.age }} years
+        </h4>
+        <h4><i class="fa-solid fa-envelope"></i> {{ doctor?.email }}</h4>
+        <h4>
+          <i class="fa-solid fa-user-doctor"></i>
+          Speciality :
+          {{ doctor?.speciality }}
+        </h4>
+        <h4>
+          <i class="fa-solid fa-clock"></i>
+          Working Hours : {{ doctor?.workingHours }}
+        </h4>
       </div>
       <!-- <div class="h5 mt-4">
         <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative

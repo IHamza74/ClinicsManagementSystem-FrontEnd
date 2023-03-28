@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 import { Patient } from 'src/app/Models/patient';
+import { AppointmentService } from 'src/app/Services/appointment.service';
 import { PatientService } from 'src/app/Services/patient-service';
 
 @Component({
@@ -11,14 +13,24 @@ export class PatientListComponent {
   //patients Array to recieve patients in from DB
   public patients: Patient[] = [];
   pageItems: Patient[] = [];
+  appointments: AppointmentScheduler[] = [];
   search: string = '';
   pageNo: number;
 
   first: number;
   row: number;
-  constructor(public patientService: PatientService) {}
+  constructor(
+    public patientService: PatientService,
+    public appointmentService: AppointmentService
+  ) {}
 
   ngOnInit() {
+    this.appointmentService.getAllAppointments().subscribe((appointments) => {
+      this.appointments = appointments;
+      this.getAll();
+    });
+  }
+  getAll() {
     this.patientService.getAllPatients().subscribe((data) => {
       this.patientService.patients = data;
       this.patients = data;
@@ -59,5 +71,20 @@ export class PatientListComponent {
     let pageCount = this.patients.length;
     this.pageNo = pageCount;
     this.page({ first: this.first, rows: this.row });
+  }
+
+  getFinishedCount(id: string) {
+    let total = this.appointments.filter(
+      (appointment) => appointment.patientID == id
+    );
+    let finishedAppointments = total.filter(
+      (appointment) =>
+        new Date(appointment.date).getTime() < new Date().getTime()
+    );
+
+    return {
+      finished: finishedAppointments.length,
+      upcoming: total.length - finishedAppointments.length,
+    };
   }
 }

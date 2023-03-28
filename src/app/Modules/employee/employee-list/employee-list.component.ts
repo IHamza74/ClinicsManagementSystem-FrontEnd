@@ -35,7 +35,9 @@ export class EmployeeListComponent {
   }
 
   remove(id: string) {
-    this.employeeService.remove(id).subscribe((a) => console.log(a));
+    this.employeeService.remove(id).subscribe((a) => {
+      console.log(a);
+    });
   }
   edit(employee: Employee) {
     this.editMode = true;
