@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  role = localStorage.getItem('role');
   constructor(private http: HttpClient) {}
   // authTokenSubject = new Subject<any>();
 

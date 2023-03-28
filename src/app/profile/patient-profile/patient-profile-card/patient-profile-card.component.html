@@ -43,19 +43,19 @@
     </div>
     <div class="text-center">
       <h1>
-        {{ patient?.name | uppercase }}<span class="font-weight-light"> </span>
+        {{ patient?.Name | uppercase }}<span class="font-weight-light"> </span>
       </h1>
+      <br />
       <div class="h5 font-weight-300">
         <h4>
           <i class="fa-solid fa-calendar-days"></i>
           {{ patient?.Age }} years
         </h4>
-
         <h4>
           <i class="fa-solid fa-envelope"></i>
           {{ patient?.Email }}
         </h4>
-        <br />
+
         <h4>
           <i class="fa-sharp fa-solid fa-location-dot"></i>
           {{ patient?.Address.government | titlecase }} ,
