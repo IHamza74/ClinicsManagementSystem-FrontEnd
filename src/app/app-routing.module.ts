@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './Services/auth.guard.service';
 import { PatientReserveComponent } from './Modules/appointment/patient-reserve/patient-reserve.component';
 import { AppointmentPageComponent } from './Modules/appointment/appointment-page/appointment-page.component';
+import { LoggedGuard } from './Services/logged.guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,7 +38,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: ProfileComponent,
   },
-  { path: 'auth', component: AuthComponent },
+  { path: 'auth', canActivate: [LoggedGuard], component: AuthComponent },
   { path: 'appointment', component: AppointmentPageComponent },
   { path: 'appointment/reserve', component: PatientReserveComponent },
   { path: 'invoice', component: InoviceListComponent },

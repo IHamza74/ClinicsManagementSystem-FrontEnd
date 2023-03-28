@@ -3,7 +3,7 @@
   type="button"
   class="btn btn-primary"
   data-bs-toggle="modal"
-  [attr.data-bs-target]="'#modal-' + index+1"
+  [attr.data-bs-target]="'#modal-med' + index + 1"
   (click)="edit()"
 >
   Edit
@@ -11,7 +11,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="{{ 'modal-' + index+1 }}"
+  id="{{ 'modal-med' + index + 1 }}"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1"
@@ -22,7 +22,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Medicine Data</h5>
+        <h3 class="modal-title" id="staticBackdropLabel">Medicine Data</h3>
         <button
           type="button"
           class="btn-close"
@@ -38,7 +38,8 @@
           (ngSubmit)="onSubmit(maindiv)"
         >
           <div>
-            <div class="field col-sm-12">
+            <div class="field col-sm-12 mt-2">
+              <label for="inputtext">Name</label>
               <span class="p-float-label">
                 <input
                   type="text"
@@ -46,7 +47,6 @@
                   pInputText
                   formControlName="Name"
                 />
-                <label for="inputtext">Name</label>
               </span>
 
               <span
@@ -64,7 +64,8 @@
                 >
               </span>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-2">
+              <label for="inputtext">Dosage</label>
               <div class="p-inputgroup">
                 <input
                   type="text"
@@ -72,6 +73,7 @@
                   placeholder="Dosage"
                   formControlName="Dose"
                 />
+
                 <span class="p-inputgroup-addon">/day</span>
               </div>
               <span
@@ -91,7 +93,8 @@
             </div>
           </div>
           <div>
-            <div class="col-sm-12">
+            <div class="col-sm-12" *ngIf="isRoleEmployee">
+              <label for="inputtext">Price</label>
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon">EP</span>
                 <input
@@ -100,6 +103,7 @@
                   placeholder="Price"
                   formControlName="Price"
                 />
+
                 <span class="p-inputgroup-addon">.00</span>
               </div>
               <span
@@ -118,6 +122,7 @@
               </span>
             </div>
             <div class="field col-sm-12">
+              <label for="inputtext">Stock</label>
               <span class="p-float-label">
                 <input
                   type="text"
@@ -125,7 +130,6 @@
                   pInputText
                   formControlName="Stock"
                 />
-                <label for="inputtext">Stock</label>
               </span>
               <span
                 class="help-block"

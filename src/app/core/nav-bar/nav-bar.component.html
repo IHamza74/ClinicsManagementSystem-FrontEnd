@@ -54,53 +54,52 @@
   <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
       <!-- Brand -->
-      <a
-        class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-        href="https://www.creative-tim.com/product/argon-dashboard"
-        target="_blank"
-        >User profile</a
-      >
-      <a class="text-light ms-3" *ngIf="currentLoggedRole != null">Home</a>
-      <a class="text-light ms-3" *ngIf="currentLoggedRole != null"
-        >Appointments</a
-      >
-      <a
-        class="text-light ms-3"
-        *ngIf="
-          currentLoggedRole == 'patient' || currentLoggedRole == 'employee'
-        "
-        >Doctors</a
-      >
-      <a
-        class="text-light ms-3"
-        *ngIf="currentLoggedRole == 'doctor' || currentLoggedRole == 'employee'"
-        >Medicines</a
-      >
-      <a
-        class="text-light ms-3"
-        *ngIf="currentLoggedRole == 'doctor' || currentLoggedRole == 'employee'"
-        >Patients</a
-      >
-
-      <!-- Form -->
-      <form
-        class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
-      >
-        <div class="form-group mb-0">
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"
-                ><i class="fas fa-search"></i
-              ></span>
-            </div>
-            <input class="form-control" placeholder="Search" type="text" />
-          </div>
-        </div>
-      </form>
+      <div>
+        <a
+          class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+          [routerLink]="['/']"
+        >
+          <img
+            src="../../../assets/images/medical-logo-png-882.png"
+            width="60px"
+          /><span class="h3 text-light"> Clinic Care </span>
+        </a>
+        <a
+          class="text-light ms-5 nav-tabs"
+          *ngIf="currentLoggedRole != null"
+          [routerLink]="['/']"
+          >Home</a
+        >
+        <a
+          class="text-light ms-4 nav-tabs"
+          *ngIf="
+            currentLoggedRole == 'patient' || currentLoggedRole == 'employee'
+          "
+          [routerLink]="['/doctor']"
+          >Doctors</a
+        >
+        <a
+          class="text-light ms-4 nav-tabs"
+          *ngIf="
+            currentLoggedRole == 'doctor' || currentLoggedRole == 'employee'
+          "
+          [routerLink]="['/list-medicine']"
+          >Medicines</a
+        >
+        <a
+          class="text-light ms-4 nav-tabs"
+          *ngIf="
+            currentLoggedRole == 'doctor' || currentLoggedRole == 'employee'
+          "
+          >Patients</a
+        >
+      </div>
       <!-- User -->
       <ul class="navbar-nav align-items-center d-none d-md-flex">
         <li class="nav-item" *ngIf="!userLogged">
-          <a class="text-light" [routerLink]="['/auth']">Login</a>
+          <a class="text-light nav-tabs" [routerLink]="['/auth']"
+            ><i class="pi pi-sign-in text-light me-2"></i>Login</a
+          >
         </li>
         <li class="nav-item dropdown">
           <a
@@ -112,12 +111,18 @@
             aria-expanded="false"
           >
             <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
+              <a
+                class="avatar avatar-sm rounded-circle"
+                [routerLink]="['/profile']"
+                *ngIf="userLogged"
+              >
                 <img
                   alt="Image placeholder"
-                  src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
+                  [attr.src]="
+                    './../../../../assets/images/users/' + user?.photo
+                  "
                 />
-              </span>
+              </a>
               <div class="media-body ml-2 d-none d-lg-block">
                 <span class="mb-0 text-sm font-weight-bold">
                   {{ user?.name }}
@@ -155,7 +160,7 @@
           </div> -->
         <li class="nav-item" *ngIf="userLogged">
           <a
-            class="nav-link text-light"
+            class="nav-link text-light nav-tabs"
             [routerLink]="['/auth']"
             role="button"
             (click)="logOut()"

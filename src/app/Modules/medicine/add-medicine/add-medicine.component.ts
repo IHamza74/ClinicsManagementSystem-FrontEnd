@@ -9,10 +9,14 @@ import { MedicineService } from 'src/app/Services/medicine.service';
   styleUrls: ['./add-medicine.component.css'],
 })
 export class AddMedicineComponent implements OnInit {
-  constructor(private medicineService: MedicineService) {}
   medicineList: Medicine[] = [];
+  isRoleEmployee: boolean;
   medicineObj: Medicine = new Medicine();
-
+  constructor(private medicineService: MedicineService) {
+    if (localStorage.getItem('role') == 'employee') {
+      this.isRoleEmployee = true;
+    } else this.isRoleEmployee = false;
+  }
   medicineData: FormGroup;
   ngOnInit(): void {
     this.medicineData = new FormGroup({
@@ -43,8 +47,5 @@ export class AddMedicineComponent implements OnInit {
         this.medicineService.addObject.next(medicine);
         console.log(medicine);
       });
-  }
-  print() {
-    console.log(this.medicineData);
   }
 }
