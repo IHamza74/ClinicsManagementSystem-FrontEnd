@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatTabsModule } from '@angular/material/tabs';
+import {AppRoutingModule} from '../../app-routing.module'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     TableModule,
     PaginatorModule,
     InputTextModule,
+    AppRoutingModule
   ],
   exports: [
     DoctorProfileCardComponent,

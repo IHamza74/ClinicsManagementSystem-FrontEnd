@@ -18,6 +18,7 @@ import { PatientReserveComponent } from './patient-reserve/patient-reserve.compo
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { PendingListComponent } from './pending-list/pending-list.component';
 import { AppointmentPageComponent } from './appointment-page/appointment-page.component';
+import { DoctorProfileModule } from 'src/app/profile/doctor-profile/doctor-profile.module';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,14 @@ import { AppointmentPageComponent } from './appointment-page/appointment-page.co
     AppointmentListComponent,
       PendingListComponent,
     AppointmentPageComponent,
+   
+
   ],
   imports: [
 
 CommonModule,ReactiveFormsModule,MatTabsModule,InputTextModule,BrowserModule,ConfirmPopupModule,
 BrowserAnimationsModule,  TableModule,PaginatorModule,ButtonModule,MatButtonModule,MatFormFieldModule,MatSelectModule,
-CalendarModule
+CalendarModule,DoctorProfileModule
 ],
 exports:[TableModule,AddAppointmentComponent,PaginatorModule,PatientReserveComponent,AppointmentPageComponent]
 })
