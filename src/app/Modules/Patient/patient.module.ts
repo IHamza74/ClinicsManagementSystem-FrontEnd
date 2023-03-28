@@ -6,6 +6,7 @@ import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginatorModule } from 'primeng/paginator';
+import { PatientProfileModule } from 'src/app/profile/patient-profile/patient-profile.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,13 @@ import { PaginatorModule } from 'primeng/paginator';
     PatientAddComponent,
     PatientEditComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, PaginatorModule, RouterModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    PaginatorModule,
+    RouterModule,
+    PatientProfileModule,
+  ],
   exports: [PatientListComponent, PatientAddComponent, PatientEditComponent],
 })
 export class PatientModule {}

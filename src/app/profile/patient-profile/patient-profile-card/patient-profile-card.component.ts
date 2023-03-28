@@ -9,13 +9,16 @@ import { PatientService } from 'src/app/Services/patient-service';
 })
 export class PatientProfileCardComponent implements OnInit {
   @Input() patient: Patient;
-  selectedFile: File;
+  @Input() count;
   finishedAppointments: number = 0;
   upcomingAppointments: number = 0;
+  selectedFile: File;
   constructor(private patientService: PatientService) {
     console.log(this.patient?.photo);
   }
   ngOnInit(): void {
+    this.finishedAppointments = this.count.finished;
+    this.upcomingAppointments = this.count.upcoming;
     this.patientService.finishedAppointmentsSubject.subscribe((obj) => {
       this.finishedAppointments = obj.finishedAppointments;
       this.upcomingAppointments = obj.upcomingAppointments;

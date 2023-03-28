@@ -14,11 +14,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { CalendarModule } from 'primeng/calendar';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-
+import { PatientReserveComponent } from './patient-reserve/patient-reserve.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
+import { PendingListComponent } from './pending-list/pending-list.component';
+import { AppointmentPageComponent } from './appointment-page/appointment-page.component';
 
 @NgModule({
   declarations: [
     AddAppointmentComponent,
+    PatientReserveComponent,
+    AppointmentListComponent,
+      PendingListComponent,
+    AppointmentPageComponent,
   ],
   imports: [
 
@@ -26,6 +33,6 @@ CommonModule,ReactiveFormsModule,MatTabsModule,InputTextModule,BrowserModule,Con
 BrowserAnimationsModule,  TableModule,PaginatorModule,ButtonModule,MatButtonModule,MatFormFieldModule,MatSelectModule,
 CalendarModule
 ],
-exports:[TableModule,AddAppointmentComponent,PaginatorModule,]
+exports:[TableModule,AddAppointmentComponent,PaginatorModule,PatientReserveComponent,AppointmentPageComponent]
 })
 export class AppointmentModule { }

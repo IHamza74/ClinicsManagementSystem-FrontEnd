@@ -17,3 +17,8 @@ h3 {
     color: red;
     text-align: center;
 }
+
+.fw-bolder {
+    font-size: xx-large;
+    font-weight: 80px;
+}

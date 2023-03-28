@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
+import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 
 import { Doctor } from 'src/app/Models/doctor';
 import { AuthService } from 'src/app/Services/auth.service';
+import { AppointmentService } from 'src/app/Services/appointment.service';
 import { DoctorService } from 'src/app/Services/doctor.service';
 import { ProfileService } from 'src/app/Services/profile.service';
 
@@ -14,6 +16,7 @@ import { ProfileService } from 'src/app/Services/profile.service';
 })
 export class DoctorListComponent implements OnInit {
   doctors: Doctor[] = [];
+  appointments: AppointmentScheduler[] = [];
   pageNo: number;
   pageItems;
   items: MegaMenuItem[];
@@ -23,7 +26,8 @@ export class DoctorListComponent implements OnInit {
   role;
   constructor(
     private doctorServices: DoctorService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    public appointmentService: AppointmentService
   ) {}
   ngOnInit() {
     this.function3adia();
@@ -51,6 +55,11 @@ export class DoctorListComponent implements OnInit {
         },
       ];
     }
+
+    this.appointmentService.getAllAppointments().subscribe((appointments) => {
+      this.appointments = appointments;
+      this.function3adia();
+    });
   }
   searchByName(event) {
     if (this.search === '') this.pageItems = this.doctors;
@@ -122,5 +131,22 @@ export class DoctorListComponent implements OnInit {
       this.page({ first: 0, rows: 9 });
     });
     this.page({ first: 0, rows: 9 });
+  }
+
+ 
+     
+  getFinishedCount(id: string) {
+    let total = this.appointments.filter(
+      (appointment) => appointment.doctorID == id
+    );
+    let finishedAppointments = total.filter(
+      (appointment) =>
+        new Date(appointment.date).getTime() < new Date().getTime()
+    );
+
+    return {
+      finished: finishedAppointments.length,
+      upcoming: total.length - finishedAppointments.length,
+    };
   }
 }

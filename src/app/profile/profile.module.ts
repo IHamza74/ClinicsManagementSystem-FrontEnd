@@ -17,5 +17,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     PatientProfileModule,
     ReactiveFormsModule,
   ],
+  exports:[CommonModule]
 })
 export class ProfileModule {}

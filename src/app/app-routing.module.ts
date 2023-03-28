@@ -18,6 +18,8 @@ import { AddAppointmentComponent } from './Modules/appointment/add-appointment/a
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './Services/auth.guard.service';
+import { PatientReserveComponent } from './Modules/appointment/patient-reserve/patient-reserve.component';
+import { AppointmentPageComponent } from './Modules/appointment/appointment-page/appointment-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,7 +37,8 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   { path: 'auth', component: AuthComponent },
-  { path: 'appointment/add', component: AddAppointmentComponent },
+  { path: 'appointment', component: AppointmentPageComponent },
+  {path:'appointment/reserve',component:PatientReserveComponent},
   { path: 'invoice', component: InoviceListComponent },
   { path: 'invoice/:id', component: InvoicePaidComponent },
   { path: 'invoice/faild/:id', component: InvoiceUnpaidComponent },
