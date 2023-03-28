@@ -56,6 +56,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     CarouselModule,
     ProfileModule,
     AppointmentModule,
+    
   ],
   providers: [DoctorService,ConfirmationService, MessageService],
 

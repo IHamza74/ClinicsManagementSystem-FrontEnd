@@ -17,8 +17,10 @@ export class DoctorProfileCardComponent implements OnInit {
   selectedFile: File;
   finishedAppointments: number = 0;
   upcomingAppointments: number = 0;
+  role:string;
   constructor(private doctorService: DoctorService) {}
   ngOnInit(): void {
+    this.role=localStorage.getItem("role");
     this.finishedAppointments = this.count.finished;
     this.upcomingAppointments = this.count.upcoming;
     this.doctorService.finishedAppointmentsSubject.subscribe((obj) => {
