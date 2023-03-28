@@ -31,7 +31,7 @@ export class DoctorListComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.function3adia();
-    console.log((this.role = this.profileService.user));
+    this.role = localStorage.getItem('role');
     if (this.doctorServices.specialityParameter === '') {
       this.items = [
         {
@@ -133,6 +133,8 @@ export class DoctorListComponent implements OnInit {
     this.page({ first: 0, rows: 9 });
   }
 
+ 
+     
   getFinishedCount(id: string) {
     let total = this.appointments.filter(
       (appointment) => appointment.doctorID == id

@@ -1,8 +1,7 @@
 import { Doctor } from 'src/app/Models/doctor';
 import { AfterViewInit, Component, ViewChild, Input } from '@angular/core';
 import { DoctorService } from 'src/app/Services/doctor.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+
 import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 
 @Component({

@@ -11,42 +11,6 @@
   />
 </p-megaMenu>
 
-<!-- <div
-  class="card-container mx-2 my-2 p-4"
-  *ngFor="let doctor of pageItems; let i = index"
->
-  <span class="pro">PRO</span>
-  <img
-    class="round"
-    [attr.src]="'./../../../../assets/images/users/' + doctor.photo"
-    alt="Doctor Photo"
-    style="width: 150px"
-  />
-  <h3>Dr. {{ doctor.name }}</h3>
-  <h6>speciality: {{ doctor.speciality }}</h6>
-  <h6></h6>
-  <p>
-    {{ doctor.email }} <br />
-    Working Hours: {{ doctor.workingHours }}
-  </p>
-  <div class="buttons">
-    <app-doctor-edit
-      *ngIf="role == 'admin' || role == 'employee'"
-      [doctorId]="doctor._id"
-      [index]="i"
-      [doctors]="pageItems"
-    ></app-doctor-edit>
-
-    <button
-      class="primary ghost"
-      (click)="deleteDoctor(doctor._id, i)"
-      *ngIf="role == 'admin' || role == 'employee'"
-    >
-      Delete
-    </button>
-  </div>
-</div> -->
-
 <div class="map-responsive mx-2 my-2 col-lg-12 row justify-content-evenly">
   <div
     class="mx-1 my-6 col-sm-10 col-lg-5 col-xl-3"

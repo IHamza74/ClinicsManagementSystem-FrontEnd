@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DoctorService } from '../Services/doctor.service';
 
+import { DoctorService } from '../Services/doctor.service';
+import { HomeService } from '../Services/home.service';
 
 
 @Component({
@@ -9,17 +10,38 @@ import { DoctorService } from '../Services/doctor.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
+  doctorsCount: object;
+  clinicsCount: object;
+  patientsCount: object;
+  appointmentsCount: object;
+  ngOnInit() {
+    this.homeService.getDoctorsCount().subscribe((value) => {
+      this.doctorsCount = value
+    });
+    this.homeService.getClinicsCount().subscribe((value) => {
+      this.clinicsCount = value
+    });
+    this.homeService.getPatientsCount().subscribe((value) => {
+      this.patientsCount = value
+    });
+    this.homeService.getAppointmentsCount().subscribe((value) => {
+      this.appointmentsCount = value
+    });
+  }
 
-  constructor(private doctorService: DoctorService, private router: Router) { };
 
-  sendParameterToEssam(speciality: string) {
+
+  constructor(private doctorService: DoctorService, private router: Router, private homeService: HomeService) { };
+
+  sendingParameterToDoctorsService(speciality: string) {
     console.log(speciality);
     this.router.navigate(["/doctor"]);
     this.doctorService.specialityParameter = speciality;
-
   }
   title = 'GFG';
+
 
   images: any[] = [
     {
@@ -81,4 +103,5 @@ export class HomeComponent {
 
     },
   ];
+
 }

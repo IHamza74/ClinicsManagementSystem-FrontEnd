@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PendingAppointmentScheduler } from '../Models/appointment-pending';
 import { AppointmentScheduler } from '../Models/appointment-scheduler';
 
 @Injectable({

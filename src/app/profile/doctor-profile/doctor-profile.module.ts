@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AppRoutingModule } from '../../app-routing.module';
 import { DoctorEditComponent } from 'src/app/doctor/doctor-edit/doctor-edit.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DoctorEditComponent } from 'src/app/doctor/doctor-edit/doctor-edit.comp
     TableModule,
     PaginatorModule,
     InputTextModule,
+    AppRoutingModule,
   ],
   exports: [
     DoctorProfileCardComponent,

@@ -79,15 +79,18 @@
                   >Invalid Number</span
                 >
               </div>
-              <span
-                class="help-block"
-                *ngIf="
-                  !signupForm.get('medicine').valid &&
-                  signupForm.get('medicine').touched
-                "
-                >Invalid Medicine</span
-              >
             </div>
+            <span
+              class="help-block"
+              *ngIf="
+                !signupForm.get('medicine').valid &&
+                signupForm.get('medicine').touched
+              "
+              >Invalid Medicine</span
+            >
+            <span class="help-block" *ngIf="medicineError"
+              >Medicine Not Existed</span
+            >
           </div>
           <div class="row mb-3">
             <label for="appointmentID" class="col-form-label col-4-sm col-5"
@@ -105,6 +108,14 @@
                 signupForm.get('appointmentID').touched
               "
               >Invalid AppoinmentID</span
+            >
+            <span
+              class="help-block"
+              *ngIf="
+                appoinmentError &&
+                appoinmentErrorValue == signupForm.value.appointmentID
+              "
+              >Appoinment Already Used Or Not Existed</span
             >
           </div>
 
@@ -124,6 +135,13 @@
                 signupForm.get('patientID').touched
               "
               >Invalid patientID</span
+            >
+            <span
+              class="help-block"
+              *ngIf="
+                patientError && patientErrorValue == signupForm.value.patientID
+              "
+              >Patient Id Not Existed</span
             >
           </div>
           <div class="row mb-3">
