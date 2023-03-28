@@ -43,6 +43,7 @@
         [employee]="employee"
         [index]="i"
         [mode]="'list'"
+        [role]="role"
       ></app-employee-profile-card>
     </div>
   </div>
@@ -84,5 +85,5 @@
   <app-employee-edit [currentEmployee]="currentEmployee"></app-employee-edit>
 </div> -->
 
-  <app-employee-add></app-employee-add>
+  <app-employee-add *ngIf="role == 'employee'"></app-employee-add>
 </div>

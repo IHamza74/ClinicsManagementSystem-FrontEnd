@@ -15,11 +15,17 @@
   </div>
   <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
     <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-warning pro" *ngIf="role=='patient'" >
-
-        <a [routerLink]="['/appointment/reserve']" [queryParams]="{id:doctor._id}" routerLinkActive="active1" 
-        
-        >Book</a>
+      <button
+        type="button"
+        class="btn btn-warning pro"
+        *ngIf="role == 'patient'"
+      >
+        <a
+          [routerLink]="['/appointment/reserve']"
+          [queryParams]="{ id: doctor._id }"
+          routerLinkActive="active1"
+          >Book</a
+        >
       </button>
 
       <label for="file-input" class="btn btn-sm btn-default float-right">
@@ -82,7 +88,7 @@
       </p>
       <a href="#">Show more</a> -->
 
-      <div *ngIf="mode == 'list'">
+      <div *ngIf="mode == 'list' && role == 'employee'">
         <button class="btn btn-sm btn-danger" (click)="remove(doctor._id)">
           <i class="fa-solid fa-trash" style="color: #ffffff"></i>
         </button>

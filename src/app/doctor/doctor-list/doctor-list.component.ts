@@ -23,13 +23,14 @@ export class DoctorListComponent implements OnInit {
   search: string = '';
   sep: string = 'Speciality';
   tag: string;
-  role;
+  role: String = '';
   constructor(
     private doctorServices: DoctorService,
     private profileService: ProfileService,
     public appointmentService: AppointmentService
   ) {}
   ngOnInit() {
+    this.role = this.profileService.role;
     this.function3adia();
     this.role = localStorage.getItem('role');
     if (this.doctorServices.specialityParameter === '') {
@@ -133,8 +134,6 @@ export class DoctorListComponent implements OnInit {
     this.page({ first: 0, rows: 9 });
   }
 
- 
-     
   getFinishedCount(id: string) {
     let total = this.appointments.filter(
       (appointment) => appointment.doctorID == id

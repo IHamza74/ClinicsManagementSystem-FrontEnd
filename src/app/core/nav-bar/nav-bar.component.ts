@@ -23,11 +23,12 @@ export class NavBarComponent {
   constructor(public profileService: ProfileService, private route: Router) {
     profileService.userSubject.subscribe((user) => {
       if (!this.profileService.isUserLogged) {
-        this.userLogged = true;
+        this.userLogged = true; //false
       } else {
-        this.userLogged = this.profileService.isUserLogged;
+        this.userLogged = this.profileService.isUserLogged; //true
       }
       this.user = user;
+      console.log('user');
       this.currentLoggedRole = localStorage.getItem('role');
       this.profileService.userIsStillLoged.next(this.userLogged);
     });
