@@ -34,11 +34,11 @@ export class EmployeeListComponent {
     });
   }
 
-  remove(id: string) {
-    this.employeeService.remove(id).subscribe((a) => {
-      console.log(a);
-    });
-  }
+  // remove(id: string) {
+  //   this.employeeService.remove(id).subscribe((a) => {
+  //     console.log(a);
+  //   });
+  // }
   edit(employee: Employee) {
     this.editMode = true;
     this.employeeService.setCurrentEmployee(employee);

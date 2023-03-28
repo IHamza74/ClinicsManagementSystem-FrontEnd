@@ -5,10 +5,15 @@ import { EmployeeService } from 'src/app/Services/employee.service';
 @Component({
   selector: 'app-employee-profile-card',
   templateUrl: './employee-profile-card.component.html',
-  styleUrls: ['./employee-profile-card.component.css','../../profile/profile.component.css'],
+  styleUrls: [
+    './employee-profile-card.component.css',
+    '../../profile/profile.component.css',
+  ],
 })
 export class EmployeeProfileCardComponent {
   @Input() employee: Employee;
+  @Input() index: number = 0;
+  @Input() mode: string;
   selectedFile: File;
   constructor(private employeeService: EmployeeService) {}
 
@@ -28,5 +33,11 @@ export class EmployeeProfileCardComponent {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+  }
+
+  remove(id: string) {
+    this.employeeService.remove(id).subscribe((a) => {
+      console.log(a);
+    });
   }
 }

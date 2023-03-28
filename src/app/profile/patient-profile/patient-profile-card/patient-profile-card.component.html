@@ -78,6 +78,18 @@
         writes, performs and records all of his own music.
       </p>
       <a href="#">Show more</a> -->
+      <div *ngIf="mode == 'list'">
+        <button
+          class="btn btn-sm btn-danger"
+          (click)="remove(patient._id, index)"
+        >
+          <i class="fa-solid fa-trash" style="color: #ffffff"></i>
+        </button>
+        <app-patient-edit
+          [currentPatient]="patient"
+          [currentIndex]="index"
+        ></app-patient-edit>
+      </div>
     </div>
   </div>
 </div>

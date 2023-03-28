@@ -9,7 +9,9 @@ import { PatientService } from 'src/app/Services/patient-service';
 })
 export class PatientProfileCardComponent implements OnInit {
   @Input() patient: Patient;
-  @Input() count;
+  @Input() count = { finished: 0, upcoming: 0 };
+  @Input() index: number = 0;
+  @Input() mode: string;
   finishedAppointments: number = 0;
   upcomingAppointments: number = 0;
   selectedFile: File;
@@ -41,5 +43,13 @@ export class PatientProfileCardComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+  }
+
+  remove(id: string, index: number) {
+    this.patientService.deletePatient(id).subscribe((response) => {
+      console.log(response);
+      // this.patients.splice(index, 1);
+      //  console.log(this.patients);
+    });
   }
 }

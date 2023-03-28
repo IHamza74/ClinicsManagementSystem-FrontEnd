@@ -24,6 +24,7 @@ import { LoggedGuard } from './Services/logged.guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'clinic', component: ClinicListComponent },
   { path: 'clinic/add', component: AddClinicComponent },
   { path: 'add-medicine', component: AddMedicineComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'invoice', component: InoviceListComponent },
   { path: 'invoice/:id', component: InvoicePaidComponent },
   { path: 'invoice/faild/:id', component: InvoiceUnpaidComponent },
+
   { path: '**', component: NotFoundComponent },
   // {path:"clinci/update/:id",component:u
 ];

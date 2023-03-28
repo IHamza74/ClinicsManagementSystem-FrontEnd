@@ -107,15 +107,15 @@ export class DoctorListComponent implements OnInit {
       }
     }
   }
-  deleteDoctor(id: string, index: number) {
-    console.log(id, index);
-    let confirmDeleted = confirm('Are you sure?');
-    if (confirmDeleted) {
-      this.doctorServices.delete(id).subscribe();
-      //this.doctorServices.doctors.splice(index, 1);
-      this.pageItems.splice(index, 1);
-    }
-  }
+  // deleteDoctor(id: string, index: number) {
+  //   console.log(id, index);
+  //   let confirmDeleted = confirm('Are you sure?');
+  //   if (confirmDeleted) {
+  //     this.doctorServices.delete(id).subscribe();
+  //     //this.doctorServices.doctors.splice(index, 1);
+  //     this.pageItems.splice(index, 1);
+  //   }
+  // }
   function3adia(): any {
     this.pageItems = this.doctorServices.getAll().subscribe((data) => {
       this.doctorServices.doctors = data;

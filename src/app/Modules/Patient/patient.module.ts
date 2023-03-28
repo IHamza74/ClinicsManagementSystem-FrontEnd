@@ -12,7 +12,7 @@ import { PatientProfileModule } from 'src/app/profile/patient-profile/patient-pr
   declarations: [
     PatientListComponent,
     PatientAddComponent,
-    PatientEditComponent,
+    // PatientEditComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +21,6 @@ import { PatientProfileModule } from 'src/app/profile/patient-profile/patient-pr
     RouterModule,
     PatientProfileModule,
   ],
-  exports: [PatientListComponent, PatientAddComponent, PatientEditComponent],
+  exports: [PatientListComponent, PatientAddComponent],
 })
 export class PatientModule {}

@@ -36,13 +36,13 @@ export class EmployeeService {
       password: '123456789',
     }); */
     console.log(employee);
-    return this.http.post<Employee>(this.basrURL, employee);
+    return this.http.post<any>(this.basrURL, employee);
   }
   remove(id: string) {
     console.log(this.basrURL + id);
     return this.http.delete(this.basrURL + id);
   }
-  
+
   edit(employee: Employee) {
     console.log(employee);
     return this.http.patch<Employee>(this.basrURL, {

@@ -40,9 +40,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     DoctorModule,
     ReactiveFormsModule,
     AccordionModule,
-    // FontAwesomeModule,
     EmployeeModule,
-    // RouterModule.forRoot(routes),
     PaginatorModule,
     BrowserAnimationsModule,
     MedicineModule,
@@ -56,10 +54,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     CarouselModule,
     ProfileModule,
     AppointmentModule,
-    
   ],
-  providers: [DoctorService,ConfirmationService, MessageService],
-
+  providers: [DoctorService, ConfirmationService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
