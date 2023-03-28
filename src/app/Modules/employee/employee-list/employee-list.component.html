@@ -8,16 +8,12 @@
 />
 
 <div class="row justify-content-center">
-  <div
+  <!-- <div
     class="card-container mx-2 my-2 p-4"
     *ngFor="let employee of pageItems; let i = index"
   >
     <span class="pro">PRO</span>
-    <!-- <img
-      class="round"
-      src="https://randomuser.me/api/portraits/women/79.jpg"
-      alt="user"
-    /> -->
+
     <img
       class="round"
       [attr.src]="'./../../../../assets/images/users/' + employee.photo"
@@ -37,10 +33,22 @@
         Delete
       </button>
     </div>
+  </div> -->
+  <div class="map-responsive mx-2 my-2 col-lg-12 row justify-content-evenly">
+    <div
+      class="mx-1 my-6 col-sm-10 col-lg-5 col-xl-3"
+      *ngFor="let employee of pageItems; let i = index"
+    >
+      <app-employee-profile-card
+        [employee]="employee"
+        [index]="i"
+        [mode]="'list'"
+        [role]="role"
+      ></app-employee-profile-card>
+    </div>
   </div>
-</div>
 
-<!-- <div
+  <!-- <div
   class="card"
   *ngFor="let employee of employees; let i = index"
   [paginator]="true"
@@ -66,15 +74,16 @@
     </div>
   </div>
 </div> -->
-<p-paginator
-  [rows]="9"
-  [totalRecords]="pageNo"
-  (onPageChange)="page($event)"
-></p-paginator>
-<!-- <div><app-employee-options></app-employee-options></div> -->
+  <p-paginator
+    [rows]="9"
+    [totalRecords]="pageNo"
+    (onPageChange)="page($event)"
+  ></p-paginator>
+  <!-- <div><app-employee-options></app-employee-options></div> -->
 
-<!-- <div *ngIf="editMode">
+  <!-- <div *ngIf="editMode">
   <app-employee-edit [currentEmployee]="currentEmployee"></app-employee-edit>
 </div> -->
 
-<app-employee-add></app-employee-add>
+  <app-employee-add *ngIf="role == 'employee'"></app-employee-add>
+</div>

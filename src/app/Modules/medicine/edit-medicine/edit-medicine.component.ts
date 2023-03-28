@@ -17,10 +17,15 @@ import { MedicineService } from 'src/app/Services/medicine.service';
   styleUrls: ['./edit-medicine.component.css'],
 })
 export class EditMedicineComponent implements OnInit, OnDestroy {
+  isRoleEmployee: boolean;
   constructor(
     private medicineService: MedicineService,
     private renderer: Renderer2
-  ) {}
+  ) {
+    if (localStorage.getItem('role') == 'employee') {
+      this.isRoleEmployee = true;
+    } else this.isRoleEmployee = false;
+  }
   @Input() medicineObj: Medicine = new Medicine();
   @Input() index: number;
   @ViewChild('maindiv') maindiv: ElementRef;

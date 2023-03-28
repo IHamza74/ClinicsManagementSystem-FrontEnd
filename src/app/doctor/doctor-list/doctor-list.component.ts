@@ -23,15 +23,16 @@ export class DoctorListComponent implements OnInit {
   search: string = '';
   sep: string = 'Speciality';
   tag: string;
-  role;
+  role: String = '';
   constructor(
     private doctorServices: DoctorService,
     private profileService: ProfileService,
     public appointmentService: AppointmentService
   ) {}
   ngOnInit() {
+    this.role = this.profileService.role;
     this.function3adia();
-    console.log((this.role = this.profileService.user));
+    this.role = localStorage.getItem('role');
     if (this.doctorServices.specialityParameter === '') {
       this.items = [
         {
@@ -107,15 +108,15 @@ export class DoctorListComponent implements OnInit {
       }
     }
   }
-  deleteDoctor(id: string, index: number) {
-    console.log(id, index);
-    let confirmDeleted = confirm('Are you sure?');
-    if (confirmDeleted) {
-      this.doctorServices.delete(id).subscribe();
-      //this.doctorServices.doctors.splice(index, 1);
-      this.pageItems.splice(index, 1);
-    }
-  }
+  // deleteDoctor(id: string, index: number) {
+  //   console.log(id, index);
+  //   let confirmDeleted = confirm('Are you sure?');
+  //   if (confirmDeleted) {
+  //     this.doctorServices.delete(id).subscribe();
+  //     //this.doctorServices.doctors.splice(index, 1);
+  //     this.pageItems.splice(index, 1);
+  //   }
+  // }
   function3adia(): any {
     this.pageItems = this.doctorServices.getAll().subscribe((data) => {
       this.doctorServices.doctors = data;
@@ -133,8 +134,6 @@ export class DoctorListComponent implements OnInit {
     this.page({ first: 0, rows: 9 });
   }
 
- 
-     
   getFinishedCount(id: string) {
     let total = this.appointments.filter(
       (appointment) => appointment.doctorID == id

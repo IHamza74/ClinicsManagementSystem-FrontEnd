@@ -3,6 +3,7 @@ import { AppointmentScheduler } from 'src/app/Models/appointment-scheduler';
 import { Patient } from 'src/app/Models/patient';
 import { AppointmentService } from 'src/app/Services/appointment.service';
 import { PatientService } from 'src/app/Services/patient-service';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-patient-list',
@@ -16,15 +17,19 @@ export class PatientListComponent {
   appointments: AppointmentScheduler[] = [];
   search: string = '';
   pageNo: number;
+  role: String = '';
 
   first: number;
   row: number;
   constructor(
-    public patientService: PatientService,
-    public appointmentService: AppointmentService
+    private patientService: PatientService,
+    private appointmentService: AppointmentService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit() {
+    this.role = this.profileService.role;
+
     this.appointmentService.getAllAppointments().subscribe((appointments) => {
       this.appointments = appointments;
       this.getAll();
@@ -39,13 +44,13 @@ export class PatientListComponent {
     });
   }
 
-  deletePatient(id: string, index: number) {
-    this.patientService.deletePatient(id).subscribe((response) => {
-      console.log(response);
-      this.patients.splice(index, 1);
-      console.log(this.patients);
-    });
-  }
+  // deletePatient(id: string, index: number) {
+  //   this.patientService.deletePatient(id).subscribe((response) => {
+  //     console.log(response);
+  //     this.patients.splice(index, 1);
+  //     console.log(this.patients);
+  //   });
+  // }
 
   page(event) {
     this.first = event.first;

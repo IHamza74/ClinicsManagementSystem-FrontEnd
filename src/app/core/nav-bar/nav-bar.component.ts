@@ -21,24 +21,35 @@ export class NavBarComponent {
   currentLoggedRole: string;
 
   constructor(public profileService: ProfileService, private route: Router) {
+    if (localStorage.getItem('logged')) {
+      this.userLogged = true;
+    }
+    this.currentLoggedRole = localStorage.getItem('role');
     profileService.userSubject.subscribe((user) => {
       if (!this.profileService.isUserLogged) {
-        this.userLogged = true;
+        this.userLogged = true; //false
       } else {
-        this.userLogged = this.profileService.isUserLogged;
+        this.userLogged = this.profileService.isUserLogged; //true
+      }
+      if (localStorage.getItem('logged')) {
+        this.userLogged = true;
       }
       this.user = user;
+      console.log('user');
       this.currentLoggedRole = localStorage.getItem('role');
       this.profileService.userIsStillLoged.next(this.userLogged);
     });
   }
-  ngOnInit() {
-    console.log('refresh');
-  }
+  ngOnInit() {}
   logOut() {
     localStorage.clear();
     this.userLogged = !this.userLogged;
     this.currentLoggedRole = null;
     this.user = null;
   }
+  // onDesplayAppointments() {
+  //   if (localStorage.getItem('role') == 'patient') {
+  //   }
+  // }
+
 }

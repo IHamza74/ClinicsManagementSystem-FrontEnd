@@ -13,13 +13,18 @@ export class ListMedicineComponent {
   medicineList: Medicine[] = [];
   tempArray: Medicine[] = [];
   medicineObj: Medicine = new Medicine();
+  isRoleEmployee: boolean;
   rowsPerPage = 6;
   currentPage = 0;
   constructor(
     private medicineService: MedicineService,
     private router: Router,
     private cdRef: ChangeDetectorRef
-  ) {}
+  ) {
+    if (localStorage.getItem('role') == 'employee') {
+      this.isRoleEmployee = true;
+    } else this.isRoleEmployee = false;
+  }
 
   ngOnInit(): void {
     this.medicineService.getAllMedicines().subscribe((data) => {

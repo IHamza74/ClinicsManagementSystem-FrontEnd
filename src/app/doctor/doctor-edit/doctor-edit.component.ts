@@ -10,55 +10,56 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 })
 export class DoctorEditComponent implements OnInit, DoCheck {
   @Input() doctorId: string;
+  @Input() currentDoctor: Doctor;
+
   @Input() index: number;
   editForm: FormGroup;
   doctor: DoctorPatch = new DoctorPatch('', '', 0, '', '', '', '', '', []);
   @Input() doctors: Doctor;
-  currentDoctor;
   photoFile: File;
   constructor(private doctorService: DoctorService) {}
 
   ngOnInit() {
     this.editForm = new FormGroup({
-      username: new FormControl(null, [
+      username: new FormControl(this.currentDoctor.name, [
         Validators.required,
         Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})'),
       ]),
-      age: new FormControl(null, [
+      age: new FormControl(this.currentDoctor.age, [
         Validators.required,
         Validators.pattern('(3[0-9]|[4-5][0-9]|60)'),
       ]),
       speciality: new FormControl('Surgeon', [Validators.required]),
-      email: new FormControl(null, [
+      email: new FormControl(this.currentDoctor.email, [
         Validators.required,
         Validators.email,
         Validators.pattern('(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})'),
       ]),
-      password: new FormControl(null, [
+      password: new FormControl(this.currentDoctor.password, [
         Validators.required,
         Validators.minLength(8),
       ]),
       photo: new FormControl(null, null),
-      workinghours: new FormControl(null, [
+      workinghours: new FormControl(this.currentDoctor.workingHours, [
         Validators.required,
         Validators.pattern('(^[4-8]$)'),
       ]),
     });
   }
   onEdit() {
-    this.doctor.id = this.doctors[this.index]._id;
-    this.doctor.appointmentNo = this.doctors[this.index].appointmentNo;
+    this.doctor.id = this.currentDoctor._id;
+    this.doctor.appointmentNo = this.currentDoctor.appointmentNo;
     console.log(this.doctorId);
     console.log(this.index);
     console.log(this.editForm);
     this.editForm.patchValue({
-      username: this.doctors[this.index].name,
-      age: this.doctors[this.index].age,
-      email: this.doctors[this.index].email,
-      password: this.doctors[this.index].password,
-      //photo: this.doctors[this.index].photo,
-      speciality: this.doctors[this.index].speciality,
-      workinghours: this.doctors[this.index].workingHours,
+      username: this.currentDoctor.name,
+      age: this.currentDoctor.age,
+      email: this.currentDoctor.email,
+      password: this.currentDoctor.password,
+      //photo: this.currentDoctor.photo,
+      speciality: this.currentDoctor.speciality,
+      workinghours: this.currentDoctor.workingHours,
     });
   }
 

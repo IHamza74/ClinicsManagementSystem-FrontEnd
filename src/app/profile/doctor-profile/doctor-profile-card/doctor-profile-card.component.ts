@@ -12,15 +12,15 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 })
 export class DoctorProfileCardComponent implements OnInit {
   @Input() doctor: Doctor;
-  @Input() count;
-
+  @Input() count = { finished: 0, upcoming: 0 };
+  @Input() index: number = 0;
+  @Input() mode: string;
+  @Input() role: String = '';
   selectedFile: File;
   finishedAppointments: number = 0;
   upcomingAppointments: number = 0;
-  role:string;
   constructor(private doctorService: DoctorService) {}
   ngOnInit(): void {
-    this.role=localStorage.getItem("role");
     this.finishedAppointments = this.count.finished;
     this.upcomingAppointments = this.count.upcoming;
     this.doctorService.finishedAppointmentsSubject.subscribe((obj) => {
@@ -45,5 +45,13 @@ export class DoctorProfileCardComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+  }
+  remove(id: string, index: number) {
+    let confirmDeleted = confirm('Are you sure?');
+    if (confirmDeleted) {
+      this.doctorService.delete(id).subscribe();
+      //this.doctorServices.doctors.splice(index, 1);
+      // this.pageItems.splice(index, 1);
+    }
   }
 }
