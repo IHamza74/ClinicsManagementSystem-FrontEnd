@@ -50,13 +50,14 @@ import { ProfileModule } from './profile/profile.module';
     AppRoutingModule,
     InvoiceModule,
     PatientModule,
+    ProfileModule,
     AuthModule,
     CarouselModule,
     ProfileModule,
-    AppointmentModule
+    AppointmentModule,
   ],
-  providers: [DoctorService, InvoiceModule],
+  providers: [DoctorService],
 
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

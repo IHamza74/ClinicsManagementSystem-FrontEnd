@@ -3,6 +3,7 @@ import { Patient, PatientEdit } from '../Models/patient';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppointmentScheduler } from '../Models/appointment-scheduler';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,14 @@ import { AppointmentScheduler } from '../Models/appointment-scheduler';
 export class PatientService {
   currentPatient: Patient;
   patients: Patient[] = [];
+  finishedAppointmentsSubject = new Subject<{
+    finishedAppointments: number;
+    upcomingAppointments: number;
+  }>();
   constructor(public http: HttpClient, public router: Router) {}
 
   baseURL = 'http://localhost:3000/patient/';
-  profileURL ='http://localhost:3000/appointmentScheduler/patientreports/'
+  profileURL = 'http://localhost:3000/appointmentScheduler/patientreports/';
 
   patientsList: PatientEdit[] = [];
 
@@ -53,10 +58,8 @@ export class PatientService {
     this.currentPatient = patient;
   }
 
-  getAppointments(id:string)
-  {
-  console.log(id);
-  return this.http.get<AppointmentScheduler[]>(this.profileURL+id) 
-
-}
+  getAppointments(id: string) {
+    console.log(id);
+    return this.http.get<AppointmentScheduler[]>(this.profileURL + id);
+  }
 }

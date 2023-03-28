@@ -8,58 +8,48 @@ import { PatientService } from 'src/app/Services/patient-service';
 @Component({
   selector: 'app-patient-data',
   templateUrl: './patient-data.component.html',
-  styleUrls: ['./patient-data.component.css']
+  styleUrls: ['./patient-data.component.css'],
 })
 export class PatientDataComponent {
-
   @Input() patient: Patient;
-  appointments :AppointmentScheduler[];
-  myFilter :AppointmentScheduler[];
-  id:string;
- 
+  id = '63e52ef90bcc43f0d19f8f8d';
+  appointments: AppointmentScheduler[];
+  myFilter: AppointmentScheduler[];
 
- constructor(public patientService:PatientService)
- {
-    this.id= localStorage.getItem("id");    
-  console.log(this.patient);
-  
- }
-
-
- 
- 
-
- ngOnInit()
- {
-   this.getData();
-   
-
- }
-
- filterData(event: any) {
-  if(event.target.value !="")
-  {
-
-    this.myFilter = this.appointments.filter(item =>
-      item.doctorID["name"].toLowerCase().includes(event.target.value.toLowerCase())
-      );
-      this.appointments=this.myFilter;
+  constructor(public patientService: PatientService) {
+    console.log(this.patient);
   }
-  else
-  this.getData();
 
+  ngOnInit() {
+    this.getData();
+  }
+
+  filterData(event: any) {
+    if (event.target.value != '') {
+      this.myFilter = this.appointments.filter((item) =>
+        item.doctorID['name']
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase())
+      );
+      this.appointments = this.myFilter;
+    } else this.getData();
+  }
+
+  getData() {
+    this.patientService.getAppointments(this.id).subscribe((data) => {
+      this.appointments = data;
+      let finishedCount = this.getFinishedCount();
+      this.patientService.finishedAppointmentsSubject.next({
+        finishedAppointments: finishedCount,
+        upcomingAppointments: this.appointments.length - finishedCount,
+      });
+    });
+  }
+  getFinishedCount() {
+    let finishedAppointments = this.appointments.filter(
+      (appointment) =>
+        new Date(appointment.date).getTime() < new Date().getTime()
+    );
+    return finishedAppointments.length;
+  }
 }
-
- getData(){
-  this.patientService.getAppointments(this.id).subscribe(data=>{
-    this.appointments=data;
-  })
- }
-
-
-}
-
-
-
-
-

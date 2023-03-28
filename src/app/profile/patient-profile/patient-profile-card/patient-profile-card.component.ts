@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Patient } from 'src/app/Models/patient';
 import { PatientService } from 'src/app/Services/patient-service';
 
@@ -7,11 +7,19 @@ import { PatientService } from 'src/app/Services/patient-service';
   templateUrl: './patient-profile-card.component.html',
   styleUrls: ['./patient-profile-card.component.css'],
 })
-export class PatientProfileCardComponent {
+export class PatientProfileCardComponent implements OnInit {
   @Input() patient: Patient;
   selectedFile: File;
+  finishedAppointments: number = 0;
+  upcomingAppointments: number = 0;
   constructor(private patientService: PatientService) {
     console.log(this.patient?.photo);
+  }
+  ngOnInit(): void {
+    this.patientService.finishedAppointmentsSubject.subscribe((obj) => {
+      this.finishedAppointments = obj.finishedAppointments;
+      this.upcomingAppointments = obj.upcomingAppointments;
+    });
   }
 
   onFileSelected(event) {

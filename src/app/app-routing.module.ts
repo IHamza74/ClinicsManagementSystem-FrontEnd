@@ -17,6 +17,7 @@ import { AuthComponent } from './shared/auth/auth.component';
 import { AddAppointmentComponent } from './Modules/appointment/add-appointment/add-appointment.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './Services/auth.guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,12 +26,16 @@ const routes: Routes = [
   { path: 'add-medicine', component: AddMedicineComponent },
   { path: 'edit-medicine', component: EditMedicineComponent },
   { path: 'list-medicine', component: ListMedicineComponent },
-  { path: 'Employee', component: EmployeeListComponent },
+  { path: 'employee', component: EmployeeListComponent },
   { path: 'doctor', component: DoctorListComponent },
   { path: 'patient', component: PatientListComponent },
-  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    component: ProfileComponent,
+  },
   { path: 'auth', component: AuthComponent },
-  {path:'appointment/add',component: AddAppointmentComponent},
+  { path: 'appointment/add', component: AddAppointmentComponent },
   { path: 'invoice', component: InoviceListComponent },
   { path: 'invoice/:id', component: InvoicePaidComponent },
   { path: 'invoice/faild/:id', component: InvoiceUnpaidComponent },

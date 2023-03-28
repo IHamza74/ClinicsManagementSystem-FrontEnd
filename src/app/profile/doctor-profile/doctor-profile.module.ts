@@ -12,18 +12,29 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [DoctorProfileCardComponent, DoctorProfileEditComponent, DoctorDataComponent],
-  imports: [CommonModule,ReactiveFormsModule,MatTabsModule,
-        BrowserModule,BrowserAnimationsModule,
-    TableModule,PaginatorModule,InputTextModule
+  declarations: [
+    DoctorProfileCardComponent,
+    DoctorProfileEditComponent,
+    DoctorDataComponent,
   ],
-  exports: [DoctorProfileCardComponent,DoctorProfileEditComponent,DoctorDataComponent,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    BrowserModule,
     BrowserAnimationsModule,
     TableModule,
     PaginatorModule,
-    InputTextModule
-    
-
+    InputTextModule,
+  ],
+  exports: [
+    DoctorProfileCardComponent,
+    DoctorProfileEditComponent,
+    DoctorDataComponent,
+    BrowserAnimationsModule,
+    TableModule,
+    PaginatorModule,
+    InputTextModule,
   ],
 })
 export class DoctorProfileModule {}

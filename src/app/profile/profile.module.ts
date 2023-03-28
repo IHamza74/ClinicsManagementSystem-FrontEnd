@@ -7,7 +7,6 @@ import { DoctorProfileModule } from './doctor-profile/doctor-profile.module';
 import { PatientProfileModule } from './patient-profile/patient-profile.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [ProfileComponent],
   imports: [
@@ -17,7 +16,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     DoctorProfileModule,
     PatientProfileModule,
     ReactiveFormsModule,
-    
   ],
   exports:[CommonModule]
 })
