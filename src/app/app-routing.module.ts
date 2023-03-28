@@ -18,6 +18,7 @@ import { AddAppointmentComponent } from './Modules/appointment/add-appointment/a
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './Services/auth.guard.service';
+import { LoggedGuard } from './Services/logged.guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,7 +35,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: ProfileComponent,
   },
-  { path: 'auth', component: AuthComponent },
+  { path: 'auth', canActivate: [LoggedGuard], component: AuthComponent },
   { path: 'appointment/add', component: AddAppointmentComponent },
   { path: 'invoice', component: InoviceListComponent },
   { path: 'invoice/:id', component: InvoicePaidComponent },
