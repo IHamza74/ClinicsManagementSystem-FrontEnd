@@ -70,9 +70,9 @@ export class EmployeeAddComponent {
           return from([]); // You can return an empty array or another observable to continue the stream
         })
       )
-      .subscribe((a) => {
-        console.log(a);
-        console.log('True');
+      .subscribe((Response) => {
+        if (Response.data == 'this email exists') this.emailExists = true;
+        else this.emailExists = false;
       });
   }
 }

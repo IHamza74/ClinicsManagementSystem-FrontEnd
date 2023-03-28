@@ -11,7 +11,7 @@ import { DoctorEditComponent } from 'src/app/doctor/doctor-edit/doctor-edit.comp
 import { DoctorProfileModule } from 'src/app/profile/doctor-profile/doctor-profile.module';
 
 @NgModule({
-  declarations: [DoctorListComponent, DoctorAddComponent, DoctorEditComponent],
+  declarations: [DoctorListComponent, DoctorAddComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,6 +20,6 @@ import { DoctorProfileModule } from 'src/app/profile/doctor-profile/doctor-profi
     MegaMenuModule,
     DoctorProfileModule,
   ],
-  exports: [DoctorListComponent, DoctorAddComponent, DoctorEditComponent],
+  exports: [DoctorListComponent, DoctorAddComponent],
 })
 export class DoctorModule {}

@@ -35,13 +35,19 @@
         <app-employee-profile-card
           *ngIf="role == 'employee'"
           [employee]="user"
+          [mode]="'profile'"
         ></app-employee-profile-card>
 
-        <app-doctor-profile-card *ngIf="role == 'doctor'" [doctor]="user">
+        <app-doctor-profile-card
+          *ngIf="role == 'doctor'"
+          [doctor]="user"
+          [mode]="'profile'"
+        >
         </app-doctor-profile-card>
         <app-patient-profile-card
           *ngIf="role == 'patient'"
           [patient]="user"
+          [mode]="'profile'"
         ></app-patient-profile-card>
       </div>
       <div class="col-xl-8 order-xl-1">

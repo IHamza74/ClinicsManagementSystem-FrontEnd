@@ -16,11 +16,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { EmployeeProfileModule } from 'src/app/profile/employee-profile/employee-profile.module';
 
 @NgModule({
   declarations: [
     EmployeeListComponent,
-    EmployeeEditComponent,
+    // EmployeeEditComponent,
     EmployeeAddComponent,
     EmployeeOptionsComponent,
   ],
@@ -37,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
+    EmployeeProfileModule,
   ],
   exports: [EmployeeListComponent],
 })

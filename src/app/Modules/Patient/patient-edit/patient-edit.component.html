@@ -1,12 +1,11 @@
-<p>patient-edit works!</p>
 <button
   type="button"
-  class="primary"
+  class="btn btn-sm btn-success"
   data-bs-toggle="modal"
   [attr.data-bs-target]="'#modal---' + index"
   (click)="onEdit(id)"
 >
-  Edit
+  <i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i>
 </button>
 <div
   [formGroup]="form"

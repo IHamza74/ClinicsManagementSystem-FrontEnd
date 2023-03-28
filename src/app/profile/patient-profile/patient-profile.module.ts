@@ -10,12 +10,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
+import { PatientEditComponent } from 'src/app/Modules/Patient/patient-edit/patient-edit.component';
 
 @NgModule({
   declarations: [
     PatientProfileCardComponent,
     PatientProfileEditComponent,
     PatientDataComponent,
+    PatientEditComponent,
   ],
   imports: [
     CommonModule,

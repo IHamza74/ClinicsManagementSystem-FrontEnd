@@ -39,13 +39,13 @@ export class PatientListComponent {
     });
   }
 
-  deletePatient(id: string, index: number) {
-    this.patientService.deletePatient(id).subscribe((response) => {
-      console.log(response);
-      this.patients.splice(index, 1);
-      console.log(this.patients);
-    });
-  }
+  // deletePatient(id: string, index: number) {
+  //   this.patientService.deletePatient(id).subscribe((response) => {
+  //     console.log(response);
+  //     this.patients.splice(index, 1);
+  //     console.log(this.patients);
+  //   });
+  // }
 
   page(event) {
     this.first = event.first;
