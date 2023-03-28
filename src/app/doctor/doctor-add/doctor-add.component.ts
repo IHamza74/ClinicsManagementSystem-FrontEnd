@@ -19,6 +19,7 @@ export class DoctorAddComponent implements OnInit {
   @Input() doctor: Doctor = new Doctor('', '', 0, '', '', '', '', '', []);
   photoFile: File;
   emailExists: boolean = false;
+  invalidEmail: string = '';
 
   constructor(private doctorServices: DoctorService) {}
 
@@ -71,6 +72,7 @@ export class DoctorAddComponent implements OnInit {
       .pipe(
         catchError((error) => {
           this.emailExists = true;
+          this.invalidEmail = this.signupForm.value.email;
           return from([]); // You can return an empty array or another observable to continue the stream
         })
       )
