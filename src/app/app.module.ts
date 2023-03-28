@@ -23,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { CarouselModule } from 'primeng/carousel';
 import { ProfileModule } from './profile/profile.module';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { ProfileModule } from './profile/profile.module';
     ProfileModule,
     AppointmentModule,
   ],
-  providers: [DoctorService],
+  providers: [DoctorService,ConfirmationService, MessageService],
 
   bootstrap: [AppComponent],
 })

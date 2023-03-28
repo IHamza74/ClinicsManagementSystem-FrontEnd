@@ -6,7 +6,15 @@
 </p-megaMenu>
 <div class="row justify-content-center">
   <div class="card-container mx-2 my-2 p-4" *ngFor="let doctor of pageItems; let i = index">
-    <span class="pro">PRO</span>
+    
+      <button type="button" class="btn btn-warning pro" >
+
+        <a [routerLink]="['/appointment/reserve']" [queryParams]="{id:doctor._id}" routerLinkActive="active1" 
+        
+        >Book</a>
+      </button>
+
+   
     <img class="round" [attr.src]="'./../../../../assets/images/users/' + doctor.photo" alt="Doctor Photo"
       style="width: 150px" />
     <h3>Dr. {{ doctor.name }}</h3>

@@ -46,3 +46,19 @@ tr td
   font-size: large;
 }
 
+:host ::ng-deep .p-calendar .p-datepicker
+    {
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    font-size: xx-small;
+   max-width: fit-content;
+   max-height: fit-content;
+   padding: 1px;
+
+} 
+
+:host ::ng-deep .p-dropdown 
+{
+    width: -webkit-fill-available;
+}

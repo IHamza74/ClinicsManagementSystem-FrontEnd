@@ -115,4 +115,9 @@ export class DoctorListComponent implements OnInit {
     });
     this.page({ first: 0, rows: 9 });
   }
+
+  bookDoctor(doctor:Doctor)
+  {
+       console.log(doctor);
+  }
 }

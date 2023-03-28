@@ -50,11 +50,20 @@ export class DoctorDataComponent  {
       this.appointments = data;
       this.myFilter = this.appointments;
     });
-   this.finished=this.appointments.filter(item=>{
-   return  new Date(item.date).getTime() > new Date().getTime();
 
-   })
- 
+   this.finished=this.getFinishedCount();
+   console.log(this.finished); 
 
+  }
+
+
+
+  getFinishedCount() {
+    let finishedAppointments = this.appointments.filter(
+      (appointment) =>
+        new Date(appointment.date).getTime() > new Date().getTime()
+    );
+   
+    return finishedAppointments;
   }
 }
