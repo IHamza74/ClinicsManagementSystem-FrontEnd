@@ -27,7 +27,7 @@
   [(ngModel)]="search"
   (keyup)="searchByName($event)"
 />
-<div class="center"><app-patient-add></app-patient-add></div>
+
 <br />
 <!-- <div class="map-responsive" *ngFor="let patient of pageItems; let i = index">
   <div
@@ -94,5 +94,6 @@
   [totalRecords]="pageNo"
   (onPageChange)="page($event)"
 ></p-paginator>
+<app-patient-add *ngIf="role == 'employee'"></app-patient-add>
 
 <!-- </div> -->
