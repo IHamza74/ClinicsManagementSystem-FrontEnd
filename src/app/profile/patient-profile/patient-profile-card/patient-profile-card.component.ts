@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Patient } from 'src/app/Models/patient';
 import { PatientService } from 'src/app/Services/patient-service';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-patient-profile-card',
@@ -12,6 +13,7 @@ export class PatientProfileCardComponent implements OnInit {
   @Input() count = { finished: 0, upcoming: 0 };
   @Input() index: number = 0;
   @Input() mode: string;
+  @Input() role: String = '';
   finishedAppointments: number = 0;
   upcomingAppointments: number = 0;
   selectedFile: File;

@@ -91,6 +91,7 @@
           *ngIf="
             currentLoggedRole == 'doctor' || currentLoggedRole == 'employee'
           "
+          [routerLink]="['/patient']"
           >Patients</a
         >
       </div>

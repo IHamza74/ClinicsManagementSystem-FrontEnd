@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Employee } from 'src/app/Models/employee';
 import { EmployeeService } from 'src/app/Services/employee.service';
+import { ProfileService } from 'src/app/Services/profile.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -12,16 +13,17 @@ export class EmployeeListComponent {
   currentEmployee: Employee;
   employees: Employee[] = [];
   pageItems: Employee[] = [];
-  employeeService: EmployeeService;
   search: string = '';
   pageNo: number;
-
+  role: String = '';
   first: number;
   row: number;
-  constructor(employeeService: EmployeeService) {
-    this.employeeService = employeeService;
-  }
+  constructor(
+    private employeeService: EmployeeService,
+    private profileService: ProfileService
+  ) {}
   ngOnInit(): void {
+    this.role = this.profileService.role;
     this.employeeService.getAll().subscribe((employees) => {
       this.employeeService.empArr = employees;
       this.employees = employees;
