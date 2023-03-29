@@ -20,10 +20,13 @@ export class EmployeeEditComponent implements OnInit {
   ngOnInit(): void {
     //this.currentEmployee = this.employeeService.currentEmployee;
     this.editForm = new FormGroup({
-      name: new FormControl(null),
+      name: new FormControl(
+        null,
+        Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})')
+      ),
       email: new FormControl(
-        null
-        //    [Validators.email]
+        null,
+        Validators.pattern('(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})')
       ),
       password: new FormControl(null, [Validators.minLength(8)]),
       age: new FormControl(null, [Validators.min(20), Validators.max(60)]),

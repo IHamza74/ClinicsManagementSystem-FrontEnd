@@ -74,3 +74,24 @@ export class PatientPost
   ){}
 
 }
+
+export class PatientAdd {
+  constructor(
+    public id: string,
+    public age: number,
+    public address: {
+      government: string;
+      city: string;
+      street: string;
+      building: string;
+    },
+    public apointments: Array<string>,
+    public disease: string,
+    public section: string,
+    public name: string,
+    public photo: string,
+    public password: string,
+    public email: string,
+    public Name?: string
+  ) {}
+}

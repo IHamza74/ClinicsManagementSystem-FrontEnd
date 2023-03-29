@@ -32,7 +32,6 @@ export class DoctorListComponent implements OnInit {
   ngOnInit() {
     this.role = this.profileService.role;
     this.function3adia();
-    this.role = localStorage.getItem('role');
     if (this.doctorServices.specialityParameter === '') {
       this.items = [
         {

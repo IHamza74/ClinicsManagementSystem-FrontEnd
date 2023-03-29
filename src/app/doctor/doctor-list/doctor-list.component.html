@@ -1,14 +1,18 @@
 <app-doctor-add *ngIf="role == 'admin' || role == 'employee'"> </app-doctor-add>
 
 <p-megaMenu [model]="items" (click)="filterBySpec($event)">
-  <input
-    type="text"
-    pInputText
-    class="form-control"
-    placeholder="Search By Name"
-    [(ngModel)]="search"
-    (keyup)="searchByName($event)"
-  />
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="fa fa-search"></i></span>
+    <input
+      pInputText
+      type="text"
+      pInputText
+      class="form-control"
+      placeholder="Search By Name"
+      [(ngModel)]="search"
+      (keyup)="searchByName($event)"
+    />
+  </div>
 </p-megaMenu>
 
 <div class="map-responsive mx-2 my-2 col-lg-12 row justify-content-evenly">
