@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Patient } from 'src/app/Models/patient';
+import { Patient, PatientPost } from 'src/app/Models/patient';
 import { PatientService } from 'src/app/Services/patient-service';
 
 @Component({
@@ -16,7 +16,7 @@ export class PatientAddComponent {
   city = '';
   street = '';
   building = '';
-
+  emailExists: boolean = false;
   @Input() index: number;
   @Input() id: string;
 
@@ -26,13 +26,12 @@ export class PatientAddComponent {
     street: this.street,
     building: this.building,
   };
-  newPatient: Patient;
+  newPatient: PatientPost;
 
   form = new FormGroup({
     patientName: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(20),
+      Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})'),
     ]),
     patientAge: new FormControl('', [Validators.required]),
     city: new FormControl('', [
@@ -87,7 +86,7 @@ export class PatientAddComponent {
   }
 
   onSubmit() {
-    this.newPatient = new Patient(
+    this.newPatient = new PatientPost(
       '',
       Number(this.form.value.patientAge),
       {

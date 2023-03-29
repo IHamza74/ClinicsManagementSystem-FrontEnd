@@ -18,8 +18,14 @@ export class EmployeeAddComponent {
   }
   ngOnInit(): void {
     this.addForm = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})'),
+      ]),
+      email: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})'),
+      ]),
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(8),

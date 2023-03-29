@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Patient, PatientEdit } from '../Models/patient';
+import { Patient, PatientEdit, PatientPost } from '../Models/patient';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppointmentScheduler } from '../Models/appointment-scheduler';
@@ -43,8 +43,8 @@ export class PatientService {
     return this.http.get<Patient>(this.baseURL + id);
   }
 
-  addNewPatient(patient: Patient) {
-    return this.http.post<Patient>(this.baseURL, patient);
+  addNewPatient(patient: PatientPost) {
+    return this.http.post<PatientPost>(this.baseURL, patient);
   }
 
   updatePatientByID(patient: PatientEdit) {
