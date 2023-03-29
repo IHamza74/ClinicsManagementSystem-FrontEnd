@@ -23,20 +23,20 @@ export class AppointmentListComponent {
 
   }
 
-  confirm(event: Event, clinic: Clinic) {
+  confirm(event: Event, ID: string) {
     this.confirmationService.confirm({
       target: event.target,
       message: 'Are you sure  you want to cancel this appointment?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
-
-        this.appointmentService.deleteAppointment(clinic._id).subscribe(data => {
+    console.log(ID);
+        this.appointmentService.deleteAppointment(ID).subscribe(data => {
         
 
           this.appointments.splice(
 
-            this.appointments.findIndex(a => a._id == clinic._id),
+            this.appointments.findIndex(a => a._id == ID),
             1
           )
         })

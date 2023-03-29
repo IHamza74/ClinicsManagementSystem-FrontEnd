@@ -12,12 +12,13 @@ import { PatientService } from 'src/app/Services/patient-service';
 })
 export class PatientDataComponent {
   @Input() patient: Patient;
-  id = '63e52ef90bcc43f0d19f8f8d';
+  id :string
   appointments: AppointmentScheduler[];
   myFilter: AppointmentScheduler[];
 
   constructor(public patientService: PatientService) {
     console.log(this.patient);
+    this.id=localStorage.getItem("id");
   }
 
   ngOnInit() {
