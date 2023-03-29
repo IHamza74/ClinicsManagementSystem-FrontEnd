@@ -41,6 +41,7 @@ export class NavBarComponent {
       }
       this.user = user;
       console.log('user');
+
       this.currentLoggedRole = localStorage.getItem('role');
       this.profileService.userIsStillLoged.next(this.userLogged);
     });
