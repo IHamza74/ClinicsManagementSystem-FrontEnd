@@ -28,11 +28,14 @@
         >
       </button>
 
-      <label for="file-input" class="btn btn-sm btn-default float-right">
+      <label
+        [for]="'file-input' + index"
+        class="btn btn-sm btn-default float-right"
+      >
         <i class="fa-solid fa-camera" style="color: #ffffff"></i>
       </label>
       <input
-        id="file-input"
+        [id]="'file-input' + index"
         type="file"
         name="file"
         (change)="onFileSelected($event)"

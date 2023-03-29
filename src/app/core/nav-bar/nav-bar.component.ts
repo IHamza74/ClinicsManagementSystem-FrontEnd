@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Doctor } from 'src/app/Models/doctor';
 import { Employee } from 'src/app/Models/employee';
@@ -16,6 +16,11 @@ import { Subject } from 'rxjs';
   ],
 })
 export class NavBarComponent {
+  @HostListener('window:storage')
+  onStorageChange() {
+    this.logOut();
+    this.route.navigate(['/auth']);
+  }
   user: Employee | Doctor | Patient;
   userLogged = false;
   currentLoggedRole: string;
@@ -51,5 +56,4 @@ export class NavBarComponent {
   //   if (localStorage.getItem('role') == 'patient') {
   //   }
   // }
-
 }

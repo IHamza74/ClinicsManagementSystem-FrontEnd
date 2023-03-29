@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Employee } from '../Models/employee';
 import { Doctor } from '../Models/doctor';
 import { Patient } from '../Models/patient';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { EmployeeService } from './employee.service';
 import { DoctorService } from './doctor.service';
 import { PatientService } from './patient-service';

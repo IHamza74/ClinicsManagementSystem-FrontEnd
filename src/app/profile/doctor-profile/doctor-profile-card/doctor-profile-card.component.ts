@@ -35,6 +35,7 @@ export class DoctorProfileCardComponent implements OnInit {
   }
 
   uploadFile() {
+    console.log(this.doctor);
     const formData = new FormData();
     formData.append('id', this.doctor._id);
     formData.append('photo', this.selectedFile, this.selectedFile.name);
