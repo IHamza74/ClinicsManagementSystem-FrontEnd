@@ -48,10 +48,12 @@ export class PatientProfileCardComponent implements OnInit {
   }
 
   remove(id: string, index: number) {
-    this.patientService.deletePatient(id).subscribe((response) => {
-      console.log(response);
-      // this.patients.splice(index, 1);
-      //  console.log(this.patients);
-    });
+    if (confirm('Are You Sure ?')) {
+      this.patientService.deletePatient(id).subscribe((response) => {
+        console.log(response);
+        // this.patients.splice(index, 1);
+        //  console.log(this.patients);
+      });
+    }
   }
 }

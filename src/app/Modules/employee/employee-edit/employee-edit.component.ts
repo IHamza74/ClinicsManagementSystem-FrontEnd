@@ -21,30 +21,45 @@ export class EmployeeEditComponent implements OnInit {
     //this.currentEmployee = this.employeeService.currentEmployee;
     this.editForm = new FormGroup({
       name: new FormControl(
-        null,
-        Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})')
+        this.currentEmployee.name,
+        Validators.pattern('([a-zA-Z]{3,12})([ ])([a-zA-Z]{3,12})')
       ),
       email: new FormControl(
-        null,
+        this.currentEmployee.email,
         Validators.pattern('(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})')
       ),
       password: new FormControl(null, [Validators.minLength(8)]),
-      age: new FormControl(null, [Validators.min(20), Validators.max(60)]),
-      government: new FormControl(null),
-      city: new FormControl(null),
-      street: new FormControl(null),
-      building: new FormControl(null),
+      age: new FormControl(this.currentEmployee.age, [
+        Validators.min(20),
+        Validators.max(60),
+      ]),
+      government: new FormControl(
+        this.currentEmployee.address.government,
+        Validators.pattern('[a-zA-Z ]*')
+      ),
+      city: new FormControl(
+        this.currentEmployee.address.city,
+        Validators.pattern('[a-zA-Z ]*')
+      ),
+      street: new FormControl(
+        this.currentEmployee.address.street,
+        Validators.pattern('[a-zA-Z0-9 ]*')
+      ),
+      building: new FormControl(
+        this.currentEmployee.address.building,
+        Validators.pattern('[a-zA-Z0-9 ]*')
+      ),
     });
-    this.editForm.patchValue({
-      name: this.currentEmployee.name,
-      email: this.currentEmployee.email,
-      password: this.currentEmployee.password,
-      age: this.currentEmployee.age,
-      government: this.currentEmployee.address.government,
-      city: this.currentEmployee.address.city,
-      street: this.currentEmployee.address.street,
-      building: this.currentEmployee.address.building,
-    });
+    // this.editForm.patchValue({
+    //   name: this.currentEmployee.name,
+    //   email: this.currentEmployee.email,
+    //   password: this.currentEmployee.password,
+    //   age: this.currentEmployee.age,
+    //   government: this.currentEmployee.address.government,
+    //   city: this.currentEmployee.address.city,
+    //   street: this.currentEmployee.address.street,
+    //   building: this.currentEmployee.address.building,
+    // });
   }
 
   onSubmit() {

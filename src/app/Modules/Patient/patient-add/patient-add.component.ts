@@ -31,9 +31,13 @@ export class PatientAddComponent {
   form = new FormGroup({
     patientName: new FormControl('', [
       Validators.required,
-      Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})'),
+      Validators.pattern('([a-zA-Z]{3,15})([ ])([a-zA-Z]{3,15})'),
     ]),
-    patientAge: new FormControl('', [Validators.required]),
+    patientAge: new FormControl('', [
+      Validators.required,
+      Validators.min(0),
+      Validators.max(100),
+    ]),
     city: new FormControl('', [
       Validators.required,
       Validators.pattern('[a-zA-Z ]*'),
@@ -50,14 +54,22 @@ export class PatientAddComponent {
       Validators.required,
       Validators.pattern('[a-zA-Z ]*'),
     ]),
-    PatientMail: new FormControl('', [Validators.required, Validators.email]),
+    PatientMail: new FormControl('', [
+      Validators.required,
+      Validators.pattern('(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})'),
+    ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z1-9 ]*'),
       Validators.minLength(8),
     ]),
-    section: new FormControl(),
-    government: new FormControl(),
+    section: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9 ]*'),
+    ]),
+    government: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z ]*'),
+    ]),
   });
   get patientName() {
     return this.form.get('patientName');
@@ -107,6 +119,7 @@ export class PatientAddComponent {
     this.patientService.addNewPatient(this.newPatient).subscribe((Response) => {
       console.log(Response);
       this.router.navigateByUrl('/patient');
+      this.form.reset();
     });
   }
 }

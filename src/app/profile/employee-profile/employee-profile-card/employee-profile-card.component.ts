@@ -44,8 +44,10 @@ export class EmployeeProfileCardComponent implements OnInit {
   }
 
   remove(id: string) {
-    this.employeeService.remove(id).subscribe((a) => {
-      console.log(a);
-    });
+    if (confirm('Are You Sure ?')) {
+      this.employeeService.remove(id).subscribe((a) => {
+        console.log(a);
+      });
+    }
   }
 }

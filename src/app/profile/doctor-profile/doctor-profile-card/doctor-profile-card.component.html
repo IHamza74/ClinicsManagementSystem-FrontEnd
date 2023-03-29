@@ -28,18 +28,20 @@
         >
       </button>
 
-      <label
-        [for]="'file-input' + index"
-        class="btn btn-sm btn-default float-right"
-      >
-        <i class="fa-solid fa-camera" style="color: #ffffff"></i>
-      </label>
-      <input
-        [id]="'file-input' + index"
-        type="file"
-        name="file"
-        (change)="onFileSelected($event)"
-      />
+      <div *ngIf="mode == 'profile'">
+        <label
+          [for]="'file-input' + index"
+          class="btn btn-sm btn-default float-right"
+        >
+          <i class="fa-solid fa-camera" style="color: #ffffff"></i>
+        </label>
+        <input
+          [id]="'file-input' + index"
+          type="file"
+          name="file"
+          (change)="onFileSelected($event)"
+        />
+      </div>
     </div>
   </div>
   <div class="card-body pt-0 pt-md-4">

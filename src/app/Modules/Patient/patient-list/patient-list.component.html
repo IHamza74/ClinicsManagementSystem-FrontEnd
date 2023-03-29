@@ -19,14 +19,18 @@
             </tr>
         </tbody>
     </table> -->
-<input
-  type="text"
-  pInputText
-  class="form-control"
-  placeholder="Search By Name"
-  [(ngModel)]="search"
-  (keyup)="searchByName($event)"
-/>
+<div class="p-inputgroup">
+  <span class="p-inputgroup-addon"><i class="fa fa-search"></i></span>
+  <input
+    pInputText
+    type="text"
+    pInputText
+    class="form-control"
+    placeholder="Search By Name"
+    [(ngModel)]="search"
+    (keyup)="searchByName($event)"
+  />
+</div>
 
 <br />
 <!-- <div class="map-responsive" *ngFor="let patient of pageItems; let i = index">
@@ -75,7 +79,7 @@
     </div>
   </div>
 </div> -->
-<div class="map-responsive mx-2 my-2 col-lg-12 row justify-content-evenly">
+<div class="map-responsive my-2 col-lg-12 row justify-content-evenly">
   <div
     class="mx-1 my-6 col-sm-10 col-lg-5 col-xl-3"
     *ngFor="let patient of pageItems; let i = index"

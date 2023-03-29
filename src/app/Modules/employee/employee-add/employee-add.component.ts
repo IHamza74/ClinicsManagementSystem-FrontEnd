@@ -35,10 +35,22 @@ export class EmployeeAddComponent {
         Validators.min(20),
         Validators.max(60),
       ]),
-      government: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      street: new FormControl(null, [Validators.required]),
-      building: new FormControl(null, [Validators.required]),
+      government: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[a-zA-Z ]*'),
+      ]),
+      city: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[a-zA-Z ]*'),
+      ]),
+      street: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9 ]*'),
+      ]),
+      building: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9 ]*'),
+      ]),
     });
   }
 

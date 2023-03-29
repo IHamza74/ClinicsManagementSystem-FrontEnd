@@ -22,26 +22,20 @@ export class DoctorEditComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.editForm = new FormGroup({
       username: new FormControl(this.currentDoctor.name, [
-        Validators.required,
         Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})'),
       ]),
       age: new FormControl(this.currentDoctor.age, [
-        Validators.required,
-        Validators.pattern('(3[0-9]|[4-5][0-9]|60)'),
+        Validators.min(20),
+        Validators.max(80),
       ]),
       speciality: new FormControl('Surgeon', [Validators.required]),
       email: new FormControl(this.currentDoctor.email, [
-        Validators.required,
         Validators.email,
         Validators.pattern('(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})'),
       ]),
-      password: new FormControl(this.currentDoctor.password, [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
+      password: new FormControl(null, [Validators.minLength(8)]),
       photo: new FormControl(null, null),
       workinghours: new FormControl(this.currentDoctor.workingHours, [
-        Validators.required,
         Validators.pattern('(^[4-8]$)'),
       ]),
     });
@@ -49,9 +43,7 @@ export class DoctorEditComponent implements OnInit, DoCheck {
   onEdit() {
     this.doctor.id = this.currentDoctor._id;
     this.doctor.appointmentNo = this.currentDoctor.appointmentNo;
-    console.log(this.doctorId);
-    console.log(this.index);
-    console.log(this.editForm);
+
     this.editForm.patchValue({
       username: this.currentDoctor.name,
       age: this.currentDoctor.age,
@@ -86,6 +78,14 @@ export class DoctorEditComponent implements OnInit, DoCheck {
     this.doctor.photo = this.editForm.value.photo;
     this.doctor.speciality = this.editForm.value.speciality;
     this.doctor.workingHours = this.editForm.value.workinghours;
+
+    this.currentDoctor.name = this.doctor.name;
+    this.currentDoctor.age = this.doctor.age;
+    this.currentDoctor.email = this.doctor.email;
+    this.currentDoctor.password = this.doctor.password;
+    this.currentDoctor.photo = this.doctor.photo;
+    this.currentDoctor.speciality = this.doctor.speciality;
+    this.currentDoctor.workingHours = this.doctor.workingHours;
 
     if (this.editForm.controls.photo.dirty) {
       this.doctorService.doctor = this.doctor;

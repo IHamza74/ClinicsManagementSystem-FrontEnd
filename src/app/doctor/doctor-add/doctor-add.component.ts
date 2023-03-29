@@ -31,7 +31,8 @@ export class DoctorAddComponent implements OnInit {
       ]),
       age: new FormControl(null, [
         Validators.required,
-        Validators.pattern('(3[0-9]|[4-5][0-9]|60)'),
+        Validators.min(20),
+        Validators.max(80),
       ]),
       speciality: new FormControl('Surgeon', [Validators.required]),
       email: new FormControl(null, [
