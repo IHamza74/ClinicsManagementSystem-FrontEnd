@@ -48,6 +48,31 @@ export class patientAddress {
     public street: string,
     public building: string
   ) {}
+
+
+}
+
+export class PatientPost
+{
+  constructor(
+    public _id: string,
+    public age: number,
+    public address: {
+      government: string;
+      city: string;
+      street: string;
+      building: string;
+    },
+    public apointments: Array<string>,
+    public disease: string,
+    public section: string,
+    public password: string,
+    public email: string,
+    public name: string,
+    public photo?: string
+   
+  ){}
+
 }
 
 export class PatientAdd {
