@@ -30,7 +30,7 @@
         
         
           <td>
-            <div class="card flex justify-content-center gap-2" style="display: inline;">
+            <div class="justify-content-center gap-2" style="display: inline;">
               <button mat-fab color="primary" (click)="makeReservation(element,selectedDate.value)">
              OK
               </button>
@@ -38,7 +38,7 @@
           </td>
           <td>
 
-              <div class="card flex justify-content-center gap-2">
+              <div class="justify-content-center">
                 <p-toast></p-toast>
                 <p-confirmPopup></p-confirmPopup>
                 <button mat-fab color="warn" (click)="confirm($event,element._id)">

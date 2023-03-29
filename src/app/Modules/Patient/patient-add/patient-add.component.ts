@@ -16,7 +16,7 @@ export class PatientAddComponent {
   city = '';
   street = '';
   building = '';
-
+  emailExists: boolean = false;
   @Input() index: number;
   @Input() id: string;
 
@@ -31,8 +31,7 @@ export class PatientAddComponent {
   form = new FormGroup({
     patientName: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(20),
+      Validators.pattern('([a-zA-Z]{3,8})([ ])([a-zA-Z]{3,8})'),
     ]),
     patientAge: new FormControl('', [Validators.required]),
     city: new FormControl('', [

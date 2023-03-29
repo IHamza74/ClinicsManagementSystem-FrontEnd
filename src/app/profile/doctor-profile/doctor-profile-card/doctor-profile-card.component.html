@@ -16,9 +16,9 @@
   <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
     <div class="d-flex justify-content-between">
       <button
+        *ngIf="mode == 'list' && role == 'patient'"
         type="button"
-        class="btn btn-warning pro"
-        *ngIf="role == 'patient'"
+        class="btn btn-sm btn-warning pro"
       >
         <a
           [routerLink]="['/appointment/reserve']"
