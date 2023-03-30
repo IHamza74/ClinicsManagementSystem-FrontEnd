@@ -1,13 +1,11 @@
 <div>
   <h2>my patients</h2>
  
-  
-  
   <mat-tab-group>
     <mat-tab label="Up comming" class="mat-elevation-z8"> 
-      <input type="text" pInputText placeholder="Search" (input)="filterData($event)" id="mysearch">
+      <input type="text" pInputText placeholder="Search" (input)="filterupcommingData($event)" id="mysearch">
       <i class="pi pi-search"></i>
-    <p-table [value]="appointments" [paginator]="true" [rows]="5">
+    <p-table [value]="upcommingAppointment" [paginator]="true" [rows]="5">
       <ng-template pTemplate="header">
         <tr>
           <th>Patient</th>
@@ -29,9 +27,9 @@
     </mat-tab> 
   
     <mat-tab label=" finished" class="mat-elevation-z8"> 
-      <input type="text" pInputText placeholder="Search" (input)="filterData($event)" id="mysearch">
+      <input type="text" pInputText placeholder="Search" (input)="filterFinishedData($event)" id="mysearch">
       <i class="pi pi-search"></i>
-    <p-table [value]="appointments" [paginator]="true" [rows]="5">
+    <p-table [value]="finishedAppointment" [paginator]="true" [rows]="5">
       <ng-template pTemplate="header">
         <tr>
           <th>Patient</th>

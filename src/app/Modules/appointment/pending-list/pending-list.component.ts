@@ -15,7 +15,7 @@ export class PendingListComponent {
   pendingAppointment: PendingAppointmentScheduler[] = [];
   empId: string;
   selectedDate: Date
- 
+  date =new Date().toLocaleDateString();
   constructor(public appointmentService: AppointmentService,
     public confirmationService: ConfirmationService,
     public messageService: MessageService,
@@ -91,6 +91,11 @@ export class PendingListComponent {
          
         })
          
+  }
+
+  changeDateFormat(date:Date)
+  {
+    return new Date(date);
   }
 
 
