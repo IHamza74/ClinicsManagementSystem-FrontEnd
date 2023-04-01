@@ -70,7 +70,7 @@ export class AddAppointmentComponent {
      
       console.log(appoint);
       this.appointmentService.addAppointment(appoint).subscribe(data => {
-        alert(data);
+        alert("new appointment has created");
       })
 
     }

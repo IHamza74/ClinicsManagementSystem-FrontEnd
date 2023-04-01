@@ -66,16 +66,17 @@ export class PendingListComponent {
 
 
 
-  makeReservation(appoint: any,selectedDate:Date) {
-    console.log(appoint);
+  makeReservation(appoint: any,selectedDate:string) {
+   
    
     let finalDate:Date;
     
-    if(selectedDate==null)
-    finalDate=appoint.data;
+    if(selectedDate=='')
+    finalDate=new Date(appoint.date);
     else
-    finalDate=selectedDate;
+    finalDate=new Date(selectedDate);
   
+    console.log(finalDate)
         this.appointmentService.addAppointment(
 
           new AppointmentScheduler(appoint.patientID._id,appoint.doctorID._id,this.empId,appoint.clinicID._id,finalDate)

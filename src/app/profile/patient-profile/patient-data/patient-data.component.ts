@@ -15,6 +15,8 @@ export class PatientDataComponent {
   id :string
   appointments: AppointmentScheduler[];
   myFilter: AppointmentScheduler[];
+  finishedAppointment:AppointmentScheduler[];
+  upcommingAppointment:AppointmentScheduler[];
 
   constructor(public patientService: PatientService) {
     console.log(this.patient);
@@ -25,21 +27,13 @@ export class PatientDataComponent {
     this.getData();
   }
 
-  filterData(event: any) {
-    if (event.target.value != '') {
-      this.myFilter = this.appointments.filter((item) =>
-        item.doctorID['name']
-          .toLowerCase()
-          .includes(event.target.value.toLowerCase())
-      );
-      this.appointments = this.myFilter;
-    } else this.getData();
-  }
+ 
 
   getData() {
     this.patientService.getAppointments(this.id).subscribe((data) => {
       this.appointments = data;
       let finishedCount = this.getFinishedCount();
+      this.getUpcommingAppointment();
       this.patientService.finishedAppointmentsSubject.next({
         finishedAppointments: finishedCount,
         upcomingAppointments: this.appointments.length - finishedCount,
@@ -47,10 +41,49 @@ export class PatientDataComponent {
     });
   }
   getFinishedCount() {
-    let finishedAppointments = this.appointments.filter(
+   this.finishedAppointment = this.appointments.filter(
       (appointment) =>
         new Date(appointment.date).getTime() < new Date().getTime()
     );
-    return finishedAppointments.length;
+   
+    return this.finishedAppointment.length;
   }
+
+
+  getUpcommingAppointment()
+  {
+      this.upcommingAppointment = this.appointments.filter(
+      (appointment) =>
+        new Date(appointment.date).getTime() > new Date().getTime()
+        
+    );
+  
+
+  }
+  filterFinishedData(event: any)
+  {
+    if (event.target.value != '') {
+      this.myFilter = this.finishedAppointment.filter((item) =>
+        item.doctorID['name']
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase())
+      );
+      this.finishedAppointment = this.myFilter;
+    } 
+    else this.getData();
+  }
+
+  filterupcommingData(event:any)
+  {
+    if (event.target.value != '') {
+      this.myFilter = this.upcommingAppointment.filter((item) =>
+        item.doctorID['name']
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase())
+      );
+      this.upcommingAppointment = this.myFilter;
+    } 
+    else this.getData();
+  }
+
 }

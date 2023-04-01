@@ -53,7 +53,7 @@ export class EmployeeProfileEditComponent {
       this.editForm.value.age,
       address,
       "",
-      "63e4017bd43ff93971c13140"
+     this.EditeEmployee._id
       );
 
     this.employeeService.edit(currentEmployee).subscribe((emp)=>{

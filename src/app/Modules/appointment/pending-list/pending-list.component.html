@@ -1,6 +1,6 @@
 
 
-    <p-table [value]="pendingAppointment" [paginator]="true" [rows]="5">
+    <p-table [value]="pendingAppointment" [paginator]="true" [rows]="5" [responsive]="true">
       <ng-template pTemplate="header">
 
         <tr>
@@ -25,7 +25,7 @@
           <td>
             <input type="datetime" id="birthdaytime" value="{{element?.date}}"  >
             <br>
-            <input id="party" type="datetime-local" #selectedDate value="{{date}}" />
+            <input id="party" type="datetime-local" #selectedDate />
           </td>
         
         

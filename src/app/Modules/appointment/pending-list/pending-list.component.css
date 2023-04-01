@@ -12,3 +12,17 @@
      width: -webkit-fill-available;
      color: crimson;
 }
+
+@media screen and (max-width: 64em) {
+    .ui-table td,
+    .ui-table th {
+      display: block;
+      text-align: left;
+    }
+  
+    .ui-table td:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+}

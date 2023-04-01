@@ -94,6 +94,14 @@
           [routerLink]="['/patient']"
           >Patients</a
         >
+        <a
+        class="text-light ms-4 nav-tabs"
+        *ngIf="
+           currentLoggedRole == 'employee'
+        "
+        [routerLink]="['/appointment']"
+        >Appointments</a
+      >
       </div>
       <!-- User -->
       <ul class="navbar-nav align-items-center d-none d-md-flex">
